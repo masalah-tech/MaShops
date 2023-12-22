@@ -1,0 +1,54 @@
+﻿@using MaShops
+@using MaShops.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model Sale
+
+@{
+    Layout = "~/Areas/ControlPanel/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Sale Details";
+    ViewData["Page"] = "Sales";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-area="ControlPanel" asp-controller="Sale" asp-action="Index"
+               class="text-decoration-none text-muted">Sale</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a asp-area="ControlPanel" asp-controller="Sale" asp-action="Index"
+               class="text-decoration-none text-muted">List</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+            @{
+                WriteLiteral("Sale Details");
+            }
+        </li>
+    </ol>
+</nav>
+
+<div class="card px-0 py-3">
+    <form>
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Product Information</legend>
+            <div class="mb-3 row">
+                <div class="col-md-6">
+                    <img src="@Model.Product.MainPosterPath" alt="@Model.Product.MainPosterPath" class="prod-poster-in-details" />
+                </div>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="saleProductName" class="form-label">Product Name</label>
+                <textarea class="form-control" id="saleProductName" rows="3" readonly>@Model.Product.Name</textarea>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="saleProductDescription" class="form-label">Product Description in HTML</label>
+                <textarea class="form-control" id="saleProductDescription" rows="3" readonly>@Html.Raw(Model.Product.HTMLDescription)</textarea>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="saleProductCategory" class="form-label">Product Category</label>
+                <input type="text" class="form-control" id="saleProductCategory" readonly value="@Model.Product.Category.Name">
+            </div>
+        </fieldset>
+    </form>
+</div>

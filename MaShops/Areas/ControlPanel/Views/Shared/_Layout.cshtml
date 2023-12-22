@@ -1,0 +1,252 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="~/lib/bootstrap/bootstrap-5.3.1-dist/css/bootstrap.min.css" />
+
+    <!-- Boxicons -->
+    <link rel="stylesheet" href="~/lib/boxicons-2.1.4/css/boxicons.min.css" />
+
+    <!-- DataTables -->
+    <link href="~/lib/datatables/datatables.min.css" rel="stylesheet">
+
+    <!-- MZN -->
+    <link href="~/lib/mzn/css/mzn.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/css/control-panel.css" asp-append-version="true" />
+</head>
+
+<body class="mzn-scroll">
+
+    <!-- Main Header -->
+    <header id="primary-header" class="primary-header d-flex align-items-center">
+        <div class="d-flex align-items-center justify-content-between w-100">
+            <div class="d-flex align-items-center gap-2">
+                <button type="button"
+                        class="border-0 bg-transparent justify-content-center align-items-center open-sidenav-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <h1 class="m-0">@ViewData["Title"]</h1>
+            </div>
+            <div class="d-flex flex-row-reverse gap-2 align-items-center">
+                <div class="dropdown">
+                    <a class="p-0 ps-1" href="#" id="profile-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                        <img src="~/img/mazen2.png" class="rounded-action-img" />
+                    </a>
+                    <ul class="dropdown-menu profile-menu py-0 overflow-hidden" aria-labelledby="profile-dropdown">
+                        <li>
+                            <a class="dropdown-item d-flex gap-2 py-3" href="#">
+                                <img src="~/img/mazen2.png" class="rounded-action-img" />
+                                <div class="d-flex flex-column">
+                                    <span class="fw-bold">Mazen Salah</span>
+                                    <span class="text-secondary short-text">Admin</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider my-0"></li>
+                        <li>
+                            <a class="dropdown-item py-2 d-flex gap-3 align-items-center" href="#">
+                                <i class="fa-solid fa-user"></i>
+                                <span>My Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item py-2 d-flex gap-3 align-items-center logout" href="#">
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                <span>Log out</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <a asp-area="" asp-controller="Home" asp-action="Index"
+                   class="btn btn-outline-primary">
+                    View Website
+                </a>
+            </div>
+        </div>
+    </header>
+    <!-- End Main Header -->
+    <!-- Overlay Behind SideNav in Small Screens -->
+    <div class="sidenav-overlay">
+    </div>
+    <!-- / Overlay Behind SideNav in Small Screens -->
+    <!-- Side Navigation -->
+    <nav class="side-nav h-100" id="sidenav">
+        <div class="d-flex flex-column justify-content-between h-100 overflow-y-scroll overflow-x-hidden mzn-scroll dark-scroll wrapper">
+            <div>
+                <div class="d-flex justify-content-end upper-box">
+                    <button type="button" class="bg-transparent border-0 justify-content-center align-items-center close-sidenav-btn">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <ul class="list-unstyled m-0 accordion" id="sidenavAccordion">
+                    <li>
+                        <a asp-area="ControlPanel" asp-controller="Home" asp-action="Index"
+                           class="text-decoration-none text-white d-flex align-items-center gap-3 sidenav-item @if(ViewData["Page"] == "Dashboard") WriteLiteral("active");">
+                            <i class="fa-solid fa-table-columns navlink-icon"></i>
+                            <span class="navlink-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="accordion-item">
+                        <div class="accordion-header">
+                            <a href="javascript:void(0)"
+                               class="accordion-button d-flex align-items-center gap-1 c-link text-decoration-none text-white d-flex align-items-center justify-content-between sidenav-item"
+                               data-bs-toggle="collapse" data-bs-target="#adminsMenu"
+                               aria-expanded="@{
+                                    if(ViewData["Page"] == "SuperAdmins" || ViewData["Page"] == "Admins" 
+                                        || ViewData["Page"] == "Sellers" || ViewData["Page"] == "Customers")
+                                        WriteLiteral("true");
+                                    else
+                                        WriteLiteral("false");
+                                }" aria-controls="adminsMenu">
+                                <div class="d-flex align-items-center gap-3">
+                                    <i class="fa-solid fa-user-group navlink-icon"></i>
+                                    <span class="navlink-text">Users</span>
+                                </div>
+                                <i class="fa-solid fa-angle-right drowdown-arrow"></i>
+                            </a>
+                        </div>
+                        <div id="adminsMenu" class="accordion-collapse collapse @{
+
+                            if (ViewData["Page"] == "SuperAdmins" || ViewData["Page"] == "Admins"
+                                || ViewData["Page"] == "Sellers" || ViewData["Page"] == "Customers")
+                                WriteLiteral("show");
+
+                            }" data-bs-parent="#sidenavAccordion">
+                            <ul class="list-unstyled m-0">
+                                <li>
+                                    <a asp-area="ControlPanel" asp-controller="SuperAdmin" asp-action="Index"
+                                       class="text-decoration-none text-white d-flex align-items-center gap-3 sidenav-item @if(ViewData["Page"] == "SuperAdmins") WriteLiteral("active");">
+                                        <i class="fa-solid fa-circle navlink-icon submenu-item-icon"></i>
+                                        <span class="navlink-text">Super Admins</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a asp-area="ControlPanel" asp-controller="Admin" asp-action="Index"
+                                       class="text-decoration-none text-white d-flex align-items-center gap-3 sidenav-item @if(ViewData["Page"] == "Admins") WriteLiteral("active");">
+                                        <i class="fa-solid fa-circle navlink-icon submenu-item-icon"></i>
+                                        <span class="navlink-text">Admins</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a asp-area="ControlPanel" asp-controller="Seller" asp-action="Index"
+                                       class="text-decoration-none text-white d-flex align-items-center gap-3 sidenav-item @if(ViewData["Page"] == "Sellers") WriteLiteral("active");">
+                                        <i class="fa-solid fa-circle navlink-icon submenu-item-icon"></i>
+                                        <span class="navlink-text">Sellers</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a asp-area="ControlPanel" asp-controller="Customer" asp-action="Index"
+                                       class="text-decoration-none text-white d-flex align-items-center gap-3 sidenav-item @if(ViewData["Page"] == "Customers") WriteLiteral("active");">
+                                        <i class="fa-solid fa-circle navlink-icon submenu-item-icon"></i>
+                                        <span class="navlink-text">Customers</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a asp-area="ControlPanel" asp-controller="Banner" asp-action="Index"
+                           class="text-decoration-none text-white d-flex align-items-center gap-3 sidenav-item @if(ViewData["Page"] == "Banners") WriteLiteral("active");">
+                            <i class="fa-solid fa-images navlink-icon"></i>
+                            <span class="navlink-text">Banners</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-area="ControlPanel" asp-controller="Category" asp-action="Index"
+                           class="text-decoration-none text-white d-flex align-items-center gap-3 sidenav-item @if(ViewData["Page"] == "Categories") WriteLiteral("active");">
+                            <i class="fa-solid fa-layer-group navlink-icon"></i>
+                            <span class="navlink-text">Categories</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-area="ControlPanel" asp-controller="Sale" asp-action="Index"
+                           class="text-decoration-none text-white d-flex align-items-center gap-3 sidenav-item @if(ViewData["Page"] == "Sales") WriteLiteral("active");">
+                            <i class="fa-solid fa-truck-fast navlink-icon"></i>
+                            <span class="navlink-text">Sales</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-area="ControlPanel" asp-controller="" asp-action=""
+                           class="text-decoration-none text-white d-flex align-items-center gap-3 sidenav-item @if(ViewData["Page"] == "") WriteLiteral("active");">
+                            <i class="fa-solid fa-store navlink-icon"></i>
+                            <span class="navlink-text">Stores</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-area="ControlPanel" asp-controller="" asp-action=""
+                           class="text-decoration-none text-white d-flex align-items-center gap-3 sidenav-item @if(ViewData["Page"] == "") WriteLiteral("active");">
+                            <i class="fa-solid fa-bag-shopping navlink-icon"></i>
+                            <span class="navlink-text">Products</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-area="ControlPanel" asp-controller="" asp-action=""
+                           class="text-decoration-none text-white d-flex align-items-center gap-3 sidenav-item @if(ViewData["Page"] == "") WriteLiteral("active");">
+                            <i class="fa-solid fa-cart-shopping navlink-icon"></i>
+                            <span class="navlink-text">Carts</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <ul class="list-unstyled m-0">
+                <li>
+                    <a asp-area="ControlPanel" asp-controller="Home" asp-action="Index"
+                       class="text-decoration-none text-white d-flex align-items-center gap-3 mt-0 sidenav-item">
+                        <i class="fa-regular fa-user navlink-icon"></i>
+                        <span class="navlink-text">My Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="ControlPanel" asp-controller="Home" asp-action="Index"
+                       class="text-decoration-none text-white d-flex align-items-center gap-3 mt-0 sidenav-item">
+                        <i class="fa-solid fa-arrow-right-from-bracket navlink-icon"></i>
+                        <span class="navlink-text">Log out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- End Side Navigation -->
+    <!-- Content -->
+    <div class="content-area">
+        @RenderBody()
+    </div>
+    <!-- / Content -->
+    <!-- Primary Footer -->
+    <footer class="primary-footer">
+        <div class="text-center p-4 footer-bottom">
+            © 2023 Designed and Developed by
+            <a class="text-reset fw-bold" target="_blank" href="https://www.linkedin.com/in/masalah-tech/">Mazen Salah</a>
+        </div>
+    </footer>
+    <!-- / Primary Footer -->
+    <!-- jQuery -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="~/lib/bootstrap/bootstrap-5.3.1-dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/0ce17fc271.js" crossorigin="anonymous"></script>
+
+    <!-- DataTables -->
+    <script src="~/lib/datatables/datatables.min.js" crossorigin="anonymous"></script>
+    <script src="~/lib/datatables/dataTables.buttons.min.js"></script>
+
+    <!-- MZN -->
+    <script src="~/lib/mzn/js/mzn.js" asp-append-version="true"></script>
+
+    <!-- Custom JS -->
+    <script src="~/js/control-panel.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

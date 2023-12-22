@@ -1,0 +1,167 @@
+﻿@using MaShops
+@using MaShops.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model User
+
+@{
+    Layout = "~/Areas/ControlPanel/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = $"Edit {Model.FirstName} {Model.LastName}";
+    ViewData["Page"] = "Admins";
+}
+
+<!--
+
+    Fix the security threat that when the admin tries to edit his info,
+    and changes the URL from Admin/Details/# to SuperAdmin/Edit/#
+    and then press "Save", his role is upgraded into "Super Admin"
+
+    You can fix that when forcing role checks.
+    So please Mazen (My Future Entity), Don't forget that
+
+-->
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-area="ControlPanel" asp-controller="Admin" asp-action="Index"
+               class="text-decoration-none text-muted">Admin</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a asp-area="ControlPanel" asp-controller="Admin" asp-action="Index"
+               class="text-decoration-none text-muted">List</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+            @{
+                WriteLiteral($"Edit {Model.FirstName} {Model.LastName}");
+            }
+        </li>
+    </ol>
+</nav>
+
+<div class="card px-0 py-3">
+    <form>
+        <div class="px-3 mb-2 d-flex gap-3 align-items-center">
+            @if (!string.IsNullOrWhiteSpace(Model.PhotoPath))
+            {
+                <img src="@Model.PhotoPath" alt="@Model.FirstName" class="circular-user-photo Large" />
+            }
+            else
+            {
+                <img src="~/img/user.png" alt="@Model.FirstName" class="circular-user-photo Large" />
+            }
+            <div>
+                <label for="AdminPersonalPhoto" class="mzn-btn-label-primary">Upload new photo</label>
+                <input type="file" class="photo-immediate-change" hidden accept="image/*" id="AdminPersonalPhoto" name="" />
+            </div>
+        </div>
+        <hr />
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Primary Information</legend>
+            <div class="mb-3 col-md-6">
+                <label for="adminFirstName" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="adminFirstName" value="@Model.FirstName">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="adminSecondName" class="form-label">Second Name</label>
+                <input type="text" class="form-control" id="adminSecondName" value="@Model.SecondName">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="adminThirdName" class="form-label">Third Name</label>
+                <input type="text" class="form-control" id="adminThirdName" value="@Model.ThirdName">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="adminLastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="adminLastName" value="@Model.LastName">
+            </div>
+            <div class="mb-3 col-md-6 mzn-select-box">
+                <label for="adminNationality" class="form-label">Nationality</label>
+                <div class="mzn-select-option">
+                    <input class="mzn-selected-item form-control" type="text" id="adminNationality" readonly name="adminNationality" value="@Model.Nationality" />
+                </div>
+                <div class="mzn-select-items-container">
+                    <div class="mzn-search-select-items-input-wrapper">
+                        <input class="mzn-search-select-items-input" type="text" autocomplete="off" />
+                    </div>
+                    <ul class="load-countries">
+                        <li class="mzn-select-item active">Select</li>
+                    </ul>
+                    <p class="mzn-no-match-msg">No results found</p>
+                </div>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="adminBirthDate" class="form-label">Birth Date</label>
+                <input type="date" class="form-control" id="adminBirthDate" value="@{
+                    WriteLiteral(Model.BirthDate.ToString("yyyy-MM-dd"));
+                }">
+            </div>
+        </fieldset>
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Contact Details</legend>
+            <div class="mb-3 col-md-6">
+                <label for="adminPhoneNo" class="form-label">Phone Number</label>
+                <input type="text" class="form-control" id="adminPhoneNo" value="@Model.PhoneNumber">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="adminEmail" class="form-label">Email</label>
+                <input type="email" class="form-control" id="adminEmail" value="@Model.Email">
+            </div>
+        </fieldset>
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Address Details</legend>
+            <div class="mb-3 col-md-6 mzn-select-box">
+                <label for="adminAddressCountry" class="form-label">Country</label>
+                <div class="mzn-select-option">
+                    <input class="mzn-selected-item form-control" type="text" id="adminAddressCountry" readonly name="adminAddressCountry" value="@Model.Address.Country" />
+                </div>
+                <div class="mzn-select-items-container">
+                    <div class="mzn-search-select-items-input-wrapper">
+                        <input class="mzn-search-select-items-input" type="text" autocomplete="off" />
+                    </div>
+                    <ul class="load-countries">
+                        <li class="mzn-select-item active">Select</li>
+                    </ul>
+                    <p class="mzn-no-match-msg">No results found</p>
+                </div>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="adminCity" class="form-label">City</label>
+                <input type="text" class="form-control" id="adminCity" value="@Model.Address.City">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="adminStreet" class="form-label">Street</label>
+                <input type="text" class="form-control" id="adminStreet" value="@Model.Address.Street">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="adminAppartmentNo" class="form-label">Appartment No</label>
+                <input type="number" class="form-control" id="adminAppartmentNo" value="@Model.Address.AppartmentNo">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="adminZipCode" class="form-label">Zip Code</label>
+                <input type="number" class="form-control" id="adminZipCode" value="@Model.Address.ZipCode">
+            </div>
+        </fieldset>
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Credentials</legend>
+            <div class="mb-3 col-md-6">
+                <label for="adminUsername" class="form-label">Username</label>
+                <input type="text" class="form-control" id="adminUsername" value="@Model.Username">
+            </div>
+            <div class="mb-3 mb-3 col-md-6">
+                <label for="adminPassword" class="form-label">Password</label>
+                <div class="mzn-eye-pass-box">
+                    <input type="password" id="adminPassword" value="@Model.EncPassword" class="form-control">
+                    <div class="mzn-pass-icon-wrapper">
+                        <i class="fa-solid fa-eye mzn-icon active show-pass-btn"></i>
+                        <i class="fa-solid fa-eye-slash mzn-icon hide-pass-btn"></i>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <hr />
+        <div class="mx-3">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <a class="btn btn-secondary" asp-area="ControlPanel" asp-controller="Admin" asp-action="Edit" asp-route-id="@Model.Id">Reset</a>
+        </div>
+    </form>
+</div>

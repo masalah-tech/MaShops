@@ -1,0 +1,120 @@
+﻿@using MaShops
+@using MaShops.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model User
+
+@{
+    Layout = "~/Areas/ControlPanel/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = $"{Model.FirstName} {Model.LastName}";
+    ViewData["Page"] = "Sellers";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-area="ControlPanel" asp-controller="Seller" asp-action="Index"
+               class="text-decoration-none text-muted">Seller</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a asp-area="ControlPanel" asp-controller="Seller" asp-action="Index"
+               class="text-decoration-none text-muted">List</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+            @{
+                WriteLiteral($"{Model.FirstName} {Model.LastName}");
+            }
+        </li>
+    </ol>
+</nav>
+
+<div class="card px-0 py-3">
+    <form>
+        <div class="px-3 d-flex justify-content-between align-items-start">
+            @if (!string.IsNullOrWhiteSpace(Model.PhotoPath))
+            {
+                <img src="@Model.PhotoPath" alt="@Model.FirstName" class="circular-user-photo Large" />
+            }
+            else
+            {
+                <img src="~/img/user.png" alt="@Model.FirstName" class="circular-user-photo Large" />
+            }
+            <a asp-area="ControlPanel" asp-controller="Seller" asp-action="Edit" asp-route-id="@Model.Id" class="mzn-btn-label-primary">Edit seller details</a>
+        </div>
+        <hr />
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Primary Information</legend>
+            <div class="mb-3 col-md-6">
+                <label for="sellerFirstName" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="sellerFirstName" readonly value="@Model.FirstName">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="sellerSecondName" class="form-label">Second Name</label>
+                <input type="text" class="form-control" id="sellerSecondName" readonly value="@Model.SecondName">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="sellerThirdName" class="form-label">Third Name</label>
+                <input type="text" class="form-control" id="sellerThirdName" readonly value="@Model.ThirdName">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="sellerLastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="sellerLastName" readonly value="@Model.LastName">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="sellerNationality" class="form-label">Nationality</label>
+                <input type="text" class="form-control" id="sellerNationality" readonly value="@Model.Nationality">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="sellerBirthDate" class="form-label">Birth Date</label>
+                <input type="text" class="form-control" id="sellerBirthDate" readonly value="@{
+                    WriteLiteral(Model.BirthDate.ToString("MMMM d - yyyy"));
+ }">
+            </div>
+        </fieldset>
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Contact Details</legend>
+            <div class="mb-3 col-md-6">
+                <label for="sellerPhoneNo" class="form-label">Phone Number</label>
+                <input type="text" class="form-control" id="sellerPhoneNo" readonly value="@Model.PhoneNumber">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="sellerEmail" class="form-label">Email</label>
+                <input type="text" class="form-control" id="sellerEmail" readonly value="@Model.Email">
+            </div>
+        </fieldset>
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Address Details</legend>
+            <div class="mb-3 col-md-6">
+                <label for="sellerAddressCountry" class="form-label">Country</label>
+                <input type="text" class="form-control" id="sellerAddressCountry" readonly value="@Model.Address.Country">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="sellerCity" class="form-label">City</label>
+                <input type="text" class="form-control" id="sellerCity" readonly value="@Model.Address.City">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="sellerStreet" class="form-label">Street</label>
+                <input type="text" class="form-control" id="sellerStreet" readonly value="@Model.Address.Street">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="sellerAppartmentNo" class="form-label">Appartment No</label>
+                <input type="text" class="form-control" id="sellerAppartmentNo" readonly value="@Model.Address.AppartmentNo">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="sellerZipCode" class="form-label">Zip Code</label>
+                <input type="text" class="form-control" id="sellerZipCode" readonly value="@Model.Address.ZipCode">
+            </div>
+        </fieldset>
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Credentials</legend>
+            <div class="mb-3 col-md-6">
+                <label for="sellerUsername" class="form-label">Username</label>
+                <input type="text" class="form-control" id="sellerUsername" readonly value="@Model.Username">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="sellerPassword" class="form-label">Password</label>
+                <input type="text" class="form-control" id="sellerPassword" readonly value="@Model.EncPassword">
+            </div>
+        </fieldset>
+    </form>
+</div>

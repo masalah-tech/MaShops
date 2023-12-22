@@ -1,0 +1,93 @@
+﻿@using MaShops
+@using MaShops.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model List<Sale>
+
+@{
+    Layout = "~/Areas/ControlPanel/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Sales";
+    ViewData["Page"] = "Sales";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-area="ControlPanel" asp-controller="Sale" asp-action="Index"
+               class="text-decoration-none text-muted">Sale</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">List</li>
+    </ol>
+</nav>
+
+<div>
+    <div class="card p-0">
+        <div class="mzn-datatable-wrapper header-border-top-0">
+            <table id="salesTable" class="table table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Customer</th>
+                        <th>Product</th>
+                        <th>Store</th>
+                        <th>Date &amp; Time</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var sale in Model)
+                    {
+                        <tr>
+                            <td>@sale.Id</td>
+                            <td>
+                                <a asp-area="ControlPanel" asp-controller="Customer" 
+                                    asp-action="Details" asp-route-id="@sale.Customer.Id"
+                                    class="text-decoration-none">
+                                    @@@sale.Customer.Username
+                                </a>
+                            </td>
+                            <td>
+                                <div class="mzn-two-lines-ellipsis">
+                                    <a asp-area="ControlPanel" asp-controller="Product" 
+                                        asp-action="Details" asp-route-id="@sale.Product.Id"
+                                       class="text-decoration-none">
+                                        @sale.Product.Name
+                                    </a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="mzn-two-lines-ellipsis">
+                                    <a asp-area="ControlPanel" asp-controller="Store" 
+                                        asp-action="Details" asp-route-id="@sale.Product.Store.Id"
+                                       class="text-decoration-none">
+                                        @sale.Product.Store.Name
+                                    </a>
+                                </div>
+                            </td>
+                            <td class="text-nowrap">@sale.DateTime.ToString("MMM d - yyyy - h:mm tt")</td>
+                            <td class="text-center">
+                                <a asp-area="ControlPanel" asp-controller="Sale" 
+                                    asp-action="Details" asp-route-id="@sale.Id" 
+                                    class="text-decoration-none link-secondary">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+
+    <script>
+
+        $('#salesTable').DataTable({
+        });
+
+    </script>
+}

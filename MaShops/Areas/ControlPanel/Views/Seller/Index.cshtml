@@ -1,0 +1,245 @@
+﻿@using MaShops
+@using MaShops.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model List<User>
+
+@{
+    Layout = "~/Areas/ControlPanel/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Sellers";
+    ViewData["Page"] = "Sellers";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-area="ControlPanel" asp-controller="Seller" asp-action="Index"
+               class="text-decoration-none text-muted">Seller</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">List</li>
+    </ol>
+</nav>
+
+<div id="addSellerModal" class="modal fade modal-lg" tabindex="-1" data-bs-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">
+                    <h5 class="modal-title">Add new Seller</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <fieldset class="form-group border mt-2 px-3 pb-3 pt-4">
+                        <legend class="w-auto px-2">Primary Information</legend>
+                        <input type="hidden" name="newSellerRole" value="Seller" />
+                        <div class="mb-3">
+                            <label for="newSellerFirstName" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="newSellerFirstName">
+                        </div>
+                        <div class="mb-3">
+                            <label for="newSellerSecondName" class="form-label">Second Name</label>
+                            <input type="text" class="form-control" id="newSellerSecondName">
+                        </div>
+                        <div class="mb-3">
+                            <label for="newSellerThirdName" class="form-label">Third Name</label>
+                            <input type="text" class="form-control" id="newSellerThirdName">
+                        </div>
+                        <div class="mb-3">
+                            <label for="newSellerLastName" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="newSellerLastName">
+                        </div>
+                        <div class="mb-3 mzn-select-box">
+                            <label for="newSellerNationality" class="form-label">Nationality</label>
+                            <div class="mzn-select-option">
+                                <input class="mzn-selected-item form-control" type="text" id="newSellerNationality" readonly name="newSellerNationality" value="Select" />
+                            </div>
+                            <div class="mzn-select-items-container">
+                                <div class="mzn-search-select-items-input-wrapper">
+                                    <input class="mzn-search-select-items-input" type="text" id="optionSearch" autocomplete="off" />
+                                </div>
+                                <ul class="load-countries">
+                                    <li class="mzn-select-item active">Select</li>
+                                </ul>
+                                <p class="mzn-no-match-msg">No results found</p>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="newSellerBirthDate" class="form-label">Birth Date</label>
+                            <input type="date" class="form-control" id="newSellerBirthDate">
+                        </div>
+                        <div class="mb-3">
+                            <label for="newSellerPersonalPhoto" class="form-label">Personal Photo</label>
+                            <input class="form-control" type="file" accept="image/*" id="newSellerPersonalPhoto">
+                        </div>
+                    </fieldset>
+                    <fieldset class="form-group border mt-4 px-3 pb-3 pt-4">
+                        <legend class="w-auto px-2">Contact Details</legend>
+                        <div class="mb-3">
+                            <label for="newSellerPhoneNo" class="form-label">Phone Number</label>
+                            <input type="text" class="form-control" id="newSellerPhoneNo">
+                        </div>
+                        <div class="mb-3">
+                            <label for="newSellerEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="newSellerEmail">
+                        </div>
+                    </fieldset>
+                    <fieldset class="form-group border mt-4 px-3 pb-3 pt-4">
+                        <legend class="w-auto px-2">Address Details</legend>
+                        <div class="mb-3">
+                            <label for="newSellerAddressCountry" class="form-label">Country</label>
+                            <input type="text" class="form-control" id="newSellerAddressCountry">
+                        </div>
+                        <div class="mb-3">
+                            <label for="newSellerCity" class="form-label">City</label>
+                            <input type="text" class="form-control" id="newSellerCity">
+                        </div>
+                        <div class="mb-3">
+                            <label for="newSellerStreet" class="form-label">Street</label>
+                            <input type="text" class="form-control" id="newSellerStreet">
+                        </div>
+                        <div class="mb-3">
+                            <label for="newSellerAppartmentNo" class="form-label">Appartment No</label>
+                            <input type="number" class="form-control" id="newSellerAppartmentNo">
+                        </div>
+                        <div class="mb-3">
+                            <label for="newSellerZipCode" class="form-label">Zip Code</label>
+                            <input type="number" class="form-control" id="newSellerZipCode">
+                        </div>
+                    </fieldset>
+                    <fieldset class="form-group border mt-4 px-3 pb-3 pt-4">
+                        <legend class="w-auto px-2">Credentials</legend>
+                        <div class="mb-3">
+                            <label for="newSellerUsername" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="newSellerUsername">
+                        </div>
+                        <div class="mb-3">
+                            <label for="newSellerPassword" class="form-label">Password</label>
+                            <div class="mzn-eye-pass-box">
+                                <input type="password" id="newSellerPassword" class="form-control" aria-describedby="newSellerPasswordHelpBlock">
+                                <div class="mzn-pass-icon-wrapper">
+                                    <i class="fa-solid fa-eye mzn-icon active show-pass-btn"></i>
+                                    <i class="fa-solid fa-eye-slash mzn-icon hide-pass-btn"></i>
+                                </div>
+                            </div>
+                            <div id="newSellerPasswordHelpBlock" class="form-text">
+                                The password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div>
+    <div class="card p-0">
+        <div class="p-3">
+            <a href="javascript:void(0)" data-bs-target="#addSellerModal" data-bs-toggle="modal" class="mzn-btn-label-primary">Add new seller</a>
+        </div>
+        <div class="mzn-datatable-wrapper">
+            <table id="sellersTable" class="table table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Profile Photo</th>
+                        <th>Name</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var seller in Model)
+                    {
+                        <tr>
+                            <td>@seller.Id</td>
+                            <td>
+                                @{
+                                    if (!string.IsNullOrWhiteSpace(seller.PhotoPath))
+                                    {
+                                        <img src="@seller.PhotoPath" alt="@seller.FirstName" class="circular-user-photo" />
+                                    }
+                                    else
+                                    {
+                                        <img src="~/img/user.png" alt="@seller.FirstName" class="circular-user-photo" />
+                                    }
+                                }
+                            </td>
+                            <td class="text-nowrap">@string.Format("{0} {1} {2} {3}",seller.FirstName, seller.SecondName, seller.ThirdName, seller.LastName)</td>
+                            <td class="text-nowrap">@seller.Username</td>
+                            <td class="text-nowrap">@seller.EncPassword</td>
+                            <td>
+                                @{
+                                    if (seller.Status == true)
+                                    {
+                                        <span class="text-success">Active</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-danger">Inactive</span>
+                                    }
+                                }
+                            </td>
+                            <td>
+                                <div class="dropdown">
+                                    <a class="fs-5 link-dark d-block w-100" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </a>
+
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <li><a class="dropdown-item" asp-area="ControlPanel" asp-controller="Seller" asp-action="Details" asp-route-id="@seller.Id">Show details</a></li>
+                                        <li><a class="dropdown-item" asp-area="ControlPanel" asp-controller="Seller" asp-action="Edit" asp-route-id="@seller.Id">Edit details</a></li>
+                                        <li>
+                                            <a class="dropdown-item" href="#">
+                                                @{
+                                                    if (seller.Status == true)
+                                                    {
+                                                        <span>Deactivate the seller</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span>Activate the seller</span>
+                                                    }
+                                                }
+                                            </a>
+                                        </li>
+                                        <li><a class="dropdown-item link-danger" href="#">Delete the seller</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script>
+
+        $('#sellersTable').DataTable({
+            "columnDefs": [
+                {
+                    "targets": [1, 4, 6],
+                    "orderable": false
+                },
+            ],
+            "initComplete": function (settings, json) {
+                const tableWrapper =
+                    document.querySelector("div:has(> #sellersTable)");
+
+                tableWrapper.classList.add("mzn-scroll");
+                tableWrapper.classList.add("mzn-x-scroll");
+            },
+        });
+
+    </script>
+}

@@ -1,0 +1,5 @@
+product1: https://conveniencefood.eshops.mu/product/sesame-peanut-ball-vegetarian-12s-300g/
+
+product2: https://www.amazon.com/ESR-Generation-Lightweight-Ascend-Lavender/dp/B0C58DDRLW?pf_rd_r=PWVMZFKEEB6CK98532F3&pf_rd_t=Events&pf_rd_i=deals&pf_rd_p=8dcb9a96-b859-4615-9250-f6f98f80a7cf&pf_rd_s=slot-14&ref=dlx_deals_gd_dcl_img_6_d68d9c64_dt_sl14_cf&th=1
+
+product3: https://www.amazon.com/Logitech-Super-Slim-Super-Light-Bluetooth-Keyboard/dp/B08K3SD7NZ?pf_rd_r=PWVMZFKEEB6CK98532F3&pf_rd_t=Events&pf_rd_i=deals&pf_rd_p=8dcb9a96-b859-4615-9250-f6f98f80a7cf&pf_rd_s=slot-14&ref=dlx_deals_gd_dcl_img_16_8b5c69b0_dt_sl14_cf&th=1

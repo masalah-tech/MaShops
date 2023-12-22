@@ -1,0 +1,9 @@
+banner1.jpg: Image by <a href="https://www.freepik.com/free-photo/front-view-woman-with-shopping-bag-concept_10426548.htm#query=shopping%20wide%20banner&position=4&from_view=search&track=ais&uuid=a99a3034-33bb-4245-a78f-89c4cfb16fb5">Freepik</a>
+
+banner2.jpg: Image by <a href="https://www.freepik.com/free-photo/shopping-cart-with-wooden-elements_12975147.htm#query=shopping%20wide%20banner&position=31&from_view=search&track=ais&uuid=a99a3034-33bb-4245-a78f-89c4cfb16fb5">Freepik</a>
+
+banner3.jpg: <a href="https://www.freepik.com/free-photo/concept-shopping-holidays-lifestyle-happy-bearded-guy-holding-paper-bag-from-store-showin_39690704.htm#query=shopping%20wide%20banner&position=41&from_view=search&track=ais&uuid=a99a3034-33bb-4245-a78f-89c4cfb16fb5">Image by benzoix</a> on Freepik
+
+banner4.jpg: Image by <a href="https://www.freepik.com/free-photo/red-shopping-bag-table_3260582.htm?query=shopping%20wide%20banner#from_view=detail_alsolike">Freepik</a>
+
+banner5.jpg: <a href="https://www.freepik.com/free-photo/paper-bags-different-colors-blue-background-top-view_77756515.htm#query=shopping%20wide%20banner&position=46&from_view=search&track=ais&uuid=bfdfa217-d2a4-4e75-9dc0-87296b7d1fdc">Image by pvproductions</a> on Freepik

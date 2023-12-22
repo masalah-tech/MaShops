@@ -1,0 +1,142 @@
+﻿@using MaShops
+@using MaShops.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model List<Category>
+
+@{
+    Layout = "~/Areas/ControlPanel/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Categories";
+    ViewData["Page"] = "Categories";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-area="ControlPanel" asp-controller="Category" asp-action="Index"
+               class="text-decoration-none text-muted">Category</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">List</li>
+    </ol>
+</nav>
+
+<div id="addCategoryModal" class="modal fade modal-lg" tabindex="-1" data-bs-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">
+                    <h5 class="modal-title">Add new category</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <fieldset class="form-group border mt-2 px-3 pb-3 pt-4">
+                        <legend class="w-auto px-2">New Category</legend>
+                        <div class="mb-3">
+                            <label for="newCategoryName" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="newCategoryName">
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="editCategoryModal" class="modal fade modal-lg" tabindex="-1" data-bs-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit category</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <fieldset class="form-group border mt-2 px-3 pb-3 pt-4">
+                        <legend class="w-auto px-2">Category Name</legend>
+                        <div class="mb-3">
+                            <label for="editCategoryName" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="editCategoryName" value="sss">
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    <div class="card p-0">
+        <div class="p-3">
+            <a href="javascript:void(0)" data-bs-target="#addCategoryModal" data-bs-toggle="modal" class="mzn-btn-label-primary">Add new category</a>
+        </div>
+        <div class="mzn-datatable-wrapper header-border-top-0">
+            <table id="categoriesTable" class="table table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Products</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var category in Model)
+                    {
+                        <tr>
+                            <td>@category.Id</td>
+                            <td>@category.Name</td>
+                            <td>
+                                <a class="text-decoration-none" asp-area="ControlPanel" asp-controller="Category" asp-action="CategoryProducts" asp-route-id="@category.Id">
+                                    5
+                                </a>
+                            </td>
+                            <td>
+                                <div class="dropdown">
+                                    <a class="fs-5 link-dark d-block w-100" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <li>
+                                            <a href="javascript:void(0)" data-bs-target="#editCategoryModal"
+                                               data-bs-toggle="modal" class="dropdown-item">
+                                            Edit category name
+                                        </a>
+                                        </li>
+                                        <li><a class="dropdown-item link-danger" href="#">Delete the category</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+
+    <script>
+
+        $('#categoriesTable').DataTable({
+            "columnDefs": [
+                {
+                    "targets": [3],
+                    "orderable": false
+                },
+            ]
+        });
+
+    </script>
+}
