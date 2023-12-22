@@ -1,7 +1,7 @@
-﻿using MaShops_Sandbox_1.Models;
+﻿using MaShops.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace MaShops_Sandbox_1.Data
+namespace MaShops.Data
 {
     public class AppDbContext : DbContext
     {

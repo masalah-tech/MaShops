@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MaShops_Sandbox_1.Models
+namespace MaShops.Models
 {
     public class Sale
     {

@@ -1,4 +1,4 @@
-using MaShops_Sandbox_1.Data;
+using MaShops.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

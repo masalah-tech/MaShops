@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace MaShops_Sandbox_1.Models
+namespace MaShops.Models
 {
     public class User
     {

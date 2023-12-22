@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\ControlPanel\Controllers\" />
     <Folder Include="Areas\ControlPanel\Data\" />
     <Folder Include="Areas\ControlPanel\Models\" />
     <Folder Include="Areas\ControlPanel\Views\" />
