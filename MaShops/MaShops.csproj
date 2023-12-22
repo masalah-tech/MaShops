@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="Attachments\.%24db_scheme.drawio.bkp" />
     <Content Include="Attachments\data-sources.txt" />
     <Content Include="Attachments\db_scheme.drawio" />
@@ -18,6 +22,10 @@
   <ItemGroup>
     <Folder Include="Areas\ControlPanel\Data\" />
     <Folder Include="Areas\ControlPanel\Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
   </ItemGroup>
 
   <ItemGroup>
