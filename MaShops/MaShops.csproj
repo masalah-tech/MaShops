@@ -7,6 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="Attachments\.%24db_scheme.drawio.bkp" />
+    <Content Include="Attachments\data-sources.txt" />
+    <Content Include="Attachments\db_scheme.drawio" />
+    <Content Include="Attachments\db_scheme.png" />
+    <Content Include="Attachments\db_scheme.svg" />
+    <Content Include="Attachments\img-sources.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Areas\ControlPanel\Data\" />
     <Folder Include="Areas\ControlPanel\Models\" />
   </ItemGroup>
