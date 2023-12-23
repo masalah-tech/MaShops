@@ -1,0 +1,61 @@
+@use "../util" as u;
+
+.w-33 {
+  width: 33.33%;
+}
+
+.w-md-50 {
+  @include u.breakpoint(md) {
+    width: 50% !important;
+  }
+}
+
+.w-xl-33 {
+  @include u.breakpoint(xl) {
+    width: 33.33% !important;
+  }
+}
+
+.form-label {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: rgb(120 120 120);
+  margin-bottom: 5px;
+}
+
+.card h4 {
+  font-size: 1.3rem;
+  margin-bottom: 5px;
+}
+
+.card p {
+  color: rgb(100 100 100);
+  margin-bottom: 5px;
+}
+
+.w-20-px {
+  width: 20px;
+}
+
+.min-w-200-px {
+  min-width: 200px !important;
+}
+
+.min-w-300-px {
+  min-width: 300px !important;
+}
+
+.fs-0-8-rem {
+  font-size: 0.8rem;
+}
+
+td .dropdown > a {
+  display: flex !important;
+  justify-content: center !important;
+  text-decoration: none;
+}
+
+.dropdown .dropdown-item:active {
+  background-color: var(--grey);
+  color: var(--black);
+}

@@ -1,3 +1,9 @@
+@use "../util" as u;
+
 h1 {
-    
+  font-size: 1.3rem;
+
+  @include u.breakpoint(sm) {
+    font-size: 1.5rem;
+  }
 }

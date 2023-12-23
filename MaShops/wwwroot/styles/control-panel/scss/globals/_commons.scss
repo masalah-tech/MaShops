@@ -1,0 +1,78 @@
+hr {
+  border-color: rgb(150 150 150);
+}
+
+.top-right-short-gap {
+  top: 7px;
+  right: 10px;
+}
+
+.post-img {
+  width: 100px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.post-img.large {
+  width: min(500px, 100%);
+  height: 300px;
+}
+
+.circular-user-photo {
+  display: block;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.circular-user-photo.Large {
+  width: 120px;
+  height: 120px;
+}
+
+.circular-user-photo.mid {
+  width: 70px;
+  height: 70px;
+}
+
+fieldset {
+  position: relative;
+}
+
+fieldset {
+  legend {
+    position: absolute;
+    top: -12px;
+    font-size: 1rem;
+    background-color: rgb(255 255 255);
+    color: rgb(100 100 100);
+  }
+}
+
+.circular-btn-more-users {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 1px solid rgb(160 160 160);
+  color: rgb(160 160 160);
+  display: flex;
+  padding-inline-start: 13px;
+  align-items: center;
+  font-size: 1.4rem;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+a:has(.circular-btn-more-users) {
+  color: rgb(160 160 160);
+}
+
+a:hover {
+  .circular-btn-more-users {
+    background-color: rgb(160 160 160);
+    color: rgb(255 255 255);
+  }
+}

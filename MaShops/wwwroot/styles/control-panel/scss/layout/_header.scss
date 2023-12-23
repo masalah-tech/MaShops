@@ -7,7 +7,7 @@
   z-index: 97;
   top: 0;
   width: 100vw;
-  background-color: rgb(242 245 249);
+  background-color: var(--light-grey);
   transition: 0.2s;
 
   @include u.breakpoint(md) {

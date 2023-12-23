@@ -1,0 +1,18 @@
+@use "../util" as u;
+
+.content-area {
+  padding: calc(var(--header-height) + 10px) 20px 10px 20px;
+  transition: 0.3s;
+  min-height: calc(100vh - var(--footer-height));
+
+  @include u.breakpoint(lg) {
+    padding: calc(var(--header-height) + 10px) 20px 10px
+      calc(var(--sidenav-width) + 20px);
+  }
+
+  .card {
+    border: 1px solid var(--grey);
+    padding: 10px;
+    border-radius: 10px;
+  }
+}

@@ -1,0 +1,10 @@
+@use "../util" as u;
+
+.primary-footer {
+  height: var(--footer-height);
+  overflow: hidden;
+
+  @include u.breakpoint(lg) {
+    padding-inline-start: var(--sidenav-width);
+  }
+}
