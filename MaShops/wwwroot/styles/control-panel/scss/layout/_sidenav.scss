@@ -1,0 +1,159 @@
+@use "../util" as u;
+
+.sidenav {
+  width: var(--sidenav-width);
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  background-color: var(--midnight-express);
+  border-right: 1px solid var(--border-color);
+  overflow: hidden;
+  transition: 0.3s;
+  transform: translateX(-100%);
+
+  * {
+    color: var(--light-grey);
+  }
+
+  .wrapper {
+    padding-bottom: 20px;
+  }
+
+  .navlink-icon {
+    width: 20px;
+    font-size: 1.3rem;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .upper-box {
+    height: var(--header-height);
+    padding: 20px;
+  }
+
+  .close-sidenav-btn {
+    font-size: 1.5rem;
+    display: flex;
+
+    @include u.breakpoint(lg) {
+      display: none;
+    }
+  }
+
+  @include u.breakpoint(lg) {
+    transform: translateX(0%);
+  }
+
+  .sidenav-item {
+    border-radius: 10px;
+    margin: 10px 15px;
+    padding: 10px 20px;
+    transition: 0.2s;
+  }
+
+  .sidenav-item:hover {
+    background-color: var(--midnight-express-light);
+  }
+
+  .sidenav-item.active {
+    background-color: var(--midnight-express-light-x2);
+  }
+
+  .accordion-collapse {
+    .sidenav-item.active {
+      background-color: var(--midnight-express-light-x3);
+    }
+  }
+
+  .navlink-text {
+    font-size: 1.1rem;
+  }
+
+  .accordion-item {
+    padding: 0;
+    margin-inline: 15px;
+    border-radius: 10px;
+    transition: 0.5s;
+    overflow: hidden;
+    margin-block: 10px;
+    background-color: transparent;
+    border: none;
+  }
+
+  .accordion-button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    box-shadow: none;
+  }
+
+  .accordion-button::after {
+    display: none;
+  }
+
+  .accordion-item:has(> div [aria-expanded="true"]) {
+    background-color: rgb(42 52 74);
+  }
+
+  .accordion-item > div {
+    a {
+      .drowdown-arrow {
+        color: rgb(210 210 210);
+        transition: 0.3s;
+        transform: translate(-2px);
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .accordion-item:has(> div [aria-expanded="true"]) {
+    .drowdown-arrow {
+      transform: translate(-2px) rotate(90deg);
+    }
+  }
+
+  .navlink-icon.submenu-item-icon {
+    font-size: 0.4rem;
+  }
+
+  .accordion-item {
+    .sidenav-item {
+      margin: 0;
+      border-radius: 0;
+    }
+  }
+}
+
+.sidenav.active {
+  transform: translateX(0%);
+}
+
+.sidenav-overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 98;
+  background-color: rgb(0 0 0 / 20%);
+  display: none;
+  animation: show-overlay 0.3s forwards;
+
+  @include u.breakpoint(lg) {
+    display: none;
+  }
+}
+
+@keyframes show-overlay {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+body:has(.sidenav.active) .sidenav-overlay {
+  display: block;
+}

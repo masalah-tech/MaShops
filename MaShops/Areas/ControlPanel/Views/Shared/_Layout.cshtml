@@ -25,27 +25,29 @@
 <body class="c-scroll">
 
     <!-- Main Header -->
-    <header id="primary-header" class="primary-header d-flex align-items-center">
+    <header id="header" class="header d-flex align-items-center">
         <div class="d-flex align-items-center justify-content-between w-100">
             <div class="d-flex align-items-center gap-2">
                 <button type="button"
-                        class="border-0 bg-transparent justify-content-center align-items-center open-sidenav-btn">
+                        class="open-sidenav-btn border-0 bg-transparent justify-content-center align-items-center">
                     <i class="fa-solid fa-bars"></i>
                 </button>
                 <h1 class="m-0">@ViewData["Title"]</h1>
             </div>
             <div class="d-flex flex-row-reverse gap-2 align-items-center">
                 <div class="dropdown">
-                    <a class="p-0 ps-1" href="#" id="profile-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-                        <img src="~/img/mazen2.png" class="rounded-action-img" />
+                    <a class="p-0 ps-1" href="#" id="profile-dropdown" 
+                        role="button" data-bs-toggle="dropdown" aria-expanded="false" 
+                        data-bs-auto-close="outside">
+                        <img src="~/img/mazen2.png" class="rounded-img" />
                     </a>
-                    <ul class="dropdown-menu profile-menu py-0 overflow-hidden" aria-labelledby="profile-dropdown">
+                    <ul class="profile-menu dropdown-menu py-0 overflow-hidden" aria-labelledby="profile-dropdown">
                         <li>
                             <a class="dropdown-item d-flex gap-2 py-3" href="#">
-                                <img src="~/img/mazen2.png" class="rounded-action-img" />
+                                <img src="~/img/mazen2.png" class="rounded-img" />
                                 <div class="d-flex flex-column">
                                     <span class="fw-bold">Mazen Salah</span>
-                                    <span class="text-secondary short-text">Admin</span>
+                                    <span class="short-text text-secondary">Admin</span>
                                 </div>
                             </a>
                         </li>
@@ -57,7 +59,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item py-2 d-flex gap-3 align-items-center logout" href="#">
+                            <a class="dropdown-item py-2 d-flex gap-3 align-items-center" href="#">
                                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
                                 <span>Log out</span>
                             </a>
@@ -77,11 +79,11 @@
     </div>
     <!-- / Overlay Behind SideNav in Small Screens -->
     <!-- Side Navigation -->
-    <nav class="side-nav h-100" id="sidenav">
-        <div class="d-flex flex-column justify-content-between h-100 overflow-y-scroll overflow-x-hidden mzn-scroll dark-scroll wrapper">
+    <nav class="sidenav h-100" id="sidenav">
+        <div class="wrapper c-scroll dark-scroll d-flex flex-column justify-content-between h-100 overflow-y-scroll overflow-x-hidden">
             <div>
-                <div class="d-flex justify-content-end upper-box">
-                    <button type="button" class="bg-transparent border-0 justify-content-center align-items-center close-sidenav-btn">
+                <div class="upper-box d-flex justify-content-end">
+                    <button type="button" class="close-sidenav-btn bg-transparent border-0 justify-content-center align-items-center">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 </div>
@@ -89,7 +91,7 @@
                     <li>
                         <a asp-area="ControlPanel" asp-controller="Home" asp-action="Index"
                            class="text-decoration-none text-white d-flex align-items-center gap-3 sidenav-item @if(ViewData["Page"] == "Dashboard") WriteLiteral("active");">
-                            <i class="fa-solid fa-table-columns navlink-icon"></i>
+                            <i class="navlink-icon fa-solid fa-table-columns"></i>
                             <span class="navlink-text">Dashboard</span>
                         </a>
                     </li>

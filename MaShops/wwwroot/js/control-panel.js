@@ -25,7 +25,7 @@ function applyEvents() {
     const fileInputs = document.querySelectorAll("input[type=file]");
 
     window.addEventListener("scroll", bodyScrollEvent => {
-        const header = document.querySelector("#primary-header");
+        const header = document.querySelector("#header");
         if (header != null) {
             if (window.scrollY > 20)
                 header.classList.add("shadow");

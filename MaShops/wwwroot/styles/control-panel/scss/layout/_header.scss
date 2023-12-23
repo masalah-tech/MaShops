@@ -1,0 +1,87 @@
+@use "../util" as u;
+
+.header {
+  height: var(--header-height);
+  padding-inline: 15px;
+  position: fixed;
+  z-index: 97;
+  top: 0;
+  width: 100vw;
+  background-color: rgb(242 245 249);
+  transition: 0.2s;
+
+  @include u.breakpoint(md) {
+    padding-inline: 30px;
+  }
+
+  @include u.breakpoint(lg) {
+    padding-inline: calc(var(--sidenav-width) + 30px) 30px;
+  }
+
+  .open-sidenav-btn {
+    font-size: 1.4rem;
+    display: flex;
+
+    @include u.breakpoint(lg) {
+      display: none;
+    }
+  }
+
+  .rounded-img {
+    object-fit: cover;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+
+  .dropdown-menu {
+    box-shadow: 0 5px 15px rgb(0 0 0 / 20%);
+    inset: unset !important;
+    width: 90vw;
+    position: fixed !important;
+    top: var(--header-height) !important;
+    right: 50% !important;
+    transform: translateX(50%) !important;
+    max-height: 0;
+    animation: show-by-height 0.5s forwards;
+
+    @include u.breakpoint(sm) {
+      position: absolute !important;
+      top: calc(100% + 10px) !important;
+      right: 0 !important;
+      transform: none !important;
+    }
+  }
+
+  @keyframes show-by-height {
+    0% {
+      max-height: 0;
+    }
+
+    100% {
+      max-height: 1000px;
+    }
+  }
+
+  .dropdown-menu.profile-menu {
+    @include u.breakpoint(sm) {
+      width: 270px;
+    }
+  }
+
+  .profile-menu {
+    .dropdown-item {
+      .short-text {
+        font-size: 0.8rem;
+      }
+    }
+
+    .dropdown-item:active {
+      background-color: var(--grey);
+      color: var(--light-black);
+
+      span {
+      }
+    }
+  }
+}
