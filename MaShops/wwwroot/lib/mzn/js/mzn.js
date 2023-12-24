@@ -14,19 +14,19 @@ async function mznIntialize() {
     const countries = await response.json();
     let counter = 0;
 
-    document.querySelectorAll(".mzn-select-box .load-countries").forEach(ulCountries => {
+    document.querySelectorAll(".c-select-box .load-countries").forEach(ulCountries => {
 
         const outerBox = ulCountries.parentElement.parentElement;
         const defaultSelectedCountry
-            = outerBox.querySelector(".mzn-select-option input").value;
+            = outerBox.querySelector(".c-select-option input").value;
 
         for (let country of countries) {
             if (country['name'] == defaultSelectedCountry) {
-                ulCountries.innerHTML += `<li class='mzn-select-item active'>${country['name']}</li>`;
+                ulCountries.innerHTML += `<li class='c-select-item active'>${country['name']}</li>`;
                 counter++;
             }
             else {
-                ulCountries.innerHTML += `<li class='mzn-select-item'>${country['name']}</li>`;
+                ulCountries.innerHTML += `<li class='c-select-item'>${country['name']}</li>`;
             }
         }
 
@@ -50,11 +50,11 @@ function mznApplyEvents() {
     const divElements = document.querySelectorAll("div");
 
     window.addEventListener("click", windowClickEvent => {
-        const selectBoxes = document.querySelectorAll(".mzn-select-box");
+        const selectBoxes = document.querySelectorAll(".c-select-box");
 
         selectBoxes.forEach(selectBox => {
-            const openSelectBtn = selectBox.querySelector(".mzn-select-option");
-            const selectContent = selectBox.querySelector(".mzn-select-items-container");
+            const openSelectBtn = selectBox.querySelector(".c-select-option");
+            const selectContent = selectBox.querySelector(".c-select-items-container");
 
             if (selectBox.classList.contains("active")) {
                 if (!selectContent.contains(windowClickEvent.target)) {
@@ -68,16 +68,16 @@ function mznApplyEvents() {
     });
 
     window.addEventListener("scroll", windowScrollEvent => {
-        document.querySelectorAll(".mzn-select-box").forEach(selectBox => {
+        document.querySelectorAll(".c-select-box").forEach(selectBox => {
             mznCloseSelectContent(selectBox);
         });
     });
 
     liElements.forEach(liElement => {
         liElement.addEventListener("click", liElementClickEvent => {
-            if (liElement.classList.contains("mzn-select-item")) {
+            if (liElement.classList.contains("c-select-item")) {
                 const outerBox = liElement.parentElement.parentElement.parentElement;
-                outerBox.querySelector(".mzn-selected-item").value = liElement.innerHTML;
+                outerBox.querySelector(".c-selected-item").value = liElement.innerHTML;
                 mznCloseSelectContent(outerBox)
 
                 liElements.forEach(innerLiElement => {
@@ -92,11 +92,11 @@ function mznApplyEvents() {
     inputElements.forEach(inputElement => {
         let counter = 0;
         inputElement.addEventListener("keyup", inputElementKeyDownEvent => {
-            if (inputElement.classList.contains("mzn-search-select-items-input")) {
+            if (inputElement.classList.contains("c-search-select-items-input")) {
 
                 const outerBox = inputElement.parentElement.parentElement.parentElement;
                 const filter = inputElement.value.toLowerCase();
-                const selectItems = outerBox.querySelectorAll(".mzn-select-item");
+                const selectItems = outerBox.querySelectorAll(".c-select-item");
 
                 selectItems.forEach(selectItem => {
                     const itemText = selectItem.innerHTML;
@@ -111,10 +111,10 @@ function mznApplyEvents() {
                 });
 
                 if (counter == 0) {
-                    outerBox.querySelector(".mzn-no-match-msg").classList.add("active");
+                    outerBox.querySelector(".c-no-match-msg").classList.add("active");
                 }
                 else {
-                    outerBox.querySelector(".mzn-no-match-msg").classList.remove("active");
+                    outerBox.querySelector(".c-no-match-msg").classList.remove("active");
                 }
 
                 counter = 0;
@@ -163,15 +163,15 @@ function mznApplyEvents() {
 // mznOpenSelectContent() shows the custom select items container
 function mznOpenSelectContent(outerBox) {
     outerBox.classList.add("active");
-    outerBox.querySelector(".mzn-search-select-items-input").focus();
+    outerBox.querySelector(".c-search-select-items-input").focus();
 }
 
 // mznCloseSelectContent() hides the custom select items container
 function mznCloseSelectContent(outerBox) {
     outerBox.classList.remove("active");
-    outerBox.querySelector(".mzn-search-select-items-input").value = "";
+    outerBox.querySelector(".c-search-select-items-input").value = "";
 
-    outerBox.querySelectorAll(".mzn-select-item").forEach(selectItem => {
+    outerBox.querySelectorAll(".c-select-item").forEach(selectItem => {
         selectItem.classList.remove("hide");
     })
 

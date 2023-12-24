@@ -1,0 +1,10 @@
+.c-eye-pass-box {
+  position: relative;
+
+  .c-pass-icon-wrapper {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+  }
+}

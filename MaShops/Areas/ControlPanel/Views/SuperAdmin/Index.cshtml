@@ -48,19 +48,19 @@
                             <label for="newSuperAdminLastName" class="form-label">Last Name</label>
                             <input type="text" class="form-control" id="newSuperAdminLastName">
                         </div>
-                        <div class="mb-3 mzn-select-box">
+                        <div class="mb-3 c-select-box">
                             <label for="newSuperAdminNationality" class="form-label">Nationality</label>
-                            <div class="mzn-select-option">
-                                <input class="mzn-selected-item form-control" type="text" id="newSuperAdminNationality" readonly name="newAdminNationality" value="Select" />
+                            <div class="c-select-option">
+                                <input class="c-selected-item form-control" type="text" id="newSuperAdminNationality" readonly name="newAdminNationality" value="Select" />
                             </div>
-                            <div class="mzn-select-items-container">
-                                <div class="mzn-search-select-items-input-wrapper">
-                                    <input class="mzn-search-select-items-input" type="text" id="optionSearch" autocomplete="off" />
+                            <div class="c-select-items-container">
+                                <div class="c-search-select-items-input-wrapper">
+                                    <input class="c-search-select-items-input" type="text" id="optionSearch" autocomplete="off" />
                                 </div>
                                 <ul class="load-countries">
-                                    <li class="mzn-select-item active">Select</li>
+                                    <li class="c-select-item active">Select</li>
                                 </ul>
-                                <p class="mzn-no-match-msg">No results found</p>
+                                <p class="c-no-match-msg">No results found</p>
                             </div>
                         </div>
                         <div class="mb-3">
@@ -114,11 +114,11 @@
                         </div>
                         <div class="mb-3">
                             <label for="newSuperAdminPassword" class="form-label">Password</label>
-                            <div class="mzn-eye-pass-box">
+                            <div class="c-eye-pass-box">
                                 <input type="password" id="newSuperAdminPassword" class="form-control" aria-describedby="newSuperAdminPasswordHelpBlock">
-                                <div class="mzn-pass-icon-wrapper">
-                                    <i class="fa-solid fa-eye mzn-icon active show-pass-btn"></i>
-                                    <i class="fa-solid fa-eye-slash mzn-icon hide-pass-btn"></i>
+                                <div class="c-pass-icon-wrapper">
+                                    <i class="fa-solid fa-eye c-icon active show-pass-btn"></i>
+                                    <i class="fa-solid fa-eye-slash c-icon hide-pass-btn"></i>
                                 </div>
                             </div>
                             <div id="newSuperAdminPasswordHelpBlock" class="form-text">
@@ -159,7 +159,7 @@
                     {
                         <tr>
                             <td>@superAdmin.Id</td>
-                            <td>
+                            <td class="ps-4">
                                 @if (!string.IsNullOrWhiteSpace(superAdmin.PhotoPath))
                                 {
                                     <img src="@superAdmin.PhotoPath" alt="@superAdmin.FirstName" class="circular-user-photo" />
@@ -219,8 +219,8 @@
                 const tableWrapper =
                     document.querySelector("div:has(> #superAdminsTable)");
 
-                tableWrapper.classList.add("mzn-scroll");
-                tableWrapper.classList.add("mzn-x-scroll");
+                tableWrapper.classList.add("c-scroll");
+                tableWrapper.classList.add("x-scroll");
             },
         });
 

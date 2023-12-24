@@ -74,19 +74,19 @@
                 <label for="customerLastName" class="form-label">Last Name</label>
                 <input type="text" class="form-control" id="customerLastName" value="@Model.LastName">
             </div>
-            <div class="mb-3 col-md-6 mzn-select-box">
+            <div class="mb-3 col-md-6 c-select-box">
                 <label for="customerNationality" class="form-label">Nationality</label>
-                <div class="mzn-select-option">
-                    <input class="mzn-selected-item form-control" type="text" id="customerNationality" readonly name="customerNationality" value="@Model.Nationality" />
+                <div class="c-select-option">
+                    <input class="c-selected-item form-control" type="text" id="customerNationality" readonly name="customerNationality" value="@Model.Nationality" />
                 </div>
-                <div class="mzn-select-items-container">
-                    <div class="mzn-search-select-items-input-wrapper">
-                        <input class="mzn-search-select-items-input" type="text" autocomplete="off" />
+                <div class="c-select-items-container">
+                    <div class="c-search-select-items-input-wrapper">
+                        <input class="c-search-select-items-input" type="text" autocomplete="off" />
                     </div>
                     <ul class="load-countries">
-                        <li class="mzn-select-item active">Select</li>
+                        <li class="c-select-item active">Select</li>
                     </ul>
-                    <p class="mzn-no-match-msg">No results found</p>
+                    <p class="c-no-match-msg">No results found</p>
                 </div>
             </div>
             <div class="mb-3 col-md-6">
@@ -109,19 +109,19 @@
         </fieldset>
         <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
             <legend class="w-auto px-2">Address Details</legend>
-            <div class="mb-3 col-md-6 mzn-select-box">
+            <div class="mb-3 col-md-6 c-select-box">
                 <label for="customerAddressCountry" class="form-label">Country</label>
-                <div class="mzn-select-option">
-                    <input class="mzn-selected-item form-control" type="text" id="customerAddressCountry" readonly name="customerAddressCountry" value="@Model.Address.Country" />
+                <div class="c-select-option">
+                    <input class="c-selected-item form-control" type="text" id="customerAddressCountry" readonly name="customerAddressCountry" value="@Model.Address.Country" />
                 </div>
-                <div class="mzn-select-items-container">
-                    <div class="mzn-search-select-items-input-wrapper">
-                        <input class="mzn-search-select-items-input" type="text" autocomplete="off" />
+                <div class="c-select-items-container">
+                    <div class="c-search-select-items-input-wrapper">
+                        <input class="c-search-select-items-input" type="text" autocomplete="off" />
                     </div>
                     <ul class="load-countries">
-                        <li class="mzn-select-item active">Select</li>
+                        <li class="c-select-item active">Select</li>
                     </ul>
-                    <p class="mzn-no-match-msg">No results found</p>
+                    <p class="c-no-match-msg">No results found</p>
                 </div>
             </div>
             <div class="mb-3 col-md-6">
@@ -149,11 +149,11 @@
             </div>
             <div class="mb-3 mb-3 col-md-6">
                 <label for="customerPassword" class="form-label">Password</label>
-                <div class="mzn-eye-pass-box">
+                <div class="c-eye-pass-box">
                     <input type="password" id="customerPassword" value="@Model.EncPassword" class="form-control">
-                    <div class="mzn-pass-icon-wrapper">
-                        <i class="fa-solid fa-eye mzn-icon active show-pass-btn"></i>
-                        <i class="fa-solid fa-eye-slash mzn-icon hide-pass-btn"></i>
+                    <div class="c-pass-icon-wrapper">
+                        <i class="fa-solid fa-eye c-icon active show-pass-btn"></i>
+                        <i class="fa-solid fa-eye-slash c-icon hide-pass-btn"></i>
                     </div>
                 </div>
             </div>
