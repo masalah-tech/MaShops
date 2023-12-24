@@ -6,5 +6,15 @@
     top: 50%;
     right: 20px;
     transform: translateY(-50%);
+
+    .c-icon {
+      display: none;
+      cursor: pointer;
+      color: rgb(100 100 100);
+    }
+
+    .c-icon.active {
+      display: block;
+    }
   }
 }

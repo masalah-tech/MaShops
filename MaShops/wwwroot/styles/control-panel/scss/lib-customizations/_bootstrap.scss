@@ -59,3 +59,65 @@ td .dropdown > a {
   background-color: var(--grey);
   color: var(--black);
 }
+
+.btn-label-primary,
+.btn-label-secondary,
+.btn-label-warning,
+.btn-label-danger {
+  border: none;
+  outline: none;
+  text-decoration: none;
+  padding: 7px 15px;
+  border-radius: 5px;
+  display: inline-block;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-label-primary {
+  background-color: rgb(232 238 255);
+  color: rgb(92 130 223);
+}
+
+.btn-label-primary:hover,
+.btn-label-primary:focus,
+.btn-label-primary:active {
+  background-color: rgb(92 130 223);
+  color: rgb(255 255 255);
+}
+
+.btn-label-secondary {
+  background-color: rgb(226 233 239);
+  color: rgb(69 94 122);
+}
+
+.btn-label-secondary:hover,
+.btn-label-secondary:focus,
+.btn-label-secondary:active {
+  background-color: rgb(69 94 122);
+  color: rgb(255 255 255);
+}
+
+.btn-label-warning {
+  background-color: rgb(255 242 225);
+  color: rgb(244 160 49);
+}
+
+.btn-label-warning:hover,
+.btn-label-warning:focus,
+.btn-label-warning:active {
+  background-color: rgb(244 160 49);
+  color: rgb(255 255 255);
+}
+
+.btn-label-danger {
+  background-color: rgb(251 227 227);
+  color: rgb(236 78 79);
+}
+
+.btn-label-danger:hover,
+.btn-label-danger:focus,
+.btn-label-danger:active {
+  background-color: rgb(236 78 79);
+  color: rgb(255 255 255);
+}
