@@ -1,9 +1,10 @@
 @use "../util" as u;
 
 h1 {
-  font-size: 1.3rem;
+  font-size: 1.3rem !important;
+  max-width: 50vw;
 
   @include u.breakpoint(sm) {
-    font-size: 1.5rem;
+    font-size: 1.5rem !important;
   }
 }

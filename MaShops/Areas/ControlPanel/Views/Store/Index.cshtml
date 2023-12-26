@@ -1,0 +1,129 @@
+﻿@using MaShops
+@using MaShops.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model List<Store>
+
+@{
+    Layout = "~/Areas/ControlPanel/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Stores";
+    ViewData["Page"] = "Stores";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-area="ControlPanel" asp-controller="Store" asp-action="Index"
+               class="text-decoration-none text-muted">Store</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">List</li>
+    </ol>
+</nav>
+
+<div>
+    <div class="card p-0">
+        <div class="c-datatable-wrapper">
+            <table id="storesTable" class="table table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Poster</th>
+                        <th>Name</th>
+                        <th>Owner</th>  
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var store in Model)
+                    {
+                        <tr>
+                            <td>@store.Id</td>
+                            <td class="ps-4">
+                                @{
+                                    if (!string.IsNullOrWhiteSpace(store.PosterPath))
+                                    {
+                                        <img src="@store.PosterPath" alt="@store.Name" class="store-poster-in-table" />
+                                    }
+                                    else
+                                    {
+                                        <img src="~/img/user.png" alt="@store.Name" class="store-poster-in-table" />
+                                    }
+                                }
+                            </td>
+                            <td class="text-nowrap">@store.Name</td>
+                            <td class="text-nowrap">
+                                <a asp-area="ControlPanel" asp-controller="Seller" 
+                                    asp-action="Details" asp-route-id="@store.Owner.Id"
+                                    class="text-decoration-none">
+                                    @@@store.Owner.Username
+                                </a>
+                            </td>
+                            <td>
+                                @{
+                                    if (store.Status == true)
+                                    {
+                                        <span class="text-success">Active</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-danger">Inactive</span>
+                                    }
+                                }
+                            </td>
+                            <td>
+                                <div class="dropdown">
+                                    <a class="fs-5 link-dark d-block w-100" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </a>
+
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <li><a class="dropdown-item" asp-area="ControlPanel" asp-controller="Store" asp-action="Details" asp-route-id="@store.Id">Show details</a></li>
+                                        <li>
+                                            <a class="dropdown-item" href="#">
+                                                @{
+                                                    if (store.Status == true)
+                                                    {
+                                                        <span>Deactivate the store</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span>Activate the store</span>
+                                                    }
+                                                }
+                                            </a>
+                                        </li>
+                                        <li><a class="dropdown-item link-danger" href="#">Delete the store</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script>
+
+        $('#storesTable').DataTable({
+            "columnDefs": [
+                {
+                    "targets": [1, 5],
+                    "orderable": false
+                },
+            ],
+            "initComplete": function (settings, json) {
+                const tableWrapper =
+                    document.querySelector("div:has(> #storesTable)");
+
+                tableWrapper.classList.add("c-scroll");
+                tableWrapper.classList.add("x-scroll");
+            },
+        });
+
+    </script>
+}

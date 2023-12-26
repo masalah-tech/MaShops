@@ -103,3 +103,37 @@ a:hover {
   text-overflow: ellipsis;
   font-size: 1rem;
 }
+
+.prod-poster-in-details {
+  width: min(200px, 100%);
+}
+
+.store-poster-in-table {
+  width: 150px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.store-poster-in-wide-card {
+  width: min(100%, 300px);
+  height: 180px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.prod-poster {
+  width: 80%;
+  height: 130px;
+  object-fit: contain;
+}
+
+.card .price-box {
+  height: 70px;
+}
+
+.product-poster-in-wide-card {
+  width: min(100%, 250px);
+  height: 130px;
+  object-fit: contain;
+}

@@ -32,7 +32,7 @@
                         class="open-sidenav-btn border-0 bg-transparent justify-content-center align-items-center">
                     <i class="fa-solid fa-bars"></i>
                 </button>
-                <h1 class="m-0">@ViewData["Title"]</h1>
+                <h1 class="m-0 one-line-ellipsis">@ViewData["Title"]</h1>
             </div>
             <div class="d-flex flex-row-reverse gap-2 align-items-center">
                 <div class="dropdown">
@@ -176,15 +176,15 @@
                         </a>
                     </li>
                     <li>
-                        <a asp-area="ControlPanel" asp-controller="" asp-action=""
-                           class="text-decoration-none text-white d-flex align-items-center gap-3 sidenav-item @if(ViewData["Page"] == "") WriteLiteral("active");">
+                        <a asp-area="ControlPanel" asp-controller="Store" asp-action="Index"
+                           class="text-decoration-none text-white d-flex align-items-center gap-3 sidenav-item @if(ViewData["Page"] == "Stores") WriteLiteral("active");">
                             <i class="fa-solid fa-store navlink-icon"></i>
                             <span class="navlink-text">Stores</span>
                         </a>
                     </li>
                     <li>
-                        <a asp-area="ControlPanel" asp-controller="" asp-action=""
-                           class="text-decoration-none text-white d-flex align-items-center gap-3 sidenav-item @if(ViewData["Page"] == "") WriteLiteral("active");">
+                        <a asp-area="ControlPanel" asp-controller="Product" asp-action="Index"
+                           class="text-decoration-none text-white d-flex align-items-center gap-3 sidenav-item @if(ViewData["Page"] == "Products") WriteLiteral("active");">
                             <i class="fa-solid fa-bag-shopping navlink-icon"></i>
                             <span class="navlink-text">Products</span>
                         </a>

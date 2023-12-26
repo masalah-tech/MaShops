@@ -1,0 +1,112 @@
+﻿@using MaShops
+@using MaShops.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model Store
+
+@{
+    Layout = "~/Areas/ControlPanel/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = Model.Name;
+    ViewData["Page"] = "Stores";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-area="ControlPanel" asp-controller="Store" asp-action="Index"
+               class="text-decoration-none text-muted">Store</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a asp-area="ControlPanel" asp-controller="Store" asp-action="Index"
+               class="text-decoration-none text-muted">List</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+            @Model.Name
+        </li>
+    </ol>
+</nav>
+
+<div class="card px-0 py-3">
+    <form>
+        <div class="px-3 d-flex justify-content-between align-items-start">
+            @if (!string.IsNullOrWhiteSpace(Model.PosterPath))
+            {
+                <img src="@Model.PosterPath" alt="@Model.Name" class="store-poster-in-wide-card" />
+            }
+            else
+            {
+                <img src="~/img/user.png" alt="@Model.Name" class="store-poster-in-wide-card" />
+            }
+        </div>
+        <hr />
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Store Details</legend>
+            <div class="mb-3 col-md-6">
+                <label for="storeName" class="form-label">Store Name</label>
+                <input type="text" class="form-control" id="storeName" readonly value="@Model.Name">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="storeOwner" class="form-label">Store Owner</label>
+                <input type="text" class="form-control" id="storeOwner" readonly value="@string.Format("@{0}", Model.Owner.Username)">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="storeStatus" class="form-label">Store Status</label>
+                <input type="text" class="form-control" id="storeStatus" readonly value="@{
+                    if (Model.Status) {
+                        WriteLiteral("Active");
+                    }
+                    else {
+                        WriteLiteral("Inactive");
+                    }
+                }">
+            </div>
+        </fieldset>
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Owner Details</legend>
+            <div class="mb-3 col-md-6">
+                <label for="storeOwnerFirstName" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="storeOwnerFirstName" 
+                    readonly value="@Model.Owner.FirstName">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="storeOwnerLastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="storeOwnerLastName"
+                       readonly value="@Model.Owner.LastName">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="storeOwnerUsername" class="form-label">Username</label>
+                <input type="text" class="form-control" id="storeOwnerUsername"
+                       readonly value="@Model.Owner.Username">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="storeOwnerEmail" class="form-label">Email</label>
+                <input type="text" class="form-control" id="storeOwnerEmail"
+                       readonly value="@Model.Owner.Email">
+            </div>
+            <div class="mb-3 d-flex gap-2">
+                <a asp-area="ControlPanel" asp-controller="Seller" 
+                    asp-action="Details" asp-route-id="@Model.Owner.Id"
+                    class="btn-label-primary">
+                    More details
+                </a>
+                <a href="javascript:void(0)"
+                   class="btn-label-warning">
+                    Deactivate the owner
+                </a>
+            </div>
+        </fieldset>
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Actions</legend>
+            <div class="mb-3 d-flex gap-2">
+                <a href="javascript:void(0)"
+                   class="btn-label-warning">
+                    Deactivate the store
+                </a>
+                <a href="javascript:void(0)"
+                   class="btn-label-danger">
+                    Delete the store
+                </a>
+            </div>
+        </fieldset>
+    </form>
+</div>

@@ -6,24 +6,22 @@
 
 @{
     Layout = "~/Areas/ControlPanel/Views/Shared/_Layout.cshtml";
-    ViewData["Title"] = $"{Model[0].Category.Name} Products";
-    ViewData["Page"] = "Categories";
+    ViewData["Title"] = "Products";
+    ViewData["Page"] = "Products";
 }
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a asp-area="ControlPanel" asp-controller="Category" asp-action="Index"
-               class="text-decoration-none text-muted">Category</a>
+            <a asp-area="ControlPanel" asp-controller="Product" asp-action="Index"
+               class="text-decoration-none text-muted">Product</a>
         </li>
         <li class="breadcrumb-item">
-            <a asp-area="ControlPanel" asp-controller="Category" asp-action="Index"
+            <a asp-area="ControlPanel" asp-controller="Product" asp-action="Index"
                class="text-decoration-none text-muted">List</a>
         </li>
         <li class="breadcrumb-item active" aria-current="page">
-            @{
-                WriteLiteral(Model[0].Category.Name);
-            }s
+            Products
         </li>
     </ol>
 </nav>
@@ -45,10 +43,10 @@
                         }
                     </h4>
                     <p class="one-line-ellipsis">
-                        Store: 
-                        <a asp-area="ControlPanel" asp-controller="Store" 
-                            asp-action="Details" asp-route-id="@product.Store.Id"
-                            class="text-decoration-none">
+                        Store:
+                        <a asp-area="ControlPanel" asp-controller="Store"
+                           asp-action="Details" asp-route-id="@product.Store.Id"
+                           class="text-decoration-none">
                             @product.Store.Name
                         </a>
                     </p>
@@ -78,10 +76,6 @@
                             <li><a class="dropdown-item link-danger" href="#">Delete the product</a></li>
                         </ul>
                     </div>
-
-                    @*<a asp-area="ControlPanel" asp-controller="Admin" asp-action="Edit" asp-route-id="@admin.Id" class="btn-label-primary">Edit details</a>
-                <a asp-area="" asp-controller="" asp-action="" class="btn-label-warning">Disable @string.Format("{0} {1}", admin.FirstName, admin.LastName)</a>
-                <a asp-area="" asp-controller="" asp-action="" class="btn-label-danger">Delete @string.Format("{0} {1}", admin.FirstName, admin.LastName)</a>*@
                 </div>
             </div>
         </div>
