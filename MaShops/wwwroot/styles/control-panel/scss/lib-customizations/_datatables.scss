@@ -4,4 +4,69 @@
   textarea {
     box-shadow: none !important;
   }
+
+  .row {
+    margin: 0;
+  }
+
+  .row:first-child {
+    border-top: 1px solid rgb(222 226 230);
+  }
+
+  .row:not(.dt-row) {
+    padding: 15px;
+  }
+
+  th:first-child,
+  th:last-child,
+  td:first-child,
+  td:last-child {
+    padding: 10px 20px;
+  }
+
+  .col-sm-12 {
+    padding: 0;
+    overflow-x: auto;
+  }
+
+  .col-sm-12:has(table) {
+    min-height: max(300px, 45vh);
+  }
+
+  th,
+  td {
+    vertical-align: middle;
+  }
+
+  table.dataTable thead .sorting:before,
+  table.dataTable thead .sorting_asc:before,
+  table.dataTable thead .sorting_desc:before,
+  table.dataTable thead .sorting_asc_disabled:before,
+  table.dataTable thead .sorting_desc_disabled:before {
+    content: "\f077" !important;
+    font-family: "Font Awesome 5 Free";
+    transform: translateX(5px);
+  }
+
+  table.dataTable thead > tr > th.sorting:after,
+  table.dataTable thead > tr > th.sorting_asc:after,
+  table.dataTable thead > tr > th.sorting_desc:after,
+  table.dataTable thead > tr > th.sorting_asc_disabled:after,
+  table.dataTable thead > tr > th.sorting_desc_disabled:after,
+  table.dataTable thead > tr > td.sorting:after,
+  table.dataTable thead > tr > td.sorting_asc:after,
+  table.dataTable thead > tr > td.sorting_desc:after,
+  table.dataTable thead > tr > td.sorting_asc_disabled:after,
+  table.dataTable thead > tr > td.sorting_desc_disabled:after {
+    top: 50%;
+    content: "\f078" !important;
+    font-family: "Font Awesome 5 Free";
+    transform: translateX(5px);
+  }
+}
+
+.c-datatable-wrapper.header-border-top-0 {
+  .row:first-child {
+    border-top: none;
+  }
 }

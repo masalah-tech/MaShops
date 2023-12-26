@@ -31,13 +31,13 @@
             </div>
         </div>
         <hr class="mb-0" />
-        <div class="mzn-img-gallery row p-2 m-0">
+        <div class="c-img-gallery row p-2 m-0">
             @foreach (var banner in Model)
             {
                 <div class="col-sm-6 col-xl-4 col-xxl-3 mx-0 p-2">
-                    <div class="mzn-img-card">
-                        <div class="mzn-btns-container">
-                            <div class="mzn-btn">
+                    <div class="c-img-card">
+                        <div class="btns-container">
+                            <div class="c-btn">
                                 <input type="checkbox" id="banner-@banner.Id" 
                                 @{
                                     if (banner.Status)
@@ -47,10 +47,10 @@
                                         
                                 } onchange="validateBannerSelects(this)" />
                             </div>
-                            <a href="javascript:void(0)" onclick="mznExpandImg(this)" class="mzn-btn link-dark text-decoration-none mzn-expand-img-btn" mzn-img-target="#banner-img-@banner.Id">
+                            <a href="javascript:void(0)" onclick="mznExpandImg(this)" class="c-btn link-dark text-decoration-none mzn-expand-img-btn" mzn-img-target="#banner-img-@banner.Id">
                                 <i class="fa-solid fa-expand"></i>
                             </a>
-                            <a class="mzn-btn link-secondary text-decoration-none" asp-area="ControlPanel" asp-controller="Banner" asp-action="">
+                            <a class="c-btn link-secondary text-decoration-none" asp-area="ControlPanel" asp-controller="Banner" asp-action="">
                                 <i class="fa-solid fa-trash"></i>
                             </a>
                         </div>
@@ -60,15 +60,15 @@
                     </div>
                 </div>
             }
-            <div id="banner-img-overlay" class="mzn-expanded-img-overlay" onclick="mznCloseImgOverlay(this, arguments[0])">
-                <div class="mzn-wrapper">
-                    <button type="button" onclick="this.parentElement.parentElement.classList.remove('active')" class="mzn-close-overlay-btn" mzn-overlay-target="#banner-img-overlay">
+            <div id="banner-img-overlay" class="c-expanded-img-overlay" onclick="mznCloseImgOverlay(this, arguments[0])">
+                <div class="c-wrapper">
+                    <button type="button" onclick="this.parentElement.parentElement.classList.remove('active')" class="c-close-overlay-btn" mzn-overlay-target="#banner-img-overlay">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                     <img alt="Expanded Image" />
                 </div>
             </div>
-            <div class="alert alert-danger alert-dismissible auto-close fade mzn-gallery-validate-alert" role="alert">
+            <div class="alert alert-danger alert-dismissible auto-close fade c-gallery-validate-alert" role="alert">
                 Number of selected banners must be between 1 and 5
             </div>
         </div>

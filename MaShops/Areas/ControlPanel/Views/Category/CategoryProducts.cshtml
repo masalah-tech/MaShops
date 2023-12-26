@@ -39,12 +39,12 @@
                 </div>
                 <hr class="m-0">
                 <div class="card-body">
-                    <h4 class="mzn-two-lines-ellipsis">
+                    <h4 class="two-lines-ellipsis">
                         @{
                             WriteLiteral($"{product.Name}");
                         }
                     </h4>
-                    <p class="mzn-one-line-ellipsis">
+                    <p class="one-line-ellipsis">
                         Store: 
                         <a asp-area="ControlPanel" asp-controller="Store" 
                             asp-action="Details" asp-route-id="@product.Store.Id"
@@ -60,7 +60,7 @@
                             }
                             <strong class="text-success fs-5">$@product.NewPrice</strong>
                         </p>
-                        <p class="mzn-one-line-ellipsis">
+                        <p class="one-line-ellipsis">
                             In stock: @product.InStock
                         </p>
 

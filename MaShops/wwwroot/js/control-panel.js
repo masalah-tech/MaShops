@@ -55,21 +55,21 @@ function applyEvents() {
 
             if (fileInput.classList.contains("new-banner")) {
                 const outerBox = fileInput.parentElement.parentElement.parentElement
-                const cardsContainer = outerBox.querySelector(".mzn-img-gallery");
+                const cardsContainer = outerBox.querySelector(".c-img-gallery");
                 const imgUrl = URL.createObjectURL(fileInput.files[0]);
                 const randomId = Math.floor((Math.random() * 1000) + 1);
 
                 cardsContainer.innerHTML +=
                     `<div class="col-sm-6 col-xl-4 col-xxl-3 mx-0 p-2">
-                    <div class="mzn-img-card">
-                        <div class="mzn-btns-container">
-                            <div class="mzn-btn">
+                    <div class="c-img-card">
+                        <div class="btns-container">
+                            <div class="c-btn">
                                 <input type="checkbox" id="banner-${randomId}" checked="false" onchange="validateBannerSelects(this)" />
                             </div>
-                            <a href="javascript:void(0)" onclick="mznExpandImg(this);" class="mzn-btn link-dark text-decoration-none mzn-expand-img-btn" mzn-img-target="#banner-img-${randomId}">
+                            <a href="javascript:void(0)" onclick="mznExpandImg(this);" class="c-btn link-dark text-decoration-none mzn-expand-img-btn" mzn-img-target="#banner-img-${randomId}">
                                 <i class="fa-solid fa-expand"></i>
                             </a>
-                            <a class="mzn-btn link-secondary text-decoration-none" asp-area="ControlPanel" asp-controller="Banner" asp-action="">
+                            <a class="c-btn link-secondary text-decoration-none" asp-area="ControlPanel" asp-controller="Banner" asp-action="">
                                 <i class="fa-solid fa-trash"></i>
                             </a>
                         </div>
@@ -105,7 +105,7 @@ function validateBannerSelects(senderInput) {
     const outerBox =
         senderInput.parentElement.parentElement.parentElement.parentElement.parentElement;
     const checkedInputs = outerBox.querySelectorAll("input[type=checkbox][checked=true]");
-    const validateAlert = outerBox.querySelector(".mzn-gallery-validate-alert");
+    const validateAlert = outerBox.querySelector(".c-gallery-validate-alert");
 
     if (checkedInputs.length < 1) {
         validateAlert.classList.add("show");

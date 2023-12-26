@@ -152,7 +152,7 @@ function mznApplyEvents() {
 
     divElements.forEach(divElement => {
         //divElement.addEventListener("click", divElementClickEvent => {
-        //    if (divElement.classList.contains("mzn-expanded-img-overlay")) {
+        //    if (divElement.classList.contains("c-expanded-img-overlay")) {
 
                 
         //    }
@@ -213,7 +213,7 @@ function mznExpandImg(senderElem) {
         outerBox.querySelector(
             senderElem.getAttribute("mzn-img-target")
         ).src;
-    const imgOverlay = outerBox.querySelector(".mzn-expanded-img-overlay");
+    const imgOverlay = outerBox.querySelector(".c-expanded-img-overlay");
     const targetImg = imgOverlay.querySelector("img");
 
     targetImg.src = src;
@@ -226,7 +226,7 @@ function mznExpandImg(senderElem) {
 //      html dom element of the overaly
 function mznCloseImgOverlay(overlayElem, clickEvent) {
     const contentWrapper =
-        overlayElem.querySelector(".mzn-wrapper");
+        overlayElem.querySelector(".c-wrapper");
 
     if (!contentWrapper.contains(clickEvent.target)) {
         overlayElem.classList.remove("active");
