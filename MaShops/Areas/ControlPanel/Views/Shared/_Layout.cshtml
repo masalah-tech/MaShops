@@ -53,13 +53,15 @@
                         </li>
                         <li><hr class="dropdown-divider my-0"></li>
                         <li>
-                            <a class="dropdown-item py-2 d-flex gap-3 align-items-center" href="#">
+                            <a class="dropdown-item py-2 d-flex gap-3 align-items-center"
+                               asp-area="ControlPanel" asp-controller="SuperAdmin"
+                               asp-action="Details" asp-route-id="10">
                                 <i class="fa-solid fa-user"></i>
                                 <span>My Profile</span>
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item py-2 d-flex gap-3 align-items-center" href="#">
+                            <a class="dropdown-item py-2 d-flex gap-3 align-items-center">
                                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
                                 <span>Log out</span>
                             </a>
@@ -190,8 +192,8 @@
                         </a>
                     </li>
                     <li>
-                        <a asp-area="ControlPanel" asp-controller="" asp-action=""
-                           class="text-decoration-none text-white d-flex align-items-center gap-3 sidenav-item @if(ViewData["Page"] == "") WriteLiteral("active");">
+                        <a asp-area="ControlPanel" asp-controller="Cart" asp-action="Index"
+                           class="text-decoration-none text-white d-flex align-items-center gap-3 sidenav-item @if(ViewData["Page"] == "Carts") WriteLiteral("active");">
                             <i class="fa-solid fa-cart-shopping navlink-icon"></i>
                             <span class="navlink-text">Carts</span>
                         </a>
@@ -200,7 +202,7 @@
             </div>
             <ul class="list-unstyled m-0">
                 <li>
-                    <a asp-area="ControlPanel" asp-controller="Home" asp-action="Index"
+                    <a asp-area="ControlPanel" asp-controller="SuperAdmin" asp-action="Details" asp-route-id="10"
                        class="text-decoration-none text-white d-flex align-items-center gap-3 mt-0 sidenav-item">
                         <i class="fa-regular fa-user navlink-icon"></i>
                         <span class="navlink-text">My Profile</span>

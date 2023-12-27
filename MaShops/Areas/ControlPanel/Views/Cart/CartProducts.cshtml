@@ -1,0 +1,88 @@
+﻿@using MaShops
+@using MaShops.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model List<Product>
+
+@{
+    Layout = "~/Areas/ControlPanel/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Cart Products";
+    ViewData["Page"] = "Carts";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-area="ControlPanel" asp-controller="Cart" asp-action="Index"
+               class="text-decoration-none text-muted">Cart</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a asp-area="ControlPanel" asp-controller="Cart" asp-action="Index"
+               class="text-decoration-none text-muted">List</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+            Cart Products
+        </li>
+    </ol>
+</nav>
+
+<div class="row px-2">
+
+    @foreach (var product in Model)
+    {
+        <div class="col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-sm-6 p-2">
+            <div class="card text-center px-0 pb-0 pt-4 overflow-hidden position-relative">
+                <div class="card-header d-flex justify-content-center bg-white p-3 border-0">
+                    <img src="@product.MainPosterPath" alt="@product.Name" class="prod-poster" />
+                </div>
+                <hr class="m-0">
+                <div class="card-body">
+                    <h4 class="two-lines-ellipsis">
+                        @{
+                            WriteLiteral($"{product.Name}");
+                        }
+                    </h4>
+                    <p class="one-line-ellipsis">
+                        Store:
+                        <a asp-area="ControlPanel" asp-controller="Store"
+                           asp-action="Details" asp-route-id="@product.Store.Id"
+                           class="text-decoration-none">
+                            @product.Store.Name
+                        </a>
+                    </p>
+                    <div class="py-3 text-start">
+                        <div class="price-box">
+                            <p class="d-flex flex-column">
+                                @if (product.OldPrice != null && product.OldPrice > 0)
+                                {
+                                    <strong class="text-danger fs-6 text-decoration-line-through">$@product.OldPrice</strong>
+                                }
+                                <strong class="text-success fs-5">$@product.NewPrice</strong>
+                            </p>
+                        </div>
+                        <p class="one-line-ellipsis">
+                            In stock: @product.InStock
+                        </p>
+                    </div>
+
+                    <a asp-area="ControlPanel" asp-controller="Product" asp-action="Details" asp-route-id="@product.Id" class="d-block btn-label-primary">More details</a>
+
+                    <div class="dropdown position-absolute top-right-short-gap w-20-px">
+                        <a class="fs-5 link-dark d-block w-100" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li><a class="dropdown-item link-danger" href="#">Delete the product</a></li>
+                        </ul>
+                    </div>
+
+                    @*<a asp-area="ControlPanel" asp-controller="Admin" asp-action="Edit" asp-route-id="@admin.Id" class="btn-label-primary">Edit details</a>
+                <a asp-area="" asp-controller="" asp-action="" class="btn-label-warning">Disable @string.Format("{0} {1}", admin.FirstName, admin.LastName)</a>
+                <a asp-area="" asp-controller="" asp-action="" class="btn-label-danger">Delete @string.Format("{0} {1}", admin.FirstName, admin.LastName)</a>*@
+                </div>
+            </div>
+        </div>
+    }
+
+</div>

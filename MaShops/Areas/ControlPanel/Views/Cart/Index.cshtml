@@ -1,0 +1,70 @@
+﻿@using MaShops
+@using MaShops.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model List<ProductCart>
+
+@{
+    Layout = "~/Areas/ControlPanel/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Carts";
+    ViewData["Page"] = "Carts";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-area="ControlPanel" asp-controller="Cart" asp-action="Index"
+               class="text-decoration-none text-muted">Cart</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">List</li>
+    </ol>
+</nav>
+
+<div>
+    <div class="card p-0">
+        <div class="c-datatable-wrapper header-border-top-0">
+            <table id="cartsTable" class="table table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Belongs to</th>
+                        <th>Products in cart</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var cart in Model)
+                    {
+                        <tr>
+                            <td>@cart.Id</td>
+                            <td>
+                                <a asp-area="ControlPanel" asp-controller="Customer"
+                                    asp-action="Details" asp-route-id="@cart.Cart.Customer.Id"
+                                    class="text-decoration-none">
+                                    @@@cart.Cart.Customer.Username
+                                </a>
+                            </td>
+                            <td>
+                                <a class="text-decoration-none" asp-area="ControlPanel" asp-controller="Cart" 
+                                    asp-action="CartProducts" asp-route-cartId="@cart.Id">
+                                    5
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+
+    <script>
+
+        $('#cartsTable').DataTable({
+        });
+
+    </script>
+}
