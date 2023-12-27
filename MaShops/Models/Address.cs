@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace MaShops.Models
 {
@@ -12,7 +13,9 @@ namespace MaShops.Models
         public string City { get; set; }
         [Required]
         public string Street { get; set; }
+        [DisplayName("Department No")]
         public int? AppartmentNo { get; set; }
+        [DisplayName("Zip Code")]
         public int? ZipCode { get; set; }
     }
 }

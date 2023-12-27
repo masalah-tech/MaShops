@@ -47,6 +47,17 @@ namespace MaShops.Areas.ControlPanel.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult Create(User superAdmin)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Users.Add(superAdmin);
+                return RedirectToAction("Index");
+            }
+
+            return View();
+        }
 
         public IActionResult Details(int id)
         {
