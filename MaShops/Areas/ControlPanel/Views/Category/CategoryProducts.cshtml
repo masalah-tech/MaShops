@@ -6,7 +6,8 @@
 
 @{
     Layout = "~/Areas/ControlPanel/Views/Shared/_Layout.cshtml";
-    ViewData["Title"] = $"{Model[0].Category.Name} Products";
+    ViewData["Title"] = 
+        Model.Count > 0 ? $"{Model[0].Category.Name} Products" : "Category Products";
     ViewData["Page"] = "Categories";
 }
 
@@ -22,7 +23,7 @@
         </li>
         <li class="breadcrumb-item active" aria-current="page">
             @{
-                WriteLiteral(Model[0].Category.Name);
+                WriteLiteral(Model.Count > 0 ? $"{Model[0].Category.Name} Products" : "Category Products");
             }s
         </li>
     </ol>

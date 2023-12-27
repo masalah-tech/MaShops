@@ -1,4 +1,5 @@
 ﻿using MaShops.Data;
+using MaShops.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,6 +22,23 @@ namespace MaShops.Areas.ControlPanel.Controllers
 
             return View(categories);
         }
+        public IActionResult Create() 
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Create(Category category) 
+        {
+            if (ModelState.IsValid) 
+            { 
+                _context.Categories.Add(category);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View();
+        }
+
 
         public IActionResult CategoryProducts(int id)
         {

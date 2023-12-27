@@ -6,53 +6,47 @@ using Microsoft.EntityFrameworkCore;
 namespace MaShops.Areas.ControlPanel.Controllers
 {
     [Area("ControlPanel")]
-    public class SuperAdminController : Controller
+    public class UserController : Controller
     {
         private readonly AppDbContext _context;
 
-        public SuperAdminController(AppDbContext context)
+        public UserController(AppDbContext context)
         {
             _context = context;
         }
         public IActionResult Index()
         {
-            var userRoles = 
-                _context.UsersRoles
-                .Include(ur => ur.Role)
-                .ToList();
-
-            var users = 
+            var users =
                 _context.Users
                 .Include(u => u.Address)
                 .ToList();
 
-            List<User> superAdmins = new List<User>();
-
-            foreach (var userRole in userRoles)
-            {
-                foreach (var user in users)
-                {
-                    if (userRole.UserId == user.Id
-                        && userRole.Role.Title == "Super Admin")
-                    {
-                        superAdmins.Add(user);
-                    }
-                }
-            }
-
-            return View(superAdmins);
+            return View(users);
         }
 
         public IActionResult Create()
         {
             return View();
         }
+
         [HttpPost]
-        public IActionResult Create(User superAdmin)
+        public IActionResult Create(User user)
         {
+            if (user.Nationality == "Select")
+            {
+                ModelState.AddModelError("Nationality", "The Nationality field is required.");
+            }
+
+            if (user.Address.Country == "Select")
+            {
+                ModelState.AddModelError("Address.Country", "The Country field is required.");
+            }
+
             if (ModelState.IsValid)
             {
-                _context.Users.Add(superAdmin);
+                user.Status = true;
+                _context.Users.Add(user);
+                _context.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -61,26 +55,24 @@ namespace MaShops.Areas.ControlPanel.Controllers
 
         public IActionResult Details(int id)
         {
-            var superAdmin =
+            var user =
                 _context.Users
                 .Where(u => u.Id == id)
                 .Include(u => u.Address)
                 .FirstOrDefault();
 
-            return View(superAdmin);
+            return View(user);
         }
-
 
         public IActionResult Edit(int id)
         {
-            var superAdmin =
+            var user =
                 _context.Users
                 .Where(u => u.Id == id)
                 .Include(u => u.Address)
                 .FirstOrDefault();
 
-            return View(superAdmin);
+            return View(user);
         }
-
     }
 }

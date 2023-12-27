@@ -60,6 +60,36 @@ td .dropdown > a {
   color: var(--black);
 }
 
+.btn-primary {
+  background-color: rgb(92 130 223) !important;
+  color: rgb(255 255 255);
+}
+
+.btn-primary:hover,
+.btn-primary:active {
+  background-color: rgb(78 111 190) !important;
+}
+
+.btn-secondary {
+  background-color: rgb(99, 121, 145) !important;
+  color: rgb(255 255 255);
+}
+
+.btn-secondary:hover,
+.btn-secondary:active {
+  background-color: rgb(85, 104, 124) !important;
+}
+
+.btn-outline-primary {
+  border-color: rgb(81, 124, 233);
+  color: rgb(81, 124, 233);
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:active {
+  background-color: rgb(81, 124, 233) !important;
+}
+
 .btn-label-primary,
 .btn-label-secondary,
 .btn-label-warning,

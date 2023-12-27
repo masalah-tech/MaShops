@@ -1,0 +1,124 @@
+﻿@using MaShops
+@using MaShops.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model User
+
+@{
+    Layout = "~/Areas/ControlPanel/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = $"{Model.FirstName} {Model.LastName}";
+    ViewData["Page"] = "Users";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-area="ControlPanel" asp-controller="User" asp-action="Index"
+               class="text-decoration-none text-muted">User</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a asp-area="ControlPanel" asp-controller="User" asp-action="Index"
+               class="text-decoration-none text-muted">List</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+            @{
+                WriteLiteral($"{Model.FirstName} {Model.LastName}");
+            }
+        </li>
+    </ol>
+</nav>
+
+<div class="card px-0 py-3">
+    <form>
+        <div class="px-3 d-flex justify-content-between align-items-start">
+            @if (!string.IsNullOrWhiteSpace(Model.PhotoPath))
+            {
+                <img src="@Model.PhotoPath" alt="@Model.FirstName" class="circular-user-photo Large" />
+            }
+            else
+            {
+                <img src="~/img/user.png" alt="@Model.FirstName" class="circular-user-photo Large" />
+            }
+            <a asp-area="ControlPanel" asp-controller="User" asp-action="Edit" asp-route-id="@Model.Id" class="btn-label-primary">Edit user details</a>
+        </div>
+        <hr />
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Primary Information</legend>
+            <div class="mb-3 col-md-6">
+                <label for="userFirstName" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="userFirstName" readonly value="@Model.FirstName">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="userSecondName" class="form-label">Second Name</label>
+                <input type="text" class="form-control" id="userSecondName" readonly value="@Model.SecondName">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="userThirdName" class="form-label">Third Name</label>
+                <input type="text" class="form-control" id="userThirdName" readonly value="@Model.ThirdName">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="userLastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="userLastName" readonly value="@Model.LastName">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="userNationality" class="form-label">Nationality</label>
+                <input type="text" class="form-control" id="userNationality" readonly value="@Model.Nationality">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="userBirthDate" class="form-label">Birth Date</label>
+                <input type="text" class="form-control" id="userBirthDate" readonly value="@{
+                    WriteLiteral(Model.BirthDate.ToString("MMMM d - yyyy"));
+ }">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="userRole" class="form-label">Role</label>
+                <input type="text" class="form-control" id="userRole" readonly value="Super Admin">
+            </div>
+        </fieldset>
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Contact Details</legend>
+            <div class="mb-3 col-md-6">
+                <label for="userPhoneNo" class="form-label">Phone Number</label>
+                <input type="text" class="form-control" id="userPhoneNo" readonly value="@Model.PhoneNumber">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="userEmail" class="form-label">Email</label>
+                <input type="text" class="form-control" id="userEmail" readonly value="@Model.Email">
+            </div>
+        </fieldset>
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Address Details</legend>
+            <div class="mb-3 col-md-6">
+                <label for="userAddressCountry" class="form-label">Country</label>
+                <input type="text" class="form-control" id="userAddressCountry" readonly value="@Model.Address.Country">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="userCity" class="form-label">City</label>
+                <input type="text" class="form-control" id="userCity" readonly value="@Model.Address.City">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="userStreet" class="form-label">Street</label>
+                <input type="text" class="form-control" id="userStreet" readonly value="@Model.Address.Street">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="userAppartmentNo" class="form-label">Appartment No</label>
+                <input type="text" class="form-control" id="userAppartmentNo" readonly value="@Model.Address.AppartmentNo">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="userZipCode" class="form-label">Zip Code</label>
+                <input type="text" class="form-control" id="userZipCode" readonly value="@Model.Address.ZipCode">
+            </div>
+        </fieldset>
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Credentials</legend>
+            <div class="mb-3 col-md-6">
+                <label for="userUsername" class="form-label">Username</label>
+                <input type="text" class="form-control" id="userUsername" readonly value="@Model.Username">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="userPassword" class="form-label">Password</label>
+                <input type="text" class="form-control" id="userPassword" readonly value="@Model.EncPassword">
+            </div>
+        </fieldset>
+    </form>
+</div>

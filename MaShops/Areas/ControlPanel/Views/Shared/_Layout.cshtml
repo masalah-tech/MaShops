@@ -51,7 +51,7 @@
                         <li><hr class="dropdown-divider my-0"></li>
                         <li>
                             <a class="dropdown-item py-2 d-flex gap-3 align-items-center"
-                               asp-area="ControlPanel" asp-controller="SuperAdmin"
+                               asp-area="ControlPanel" asp-controller="User"
                                asp-action="Details" asp-route-id="10">
                                 <i class="fa-solid fa-user"></i>
                                 <span>My Profile</span>
@@ -94,64 +94,12 @@
                             <span class="navlink-text">Dashboard</span>
                         </a>
                     </li>
-                    <li class="accordion-item">
-                        <div class="accordion-header">
-                            <a href="javascript:void(0)"
-                               class="accordion-button d-flex align-items-center gap-1 c-link text-decoration-none text-white d-flex align-items-center justify-content-between sidenav-item"
-                               data-bs-toggle="collapse" data-bs-target="#adminsMenu"
-                               aria-expanded="@{
-                                    if(ViewData["Page"] == "SuperAdmins" || ViewData["Page"] == "Admins" 
-                                        || ViewData["Page"] == "Sellers" || ViewData["Page"] == "Customers")
-                                        WriteLiteral("true");
-                                    else
-                                        WriteLiteral("false");
-                                }" aria-controls="adminsMenu">
-                                <div class="d-flex align-items-center gap-3">
-                                    <i class="fa-solid fa-user-group navlink-icon"></i>
-                                    <span class="navlink-text">Users</span>
-                                </div>
-                                <i class="fa-solid fa-angle-right drowdown-arrow"></i>
-                            </a>
-                        </div>
-                        <div id="adminsMenu" class="accordion-collapse collapse @{
-
-                            if (ViewData["Page"] == "SuperAdmins" || ViewData["Page"] == "Admins"
-                                || ViewData["Page"] == "Sellers" || ViewData["Page"] == "Customers")
-                                WriteLiteral("show");
-
-                            }" data-bs-parent="#sidenavAccordion">
-                            <ul class="list-unstyled m-0">
-                                <li>
-                                    <a asp-area="ControlPanel" asp-controller="SuperAdmin" asp-action="Index"
-                                       class="text-decoration-none text-white d-flex align-items-center gap-3 sidenav-item @if(ViewData["Page"] == "SuperAdmins") WriteLiteral("active");">
-                                        <i class="fa-solid fa-circle navlink-icon submenu-item-icon"></i>
-                                        <span class="navlink-text">Super Admins</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a asp-area="ControlPanel" asp-controller="Admin" asp-action="Index"
-                                       class="text-decoration-none text-white d-flex align-items-center gap-3 sidenav-item @if(ViewData["Page"] == "Admins") WriteLiteral("active");">
-                                        <i class="fa-solid fa-circle navlink-icon submenu-item-icon"></i>
-                                        <span class="navlink-text">Admins</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a asp-area="ControlPanel" asp-controller="Seller" asp-action="Index"
-                                       class="text-decoration-none text-white d-flex align-items-center gap-3 sidenav-item @if(ViewData["Page"] == "Sellers") WriteLiteral("active");">
-                                        <i class="fa-solid fa-circle navlink-icon submenu-item-icon"></i>
-                                        <span class="navlink-text">Sellers</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a asp-area="ControlPanel" asp-controller="Customer" asp-action="Index"
-                                       class="text-decoration-none text-white d-flex align-items-center gap-3 sidenav-item @if(ViewData["Page"] == "Customers") WriteLiteral("active");">
-                                        <i class="fa-solid fa-circle navlink-icon submenu-item-icon"></i>
-                                        <span class="navlink-text">Customers</span>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
+                    <li>
+                        <a asp-area="ControlPanel" asp-controller="User" asp-action="Index"
+                           class="text-decoration-none text-white d-flex align-items-center gap-3 sidenav-item @if(ViewData["Page"] == "Users") WriteLiteral("active");">
+                            <i class="fa-solid fa-user-group navlink-icon"></i>
+                            <span class="navlink-text">Users</span>
+                        </a>
                     </li>
                     <li>
                         <a asp-area="ControlPanel" asp-controller="Banner" asp-action="Index"
@@ -199,7 +147,7 @@
             </div>
             <ul class="list-unstyled m-0">
                 <li>
-                    <a asp-area="ControlPanel" asp-controller="SuperAdmin" asp-action="Details" asp-route-id="10"
+                    <a asp-area="ControlPanel" asp-controller="User" asp-action="Details" asp-route-id="10"
                        class="text-decoration-none text-white d-flex align-items-center gap-3 mt-0 sidenav-item">
                         <i class="fa-regular fa-user navlink-icon"></i>
                         <span class="navlink-text">My Profile</span>

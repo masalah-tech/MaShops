@@ -6,29 +6,29 @@
 
 @{
     Layout = "~/Areas/ControlPanel/Views/Shared/_Layout.cshtml";
-    ViewData["Title"] = "Create New Super Admin";
-    ViewData["Page"] = "SuperAdmins";
+    ViewData["Title"] = "Create New User";
+    ViewData["Page"] = "Users";
 }
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a asp-area="ControlPanel" asp-controller="SuperAdmin" asp-action="Index"
-               class="text-decoration-none text-muted">Super Admin</a>
+            <a asp-area="ControlPanel" asp-controller="User" asp-action="Index"
+               class="text-decoration-none text-muted">User</a>
         </li>
         <li class="breadcrumb-item">
-            <a asp-area="ControlPanel" asp-controller="SuperAdmin" asp-action="Index"
+            <a asp-area="ControlPanel" asp-controller="User" asp-action="Index"
                class="text-decoration-none text-muted">List</a>
         </li>
         <li class="breadcrumb-item active" aria-current="page">
-            Create New Super Admin
+            Create New User
         </li>
     </ol>
 </nav>
 
 <div class="card px-0 py-3">
     <form method="post">
-        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+        <fieldset class="form-group border mt-3 px-1 pt-4 row mx-3">
             <legend class="w-auto px-2">Primary Information</legend>
             <div class="mb-3 col-md-6">
                 <label asp-for="FirstName" class="form-label"></label>
@@ -53,14 +53,13 @@
             <div class="mb-3 col-md-6 c-select-box">
                 <label asp-for="Nationality" class="form-label"></label>
                 <div class="c-select-option">
-                    <input class="c-selected-item form-control" asp-for="Nationality" readonly value="Select" />
+                    <input class="c-selected-item form-control" asp-for="Nationality" readonly />
                 </div>
                 <div class="c-select-items-container">
                     <div class="c-search-select-items-input-wrapper">
                         <input class="c-search-select-items-input" type="text" autocomplete="off" />
                     </div>
                     <ul class="load-countries">
-                        <li class="c-select-item active">Select</li>
                     </ul>
                     <p class="c-no-match-msg">No results found</p>
                 </div>
@@ -76,6 +75,17 @@
                 <input asp-for="PhotoPath" type="file" class="form-control">
                 <span asp-validation-for="PhotoPath" class="text-danger"></span>
             </div>
+            <div class="mb-3 col-md-6">
+                <label for="role" class="form-label">Role</label>
+                <select id="role" multiple class="form-control">
+                    <option value="Select">Select</option>
+                    <option value="Super Admin">Super Admin</option>
+                    <option value="Admin">Admin</option>
+                    <option value="Seller">Seller</option>
+                    <option value="Customer">Customer</option>
+                </select>
+                <span @*asp-validation-for=""*@ class="text-danger"></span>
+            </div>
         </fieldset>
         <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
             <legend class="w-auto px-2">Contact Details</legend>
@@ -86,7 +96,7 @@
             </div>
             <div class="mb-3 col-md-6">
                 <label asp-for="Email" class="form-label"></label>
-                <input asp-for="Email" class="form-control">
+                <input asp-for="Email" type="email" class="form-control">
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
         </fieldset>
@@ -96,14 +106,13 @@
                 <label asp-for="Address.Country" class="form-label"></label>
                 <div class="c-select-option">
                     <input class="c-selected-item form-control"
-                        asp-for="Address.Country" readonly value="Select" />
+                           asp-for="Address.Country" readonly />
                 </div>
                 <div class="c-select-items-container">
                     <div class="c-search-select-items-input-wrapper">
                         <input class="c-search-select-items-input" type="text" autocomplete="off" />
                     </div>
                     <ul class="load-countries">
-                        <li class="c-select-item active">Select</li>
                     </ul>
                     <p class="c-no-match-msg">No results found</p>
                 </div>
@@ -117,17 +126,17 @@
             <div class="mb-3 col-md-6">
                 <label asp-for="Address.Street" class="form-label"></label>
                 <input asp-for="Address.Street" class="form-control">
-                <span asp-validation-for="FirstName" class="text-danger"></span>
+                <span asp-validation-for="Address.Street" class="text-danger"></span>
             </div>
             <div class="mb-3 col-md-6">
                 <label asp-for="Address.AppartmentNo" class="form-label"></label>
                 <input asp-for="Address.AppartmentNo" class="form-control">
-                <span asp-validation-for="FirstName" class="text-danger"></span>
+                <span asp-validation-for="Address.AppartmentNo" class="text-danger"></span>
             </div>
             <div class="mb-3 col-md-6">
                 <label asp-for="Address.ZipCode" class="form-label"></label>
                 <input asp-for="Address.ZipCode" class="form-control">
-                <span asp-validation-for="FirstName" class="text-danger"></span>
+                <span asp-validation-for="Address.ZipCode" class="text-danger"></span>
             </div>
         </fieldset>
         <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
@@ -135,7 +144,7 @@
             <div class="mb-3 col-md-6">
                 <label asp-for="Username" class="form-label"></label>
                 <input asp-for="Username" class="form-control">
-                <span asp-validation-for="FirstName" class="text-danger"></span>
+                <span asp-validation-for="Username" class="text-danger"></span>
             </div>
             <div class="mb-3 mb-3 col-md-6">
                 <label asp-for="EncPassword" class="form-label"></label>
@@ -146,12 +155,20 @@
                         <i class="fa-solid fa-eye-slash c-icon hide-pass-btn"></i>
                     </div>
                 </div>
-                <span asp-validation-for="FirstName" class="text-danger"></span>
+                <span asp-validation-for="EncPassword" class="text-danger"></span>
             </div>
         </fieldset>
         <hr />
-        <div class="mx-3">
+        <div class="mx-3 d-flex gap-2 flex-wrap">
             <button type="submit" class="btn btn-primary">Submit</button>
+            <a asp-area="ControlPanel" asp-controller="User" asp-action="Index"
+                class="btn btn-secondary">
+                Back to list
+            </a>
         </div>
     </form>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
