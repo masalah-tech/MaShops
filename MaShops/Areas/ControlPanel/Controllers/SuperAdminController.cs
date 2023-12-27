@@ -16,22 +16,6 @@ namespace MaShops.Areas.ControlPanel.Controllers
         }
         public IActionResult Index()
         {
-            //var userRoles = _context.UsersRoles;
-            //var users = _context.Users.Include(u => u.Address);
-            //List<User> superAdmins = new List<User>();
-
-            //foreach (var userRole in userRoles)
-            //{
-            //    foreach (var user in users)
-            //    {
-            //        if (userRole.UserId == user.Id 
-            //            && userRole.Role.Title == "Super Admin")
-            //        {
-            //            superAdmins.Add(user);
-            //        }
-            //    }
-            //}
-
             var userRoles = 
                 _context.UsersRoles
                 .Include(ur => ur.Role)
