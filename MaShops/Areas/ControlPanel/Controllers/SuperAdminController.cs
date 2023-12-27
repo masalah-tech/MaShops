@@ -43,6 +43,11 @@ namespace MaShops.Areas.ControlPanel.Controllers
             return View(superAdmins);
         }
 
+        public IActionResult Create()
+        {
+            return View();
+        }
+
         public IActionResult Details(int id)
         {
             var superAdmin =

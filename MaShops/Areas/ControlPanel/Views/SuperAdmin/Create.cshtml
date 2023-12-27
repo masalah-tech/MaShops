@@ -1,0 +1,141 @@
+﻿@using MaShops
+@using MaShops.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model User
+
+@{
+    Layout = "~/Areas/ControlPanel/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Create New Super Admin";
+    ViewData["Page"] = "SuperAdmins";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-area="ControlPanel" asp-controller="SuperAdmin" asp-action="Index"
+               class="text-decoration-none text-muted">Super Admin</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a asp-area="ControlPanel" asp-controller="SuperAdmin" asp-action="Index"
+               class="text-decoration-none text-muted">List</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+            Create New Super Admin
+        </li>
+    </ol>
+</nav>
+
+<div class="card px-0 py-3">
+    <form method="post">
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Primary Information</legend>
+            <div class="mb-3 col-md-6">
+                <label asp-for="FirstName" class="form-label"></label>
+                <input asp-for="FirstName" class="form-control">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="SecondName" class="form-label"></label>
+                <input asp-for="SecondName" class="form-control">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="ThirdName" class="form-label"></label>
+                <input asp-for="ThirdName" class="form-control">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="LastName" class="form-label"></label>
+                <input asp-for="LastName" class="form-control">
+            </div>
+            <div class="mb-3 col-md-6 c-select-box">
+                <label asp-for="Nationality" class="form-label"></label>
+                <div class="c-select-option">
+                    <input class="c-selected-item form-control" asp-for="Nationality" readonly value="Select" />
+                </div>
+                <div class="c-select-items-container">
+                    <div class="c-search-select-items-input-wrapper">
+                        <input class="c-search-select-items-input" type="text" autocomplete="off" />
+                    </div>
+                    <ul class="load-countries">
+                        <li class="c-select-item active">Select</li>
+                    </ul>
+                    <p class="c-no-match-msg">No results found</p>
+                </div>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="BirthDate" class="form-label"></label>
+                <input asp-for="BirthDate" type="date" class="form-control">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="PhotoPath" class="form-label"></label>
+                <input asp-for="PhotoPath" type="file" class="form-control">
+            </div>
+        </fieldset>
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Contact Details</legend>
+            <div class="mb-3 col-md-6">
+                <label asp-for="PhoneNumber" class="form-label"></label>
+                <input asp-for="PhoneNumber" class="form-control">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" class="form-control">
+            </div>
+        </fieldset>
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Address Details</legend>
+            <div class="mb-3 col-md-6 c-select-box">
+                <label asp-for="Address.Country" class="form-label"></label>
+                <div class="c-select-option">
+                    <input class="c-selected-item form-control"
+                        asp-for="Address.Country" readonly value="Select" />
+                </div>
+                <div class="c-select-items-container">
+                    <div class="c-search-select-items-input-wrapper">
+                        <input class="c-search-select-items-input" type="text" autocomplete="off" />
+                    </div>
+                    <ul class="load-countries">
+                        <li class="c-select-item active">Select</li>
+                    </ul>
+                    <p class="c-no-match-msg">No results found</p>
+                </div>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="Address.City" class="form-label"></label>
+                <input asp-for="Address.City" class="form-control">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="Address.Street" class="form-label"></label>
+                <input asp-for="Address.Street" class="form-control">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="Address.AppartmentNo" class="form-label"></label>
+                <input asp-for="Address.AppartmentNo" class="form-control">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="Address.ZipCode" class="form-label"></label>
+                <input asp-for="Address.ZipCode" class="form-control">
+            </div>
+        </fieldset>
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Credentials</legend>
+            <div class="mb-3 col-md-6">
+                <label asp-for="Username" class="form-label"></label>
+                <input asp-for="Username" class="form-control">
+            </div>
+            <div class="mb-3 mb-3 col-md-6">
+                <label asp-for="EncPassword" class="form-label"></label>
+                <div class="c-eye-pass-box">
+                    <input asp-for="EncPassword" class="form-control">
+                    <div class="c-pass-icon-wrapper">
+                        <i class="fa-solid fa-eye c-icon active show-pass-btn"></i>
+                        <i class="fa-solid fa-eye-slash c-icon hide-pass-btn"></i>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <hr />
+        <div class="mx-3">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+    </form>
+</div>
