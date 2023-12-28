@@ -20,33 +20,6 @@
     </ol>
 </nav>
 
-<div id="editCategoryModal" class="modal fade modal-lg" tabindex="-1" data-bs-backdrop="static">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form>
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit category</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <fieldset class="form-group border mt-2 px-3 pb-3 pt-4">
-                        <legend class="w-auto px-2">Category Name</legend>
-                        <div class="mb-3">
-                            <label for="editCategoryName" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="editCategoryName" value="sss">
-                        </div>
-                    </fieldset>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
 <div>
     <div class="card p-0">
         <div class="p-3">
@@ -81,8 +54,9 @@
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                         <li>
-                                            <a href="javascript:void(0)" data-bs-target="#editCategoryModal"
-                                               data-bs-toggle="modal" class="dropdown-item">
+                                            <a asp-area="ControlPanel" asp-controller="Category" 
+                                                asp-action="Edit" asp-route-id="@category.Id"
+                                                class="dropdown-item">
                                             Edit category name
                                         </a>
                                         </li>

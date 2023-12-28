@@ -1,0 +1,52 @@
+﻿@using MaShops
+@using MaShops.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model Category
+
+@{
+    Layout = "~/Areas/ControlPanel/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = $"Edit { Model.Name }";
+    ViewData["Page"] = "Categories";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-area="ControlPanel" asp-controller="Category" asp-action="Index"
+               class="text-decoration-none text-muted">Category</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a asp-area="ControlPanel" asp-controller="Category" asp-action="Index"
+               class="text-decoration-none text-muted">List</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+            Edit @Model.Name;
+        </li>
+    </ol>
+</nav>
+
+<div class="card px-0 py-3">
+    <form method="post">
+        <fieldset class="form-group border mt-3 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Category Name</legend>
+            <div class="mb-3 col-md-6">
+                <label asp-for="Name" class="form-label"></label>
+                <input asp-for="Name" class="form-control">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </fieldset>
+        <hr />
+        <div class="mx-3">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a asp-area="ControlPanel" asp-controller="Category" asp-action="Index"
+               class="btn btn-secondary">
+                Back to list
+            </a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

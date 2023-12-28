@@ -1,0 +1,173 @@
+﻿@using MaShops
+@using MaShops.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model User
+
+@{
+    Layout = "~/Areas/ControlPanel/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = $"Edit {Model.FirstName} {Model.LastName}";
+    ViewData["Page"] = "Users";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-area="ControlPanel" asp-controller="User" asp-action="Index"
+               class="text-decoration-none text-muted">User</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a asp-area="ControlPanel" asp-controller="User" asp-action="Index"
+               class="text-decoration-none text-muted">List</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+            @{
+                WriteLiteral($"Edit {Model.FirstName} {Model.LastName}");
+            }
+        </li>
+    </ol>
+</nav>
+
+<div class="card px-0 py-3">
+    <form>
+        <div class="px-3 mb-2 d-flex gap-3 align-items-center">
+            @if (!string.IsNullOrWhiteSpace(Model.PhotoPath))
+            {
+                <img src="@Model.PhotoPath" alt="@Model.FirstName" class="circular-user-photo Large" />
+            }
+            else
+            {
+                <img src="~/img/user.png" alt="@Model.FirstName" class="circular-user-photo Large" />
+            }
+            <div>
+                <label for="UserPersonalPhoto" class="btn-label-primary">Upload new photo</label>
+                <input type="file" class="photo-immediate-change" hidden accept="image/*" id="UserPersonalPhoto" name="" />
+            </div>
+        </div>
+        <hr />
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Primary Information</legend>
+            <div class="mb-3 col-md-6">
+                <label for="userFirstName" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="userFirstName" value="@Model.FirstName">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="userSecondName" class="form-label">Second Name</label>
+                <input type="text" class="form-control" id="userSecondName" value="@Model.SecondName">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="userThirdName" class="form-label">Third Name</label>
+                <input type="text" class="form-control" id="userThirdName" value="@Model.ThirdName">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="userLastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="userLastName" value="@Model.LastName">
+            </div>
+            <div class="mb-3 col-md-6 c-select-box">
+                <label for="userNationality" class="form-label">Nationality</label>
+                <div class="c-select-option">
+                    <input class="c-selected-item form-control" type="text" id="userNationality" readonly name="userNationality" value="@Model.Nationality" />
+                </div>
+                <div class="c-select-items-container">
+                    <div class="c-search-select-items-input-wrapper">
+                        <input class="c-search-select-items-input" type="text" autocomplete="off" />
+                    </div>
+                    <ul class="load-countries">
+                        <li class="c-select-item active">Select</li>
+                    </ul>
+                    <p class="c-no-match-msg">No results found</p>
+                </div>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="userBirthDate" class="form-label">Birth Date</label>
+                <input type="date" class="form-control" id="userBirthDate" value="@{
+                    WriteLiteral(Model.BirthDate.ToString("yyyy-MM-dd"));
+                }">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="userRole" class="form-label">Role</label>
+                <select id="userRole" multiple class="form-control">
+                    <option value="Select">Select</option>
+                    <option value="Super Admin" Selected>Super Admin</option>
+                    <option value="Admin">Admin</option>
+                    <option value="Seller">Seller</option>
+                    <option value="Customer">Customer</option>
+                </select>
+            </div>
+        </fieldset>
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Contact Details</legend>
+            <div class="mb-3 col-md-6">
+                <label for="userPhoneNo" class="form-label">Phone Number</label>
+                <input type="text" class="form-control" id="userPhoneNo" value="@Model.PhoneNumber">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="userEmail" class="form-label">Email</label>
+                <input type="email" class="form-control" id="userEmail" value="@Model.Email">
+            </div>
+        </fieldset>
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Address Details</legend>
+            <div class="mb-3 col-md-6 c-select-box">
+                <label for="userAddressCountry" class="form-label">Country</label>
+                <div class="c-select-option">
+                    <input class="c-selected-item form-control" type="text" id="userAddressCountry" readonly name="userAddressCountry" value="@Model.Address.Country" />
+                </div>
+                <div class="c-select-items-container">
+                    <div class="c-search-select-items-input-wrapper">
+                        <input class="c-search-select-items-input" type="text" autocomplete="off" />
+                    </div>
+                    <ul class="load-countries">
+                        <li class="c-select-item active">Select</li>
+                    </ul>
+                    <p class="c-no-match-msg">No results found</p>
+                </div>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="userCity" class="form-label">City</label>
+                <input type="text" class="form-control" id="userCity" value="@Model.Address.City">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="userStreet" class="form-label">Street</label>
+                <input type="text" class="form-control" id="userStreet" value="@Model.Address.Street">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="userAppartmentNo" class="form-label">Appartment No</label>
+                <input type="number" class="form-control" id="userAppartmentNo" value="@Model.Address.AppartmentNo">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="userZipCode" class="form-label">Zip Code</label>
+                <input type="number" class="form-control" id="userZipCode" value="@Model.Address.ZipCode">
+            </div>
+        </fieldset>
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Credentials</legend>
+            <div class="mb-3 col-md-6">
+                <label for="userUsername" class="form-label">Username</label>
+                <input type="text" class="form-control" id="userUsername" value="@Model.Username">
+            </div>
+            <div class="mb-3 mb-3 col-md-6">
+                <label for="userPassword" class="form-label">Password</label>
+                <div class="c-eye-pass-box">
+                    <input type="password" id="userPassword" value="@Model.EncPassword" class="form-control">
+                    <div class="c-pass-icon-wrapper">
+                        <i class="fa-solid fa-eye c-icon active show-pass-btn"></i>
+                        <i class="fa-solid fa-eye-slash c-icon hide-pass-btn"></i>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Actions</legend>
+            <div class="d-flex gap-2 mb-3">
+                <a href="javascript:void(0)" class="btn-label-warning">Deactivate the user</a>
+                <a href="javascript:void(0)" class="btn-label-danger">Delete the user</a>
+            </div>
+        </fieldset>
+        <hr />
+        <div class="mx-3">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <a class="btn btn-secondary" asp-area="ControlPanel" asp-controller="User" asp-action="Edit" asp-route-id="@Model.Id">Reset</a>
+        </div>
+    </form>
+</div>

@@ -64,15 +64,58 @@ namespace MaShops.Areas.ControlPanel.Controllers
             return View(user);
         }
 
-        public IActionResult Edit(int id)
+        public IActionResult Edit(int? id)
         {
+            if (id == null || id < 1)
+            {
+                return NotFound();
+            }
+
             var user =
                 _context.Users
-                .Where(u => u.Id == id)
                 .Include(u => u.Address)
-                .FirstOrDefault();
+                .FirstOrDefault(u => u.Id == id);
+
+            if (user == null) 
+            {
+                return NotFound();
+            }
 
             return View(user);
         }
+
+        [HttpPost]
+        public IActionResult Edit(User user)
+        {
+            if (user.Nationality == "Select")
+            {
+                ModelState.AddModelError("Nationality", "The Nationality field is required.");
+            }
+
+            if (user.Address.Country == "Select")
+            {
+                ModelState.AddModelError("Address.Country", "The Country field is required.");
+            }
+
+            if (ModelState.IsValid)
+            {
+                _context.Users.Update(user);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View();
+        }
+
+        //public IActionResult Edit(int id)
+        //{
+        //    var user =
+        //        _context.Users
+        //        .Where(u => u.Id == id)
+        //        .Include(u => u.Address)
+        //        .FirstOrDefault();
+
+        //    return View(user);
+        //}
     }
 }

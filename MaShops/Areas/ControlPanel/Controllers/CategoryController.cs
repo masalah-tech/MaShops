@@ -39,6 +39,36 @@ namespace MaShops.Areas.ControlPanel.Controllers
             return View();
         }
 
+        public IActionResult Edit(int? id)
+        {
+            if (id == null || id < 1)
+            {
+                return NotFound();
+            }
+
+            var category =
+                _context.Categories
+                .Find(id);
+
+            if (category == null)
+            {
+                return NotFound();
+            }
+
+            return View(category);
+        }
+        [HttpPost]
+        public IActionResult Edit(Category category)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Categories.Update(category);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View();
+        }
 
         public IActionResult CategoryProducts(int id)
         {
