@@ -15,6 +15,9 @@
     <!-- DataTables -->
     <link href="~/lib/datatables/datatables.min.css" rel="stylesheet">
 
+    <!-- Toastr -->
+    <link rel="stylesheet" href="~/lib/toastr/toastr.min.css" />
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="~/styles/control-panel/dist/style.css" asp-append-version="true" />
 </head>
@@ -166,6 +169,7 @@
     <!-- End Side Navigation -->
     <!-- Content -->
     <div class="content-area">
+        <partial name="_TransactionNotification" />
         @RenderBody()
     </div>
     <!-- / Content -->

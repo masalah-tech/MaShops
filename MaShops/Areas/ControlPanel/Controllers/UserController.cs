@@ -47,6 +47,7 @@ namespace MaShops.Areas.ControlPanel.Controllers
                 user.Status = true;
                 _context.Users.Add(user);
                 _context.SaveChanges();
+                TempData["success"] = "User created successfully";
                 return RedirectToAction("Index");
             }
 
@@ -106,6 +107,7 @@ namespace MaShops.Areas.ControlPanel.Controllers
             {
                 _context.Users.Update(user);
                 _context.SaveChanges();
+                TempData["success"] = "User edited successfully";
                 return RedirectToAction("Index");
             }
 
@@ -214,6 +216,9 @@ namespace MaShops.Areas.ControlPanel.Controllers
             _context.Users.Update(user);
             _context.SaveChanges();
 
+            TempData["success"] = 
+                "User activated successfully";
+
             // Retrieve the referrer URL
             string referrerUrl = Request.Headers["Referer"].ToString();
 
@@ -235,6 +240,9 @@ namespace MaShops.Areas.ControlPanel.Controllers
             user.Status = false;
             _context.Users.Update(user);
             _context.SaveChanges();
+
+            TempData["success"] =
+                "User deactivated successfully";
 
             // Retrieve the referrer URL
             string referrerUrl = Request.Headers["Referer"].ToString();

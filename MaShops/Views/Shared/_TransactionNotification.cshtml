@@ -1,4 +1,11 @@
 ﻿@if (TempData["success"] != null)
 {
-    <h1>@TempData["success"]</h1>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <!-- Toastr -->
+    <script src="~/lib/toastr/toastr.min.js"></script>
+
+    <script>
+        toastr.success('@TempData["success"]');
+    </script>
 }
