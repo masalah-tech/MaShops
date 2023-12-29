@@ -143,6 +143,16 @@ namespace MaShops.Areas.ControlPanel.Controllers
                 .Where(s => s.CustomerId == user.Id)
                 .ToList();
 
+            var userStoreSaves =
+                _context.StoreSaves
+                .Where(ss => ss.UserId == user.Id)
+                .ToList();
+
+            var userRoles =
+                _context.UsersRoles
+                .Where(ur => ur.UserId == user.Id)
+                .ToList();
+
             if (userCart != null)
             {
                 var productCart =
@@ -171,6 +181,16 @@ namespace MaShops.Areas.ControlPanel.Controllers
             foreach (var saleItem in userSales)
             {
                 _context.Sales.Remove(saleItem);
+            }
+
+            foreach (var saveItem in userStoreSaves)
+            {
+                _context.StoreSaves.Remove(saveItem);
+            }
+
+            foreach (var roleItem in userRoles)
+            {
+                _context.UsersRoles.Remove(roleItem);
             }
 
             _context.Users.Remove(user);
