@@ -10,6 +10,8 @@
     ViewData["Page"] = "Users";
 }
 
+<partial name="_TransactionNotification" />
+
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
@@ -83,20 +85,32 @@
                                         <li><a class="dropdown-item" asp-area="ControlPanel" asp-controller="User" asp-action="Details" asp-route-id="@user.Id">Show details</a></li>
                                         <li><a class="dropdown-item" asp-area="ControlPanel" asp-controller="User" asp-action="Edit" asp-route-id="@user.Id">Edit details</a></li>
                                         <li>
-                                            <a class="dropdown-item" href="#">
                                                 @{
                                                     if (user.Status == true)
                                                     {
-                                                        <span>Deactivate the user</span>
+                                                        <a asp-area="ControlPanel" asp-controller="User" 
+                                                            asp-action="Deactivate" asp-route-id="@user.Id"
+                                                            class="dropdown-item">
+                                                            <span>Deactivate the user</span>
+                                                        </a>
                                                     }
                                                     else
                                                     {
+                                                    <a asp-area="ControlPanel" asp-controller="User"
+                                                       asp-action="Activate" asp-route-id="@user.Id"
+                                                       class="dropdown-item">
                                                         <span>Activate the user</span>
+                                                    </a>
                                                     }
                                                 }
+                                        </li>
+                                        <li>
+                                            <a asp-area="ControlPanel" asp-controller="User"
+                                                asp-action="Delete" asp-route-id="@user.Id"
+                                                class="dropdown-item link-danger">
+                                                Delete the user
                                             </a>
                                         </li>
-                                        <li><a class="dropdown-item link-danger" href="#">Delete the user</a></li>
                                     </ul>
                                 </div>
                             </td>

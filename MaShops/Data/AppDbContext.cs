@@ -628,7 +628,7 @@ namespace MaShops.Data
                 }
             );
 
-            // Change delete constraint from "Cascade" to "Restrict"
+            // Change delete constraint from "Cascade" to "NoAction"
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())
             {
                 entityType.GetForeignKeys()

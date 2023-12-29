@@ -55,11 +55,16 @@ namespace MaShops.Areas.ControlPanel.Controllers
 
         public IActionResult Details(int id)
         {
-            var user =
+            var user = 
                 _context.Users
                 .Where(u => u.Id == id)
                 .Include(u => u.Address)
                 .FirstOrDefault();
+
+            if (user == null)
+            {
+                return NotFound();
+            }
 
             return View(user);
         }
@@ -105,6 +110,117 @@ namespace MaShops.Areas.ControlPanel.Controllers
             }
 
             return View();
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var user =
+                _context.Users
+                .Find(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var userCart =
+                _context.Carts
+                .Where(c => c.CustomerId == id)
+                .FirstOrDefault();
+
+            var userProductSaves =
+                _context.ProductSaves
+                .Where(ps => ps.UserId == user.Id)
+                .ToList();
+
+            var userProductReviews =
+                _context.ProductsReviews
+                .Where(pr => pr.CustomerId == user.Id)
+                .ToList();
+
+            var userSales =
+                _context.Sales
+                .Where(s => s.CustomerId == user.Id)
+                .ToList();
+
+            if (userCart != null)
+            {
+                var productCart =
+                    _context.ProductsCarts
+                    .Where(pc => pc.Id == userCart.Id)
+                    .FirstOrDefault();
+
+                if (productCart != null)
+                {
+                    _context.ProductsCarts.Remove(productCart);
+                }
+
+                _context.Carts.Remove(userCart);
+            }
+
+            foreach (var saveItem in userProductSaves)
+            {
+                _context.ProductSaves.Remove(saveItem);
+            }
+
+            foreach (var reviewItem in userProductReviews)
+            {
+                _context.ProductsReviews.Remove(reviewItem);
+            }
+
+            foreach (var saleItem in userSales)
+            {
+                _context.Sales.Remove(saleItem);
+            }
+
+            _context.Users.Remove(user);
+            _context.SaveChanges();
+            TempData["success"] = "User deleted successfully";
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Activate(int id)
+        {
+            var user =
+                _context.Users
+                .Find(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            user.Status = true;
+            _context.Users.Update(user);
+            _context.SaveChanges();
+
+            // Retrieve the referrer URL
+            string referrerUrl = Request.Headers["Referer"].ToString();
+
+            // Redirect the user back to the referrer URL
+            return Redirect(referrerUrl);
+        }
+
+        public IActionResult Deactivate(int id)
+        {
+            var user =
+                _context.Users
+                .Find(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            user.Status = false;
+            _context.Users.Update(user);
+            _context.SaveChanges();
+
+            // Retrieve the referrer URL
+            string referrerUrl = Request.Headers["Referer"].ToString();
+
+            // Redirect the user back to the referrer URL
+            return Redirect(referrerUrl);
         }
 
         //public IActionResult Edit(int id)
