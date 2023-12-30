@@ -1,12 +1,11 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace MaShops.Migrations
+namespace MaShops.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class DeleteConstraintFromRestrictToNoAction : Migration
+    public partial class DeleteConstraintFromNoActionToNoRestrict : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -83,215 +82,149 @@ namespace MaShops.Migrations
                 name: "FK_UsersRoles_Users_UserId",
                 table: "UsersRoles");
 
-            migrationBuilder.UpdateData(
-                table: "ProductSaves",
-                keyColumn: "Id",
-                keyValue: 1,
-                column: "Date",
-                value: new DateTime(2023, 12, 29, 0, 0, 0, 0, DateTimeKind.Local));
-
-            migrationBuilder.UpdateData(
-                table: "ProductSaves",
-                keyColumn: "Id",
-                keyValue: 2,
-                column: "Date",
-                value: new DateTime(2023, 12, 29, 0, 0, 0, 0, DateTimeKind.Local));
-
-            migrationBuilder.UpdateData(
-                table: "ProductSaves",
-                keyColumn: "Id",
-                keyValue: 3,
-                column: "Date",
-                value: new DateTime(2023, 12, 29, 0, 0, 0, 0, DateTimeKind.Local));
-
-            migrationBuilder.UpdateData(
-                table: "ProductsReviews",
-                keyColumn: "Id",
-                keyValue: 1,
-                column: "Date",
-                value: new DateTime(2023, 12, 29, 0, 0, 0, 0, DateTimeKind.Local));
-
-            migrationBuilder.UpdateData(
-                table: "ProductsReviews",
-                keyColumn: "Id",
-                keyValue: 2,
-                column: "Date",
-                value: new DateTime(2023, 12, 29, 0, 0, 0, 0, DateTimeKind.Local));
-
-            migrationBuilder.UpdateData(
-                table: "ProductsReviews",
-                keyColumn: "Id",
-                keyValue: 3,
-                column: "Date",
-                value: new DateTime(2023, 12, 29, 0, 0, 0, 0, DateTimeKind.Local));
-
-            migrationBuilder.UpdateData(
-                table: "Sales",
-                keyColumn: "Id",
-                keyValue: 1,
-                column: "DateTime",
-                value: new DateTime(2023, 12, 29, 0, 0, 0, 0, DateTimeKind.Local));
-
-            migrationBuilder.UpdateData(
-                table: "Sales",
-                keyColumn: "Id",
-                keyValue: 2,
-                column: "DateTime",
-                value: new DateTime(2023, 12, 29, 0, 0, 0, 0, DateTimeKind.Local));
-
-            migrationBuilder.UpdateData(
-                table: "Sales",
-                keyColumn: "Id",
-                keyValue: 3,
-                column: "DateTime",
-                value: new DateTime(2023, 12, 29, 0, 0, 0, 0, DateTimeKind.Local));
-
-            migrationBuilder.UpdateData(
-                table: "StoreSaves",
-                keyColumn: "Id",
-                keyValue: 1,
-                column: "Date",
-                value: new DateTime(2023, 12, 29, 0, 0, 0, 0, DateTimeKind.Local));
-
-            migrationBuilder.UpdateData(
-                table: "StoreSaves",
-                keyColumn: "Id",
-                keyValue: 2,
-                column: "Date",
-                value: new DateTime(2023, 12, 29, 0, 0, 0, 0, DateTimeKind.Local));
-
-            migrationBuilder.UpdateData(
-                table: "StoreSaves",
-                keyColumn: "Id",
-                keyValue: 3,
-                column: "Date",
-                value: new DateTime(2023, 12, 29, 0, 0, 0, 0, DateTimeKind.Local));
-
             migrationBuilder.AddForeignKey(
                 name: "FK_Carts_Users_CustomerId",
                 table: "Carts",
                 column: "CustomerId",
                 principalTable: "Users",
-                principalColumn: "Id");
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_ProductPhotos_Products_ProductId",
                 table: "ProductPhotos",
                 column: "ProductId",
                 principalTable: "Products",
-                principalColumn: "Id");
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Products_Categories_CategoryId",
                 table: "Products",
                 column: "CategoryId",
                 principalTable: "Categories",
-                principalColumn: "Id");
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Products_Stores_StoreId",
                 table: "Products",
                 column: "StoreId",
                 principalTable: "Stores",
-                principalColumn: "Id");
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_ProductSaves_Products_ProductId",
                 table: "ProductSaves",
                 column: "ProductId",
                 principalTable: "Products",
-                principalColumn: "Id");
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_ProductSaves_Users_UserId",
                 table: "ProductSaves",
                 column: "UserId",
                 principalTable: "Users",
-                principalColumn: "Id");
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_ProductsCarts_Carts_CartId",
                 table: "ProductsCarts",
                 column: "CartId",
                 principalTable: "Carts",
-                principalColumn: "Id");
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_ProductsCarts_Products_ProductId",
                 table: "ProductsCarts",
                 column: "ProductId",
                 principalTable: "Products",
-                principalColumn: "Id");
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_ProductsReviews_Products_ProductId",
                 table: "ProductsReviews",
                 column: "ProductId",
                 principalTable: "Products",
-                principalColumn: "Id");
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_ProductsReviews_Users_CustomerId",
                 table: "ProductsReviews",
                 column: "CustomerId",
                 principalTable: "Users",
-                principalColumn: "Id");
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Sales_Products_ProductId",
                 table: "Sales",
                 column: "ProductId",
                 principalTable: "Products",
-                principalColumn: "Id");
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Sales_Users_CustomerId",
                 table: "Sales",
                 column: "CustomerId",
                 principalTable: "Users",
-                principalColumn: "Id");
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Stores_Users_OwnerId",
                 table: "Stores",
                 column: "OwnerId",
                 principalTable: "Users",
-                principalColumn: "Id");
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_StoreSaves_Stores_StoreId",
                 table: "StoreSaves",
                 column: "StoreId",
                 principalTable: "Stores",
-                principalColumn: "Id");
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_StoreSaves_Users_UserId",
                 table: "StoreSaves",
                 column: "UserId",
                 principalTable: "Users",
-                principalColumn: "Id");
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Users_Addresses_AddressId",
                 table: "Users",
                 column: "AddressId",
                 principalTable: "Addresses",
-                principalColumn: "Id");
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_UsersRoles_Roles_RoleId",
                 table: "UsersRoles",
                 column: "RoleId",
                 principalTable: "Roles",
-                principalColumn: "Id");
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_UsersRoles_Users_UserId",
                 table: "UsersRoles",
                 column: "UserId",
                 principalTable: "Users",
-                principalColumn: "Id");
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
         }
 
         /// <inheritdoc />
@@ -369,233 +302,131 @@ namespace MaShops.Migrations
                 name: "FK_UsersRoles_Users_UserId",
                 table: "UsersRoles");
 
-            migrationBuilder.UpdateData(
-                table: "ProductSaves",
-                keyColumn: "Id",
-                keyValue: 1,
-                column: "Date",
-                value: new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local));
-
-            migrationBuilder.UpdateData(
-                table: "ProductSaves",
-                keyColumn: "Id",
-                keyValue: 2,
-                column: "Date",
-                value: new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local));
-
-            migrationBuilder.UpdateData(
-                table: "ProductSaves",
-                keyColumn: "Id",
-                keyValue: 3,
-                column: "Date",
-                value: new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local));
-
-            migrationBuilder.UpdateData(
-                table: "ProductsReviews",
-                keyColumn: "Id",
-                keyValue: 1,
-                column: "Date",
-                value: new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local));
-
-            migrationBuilder.UpdateData(
-                table: "ProductsReviews",
-                keyColumn: "Id",
-                keyValue: 2,
-                column: "Date",
-                value: new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local));
-
-            migrationBuilder.UpdateData(
-                table: "ProductsReviews",
-                keyColumn: "Id",
-                keyValue: 3,
-                column: "Date",
-                value: new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local));
-
-            migrationBuilder.UpdateData(
-                table: "Sales",
-                keyColumn: "Id",
-                keyValue: 1,
-                column: "DateTime",
-                value: new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local));
-
-            migrationBuilder.UpdateData(
-                table: "Sales",
-                keyColumn: "Id",
-                keyValue: 2,
-                column: "DateTime",
-                value: new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local));
-
-            migrationBuilder.UpdateData(
-                table: "Sales",
-                keyColumn: "Id",
-                keyValue: 3,
-                column: "DateTime",
-                value: new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local));
-
-            migrationBuilder.UpdateData(
-                table: "StoreSaves",
-                keyColumn: "Id",
-                keyValue: 1,
-                column: "Date",
-                value: new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local));
-
-            migrationBuilder.UpdateData(
-                table: "StoreSaves",
-                keyColumn: "Id",
-                keyValue: 2,
-                column: "Date",
-                value: new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local));
-
-            migrationBuilder.UpdateData(
-                table: "StoreSaves",
-                keyColumn: "Id",
-                keyValue: 3,
-                column: "Date",
-                value: new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local));
-
             migrationBuilder.AddForeignKey(
                 name: "FK_Carts_Users_CustomerId",
                 table: "Carts",
                 column: "CustomerId",
                 principalTable: "Users",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_ProductPhotos_Products_ProductId",
                 table: "ProductPhotos",
                 column: "ProductId",
                 principalTable: "Products",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Products_Categories_CategoryId",
                 table: "Products",
                 column: "CategoryId",
                 principalTable: "Categories",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Products_Stores_StoreId",
                 table: "Products",
                 column: "StoreId",
                 principalTable: "Stores",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_ProductSaves_Products_ProductId",
                 table: "ProductSaves",
                 column: "ProductId",
                 principalTable: "Products",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_ProductSaves_Users_UserId",
                 table: "ProductSaves",
                 column: "UserId",
                 principalTable: "Users",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_ProductsCarts_Carts_CartId",
                 table: "ProductsCarts",
                 column: "CartId",
                 principalTable: "Carts",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_ProductsCarts_Products_ProductId",
                 table: "ProductsCarts",
                 column: "ProductId",
                 principalTable: "Products",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_ProductsReviews_Products_ProductId",
                 table: "ProductsReviews",
                 column: "ProductId",
                 principalTable: "Products",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_ProductsReviews_Users_CustomerId",
                 table: "ProductsReviews",
                 column: "CustomerId",
                 principalTable: "Users",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Sales_Products_ProductId",
                 table: "Sales",
                 column: "ProductId",
                 principalTable: "Products",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Sales_Users_CustomerId",
                 table: "Sales",
                 column: "CustomerId",
                 principalTable: "Users",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Stores_Users_OwnerId",
                 table: "Stores",
                 column: "OwnerId",
                 principalTable: "Users",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_StoreSaves_Stores_StoreId",
                 table: "StoreSaves",
                 column: "StoreId",
                 principalTable: "Stores",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_StoreSaves_Users_UserId",
                 table: "StoreSaves",
                 column: "UserId",
                 principalTable: "Users",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Users_Addresses_AddressId",
                 table: "Users",
                 column: "AddressId",
                 principalTable: "Addresses",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_UsersRoles_Roles_RoleId",
                 table: "UsersRoles",
                 column: "RoleId",
                 principalTable: "Roles",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_UsersRoles_Users_UserId",
                 table: "UsersRoles",
                 column: "UserId",
                 principalTable: "Users",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                principalColumn: "Id");
         }
     }
 }

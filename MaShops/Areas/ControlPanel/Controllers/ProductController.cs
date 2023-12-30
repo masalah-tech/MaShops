@@ -1,4 +1,4 @@
-﻿using MaShops.Data;
+﻿using MaShops.DataAccess.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

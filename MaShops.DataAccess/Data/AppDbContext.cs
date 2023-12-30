@@ -1,7 +1,7 @@
 ﻿using MaShops.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace MaShops.Data
+namespace MaShops.DataAccess.Data
 {
     public class AppDbContext : DbContext
     {

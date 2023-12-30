@@ -38,4 +38,10 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.11" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MaShops.DataAccess\MaShops.DataAccess.csproj" />
+    <ProjectReference Include="..\MaShops.Models\MaShops.Models.csproj" />
+    <ProjectReference Include="..\MaShops.Utility\MaShops.Utility.csproj" />
+  </ItemGroup>
+
 </Project>
