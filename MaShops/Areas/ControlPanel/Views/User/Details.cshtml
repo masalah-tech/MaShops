@@ -120,5 +120,33 @@
                 <input type="text" class="form-control" id="userPassword" readonly value="@Model.EncPassword">
             </div>
         </fieldset>
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Actions</legend>
+            <div class="mb-3 d-flex gap-2">
+                @{
+                    if (Model.Status)
+                    {
+                        <a asp-area="ControlPanel" asp-controller="User"
+                           asp-action="Deactivate" asp-route-id="@Model.Id"
+                           class="btn-label-warning">
+                            Deactivate the user
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-area="ControlPanel" asp-controller="User"
+                           asp-action="Activate" asp-route-id="@Model.Id"
+                           class="btn-label-primary">
+                            Activate the user
+                        </a>
+                    }
+                }
+                <a asp-area="ControlPanel" asp-controller="User"
+                   asp-action="Delete" asp-route-id="@Model.Id"
+                   class="btn-label-danger">
+                    Delete the user
+                </a>
+            </div>
+        </fieldset>
     </form>
 </div>

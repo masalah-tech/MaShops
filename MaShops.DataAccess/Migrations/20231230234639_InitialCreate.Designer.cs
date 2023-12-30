@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MaShops.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231229005924_DeleteConstraintFromNoActionToNoRestrict")]
-    partial class DeleteConstraintFromNoActionToNoRestrict
+    [Migration("20231230234639_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -437,7 +437,7 @@ namespace MaShops.DataAccess.Migrations
                             Id = 1,
                             Comment = "Wow, this food product exceeded my expectations! The flavors are incredibly delicious and well-balanced. It's the perfect combination of sweet and savory. The texture is spot on, providing a delightful crunch with every bite. I highly recommend trying this. It has become my new favorite snack!",
                             CustomerId = 1,
-                            Date = new DateTime(2023, 12, 29, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local),
                             ProductId = 1,
                             Rating = 5
                         },
@@ -446,7 +446,7 @@ namespace MaShops.DataAccess.Migrations
                             Id = 2,
                             Comment = "I recently purchased the ESR for iPad and have mixed feelings about it. On the positive side, it offers decent protection for my iPad and fits well, providing a snug and secure fit. The design is sleek and visually appealing. However, I did encounter a few drawbacks. The stand functionality could be improved as it feels a bit flimsy and doesn't always hold the iPad at the desired angle. Additionally, I noticed that the case tends to attract fingerprints easily, requiring frequent cleaning. Overall, it's an average product that offers basic protection but could use some enhancements in terms of functionality and fingerprint resistance.",
                             CustomerId = 2,
-                            Date = new DateTime(2023, 12, 29, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local),
                             ProductId = 2,
                             Rating = 3
                         },
@@ -455,7 +455,7 @@ namespace MaShops.DataAccess.Migrations
                             Id = 3,
                             Comment = "The Logitech Keys-to-Go Bluetooth Keyboard for iPhone was a huge disappointment. Despite its sleek and slim design, the performance is severely lacking. The keys feel mushy and unresponsive, making typing a frustrating experience. Additionally, the Bluetooth connectivity is unreliable, frequently disconnecting and requiring constant reconnection. The battery life is abysmal, barely lasting a couple of hours before needing a recharge. It's incredibly disappointing to invest in a keyboard that falls so short in terms of usability and reliability. I would not recommend this product.",
                             CustomerId = 3,
-                            Date = new DateTime(2023, 12, 29, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local),
                             ProductId = 3,
                             Rating = 1
                         });
@@ -490,21 +490,21 @@ namespace MaShops.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            Date = new DateTime(2023, 12, 29, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local),
                             ProductId = 1,
                             UserId = 1
                         },
                         new
                         {
                             Id = 2,
-                            Date = new DateTime(2023, 12, 29, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local),
                             ProductId = 2,
                             UserId = 2
                         },
                         new
                         {
                             Id = 3,
-                            Date = new DateTime(2023, 12, 29, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local),
                             ProductId = 3,
                             UserId = 3
                         });
@@ -579,21 +579,21 @@ namespace MaShops.DataAccess.Migrations
                         {
                             Id = 1,
                             CustomerId = 1,
-                            DateTime = new DateTime(2023, 12, 29, 0, 0, 0, 0, DateTimeKind.Local),
+                            DateTime = new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local),
                             ProductId = 1
                         },
                         new
                         {
                             Id = 2,
                             CustomerId = 2,
-                            DateTime = new DateTime(2023, 12, 29, 0, 0, 0, 0, DateTimeKind.Local),
+                            DateTime = new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local),
                             ProductId = 2
                         },
                         new
                         {
                             Id = 3,
                             CustomerId = 3,
-                            DateTime = new DateTime(2023, 12, 29, 0, 0, 0, 0, DateTimeKind.Local),
+                            DateTime = new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local),
                             ProductId = 3
                         });
                 });
@@ -681,21 +681,21 @@ namespace MaShops.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            Date = new DateTime(2023, 12, 29, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local),
                             StoreId = 1,
                             UserId = 1
                         },
                         new
                         {
                             Id = 2,
-                            Date = new DateTime(2023, 12, 29, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local),
                             StoreId = 2,
                             UserId = 2
                         },
                         new
                         {
                             Id = 3,
-                            Date = new DateTime(2023, 12, 29, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local),
                             StoreId = 3,
                             UserId = 3
                         });

@@ -195,9 +195,10 @@
                         </a>
                     }
                 }
-                <a href="javascript:void(0)"
+                <a asp-area="ControlPanel" asp-controller="User"
+                   asp-action="Delete" asp-route-id="@Model.Id"
                    class="btn-label-danger">
-                    Delete the store
+                    Delete the user
                 </a>
             </div>
         </fieldset>

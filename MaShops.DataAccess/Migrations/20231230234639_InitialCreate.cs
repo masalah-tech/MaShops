@@ -467,9 +467,9 @@ namespace MaShops.DataAccess.Migrations
                 columns: new[] { "Id", "Date", "StoreId", "UserId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local), 1, 1 },
-                    { 2, new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local), 2, 2 },
-                    { 3, new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local), 3, 3 }
+                    { 1, new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local), 1, 1 },
+                    { 2, new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local), 2, 2 },
+                    { 3, new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local), 3, 3 }
                 });
 
             migrationBuilder.InsertData(
@@ -493,9 +493,9 @@ namespace MaShops.DataAccess.Migrations
                 columns: new[] { "Id", "Date", "ProductId", "UserId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local), 1, 1 },
-                    { 2, new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local), 2, 2 },
-                    { 3, new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local), 3, 3 }
+                    { 1, new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local), 1, 1 },
+                    { 2, new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local), 2, 2 },
+                    { 3, new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local), 3, 3 }
                 });
 
             migrationBuilder.InsertData(
@@ -513,9 +513,9 @@ namespace MaShops.DataAccess.Migrations
                 columns: new[] { "Id", "Comment", "CustomerId", "Date", "ProductId", "Rating" },
                 values: new object[,]
                 {
-                    { 1, "Wow, this food product exceeded my expectations! The flavors are incredibly delicious and well-balanced. It's the perfect combination of sweet and savory. The texture is spot on, providing a delightful crunch with every bite. I highly recommend trying this. It has become my new favorite snack!", 1, new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local), 1, 5 },
-                    { 2, "I recently purchased the ESR for iPad and have mixed feelings about it. On the positive side, it offers decent protection for my iPad and fits well, providing a snug and secure fit. The design is sleek and visually appealing. However, I did encounter a few drawbacks. The stand functionality could be improved as it feels a bit flimsy and doesn't always hold the iPad at the desired angle. Additionally, I noticed that the case tends to attract fingerprints easily, requiring frequent cleaning. Overall, it's an average product that offers basic protection but could use some enhancements in terms of functionality and fingerprint resistance.", 2, new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local), 2, 3 },
-                    { 3, "The Logitech Keys-to-Go Bluetooth Keyboard for iPhone was a huge disappointment. Despite its sleek and slim design, the performance is severely lacking. The keys feel mushy and unresponsive, making typing a frustrating experience. Additionally, the Bluetooth connectivity is unreliable, frequently disconnecting and requiring constant reconnection. The battery life is abysmal, barely lasting a couple of hours before needing a recharge. It's incredibly disappointing to invest in a keyboard that falls so short in terms of usability and reliability. I would not recommend this product.", 3, new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local), 3, 1 }
+                    { 1, "Wow, this food product exceeded my expectations! The flavors are incredibly delicious and well-balanced. It's the perfect combination of sweet and savory. The texture is spot on, providing a delightful crunch with every bite. I highly recommend trying this. It has become my new favorite snack!", 1, new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local), 1, 5 },
+                    { 2, "I recently purchased the ESR for iPad and have mixed feelings about it. On the positive side, it offers decent protection for my iPad and fits well, providing a snug and secure fit. The design is sleek and visually appealing. However, I did encounter a few drawbacks. The stand functionality could be improved as it feels a bit flimsy and doesn't always hold the iPad at the desired angle. Additionally, I noticed that the case tends to attract fingerprints easily, requiring frequent cleaning. Overall, it's an average product that offers basic protection but could use some enhancements in terms of functionality and fingerprint resistance.", 2, new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local), 2, 3 },
+                    { 3, "The Logitech Keys-to-Go Bluetooth Keyboard for iPhone was a huge disappointment. Despite its sleek and slim design, the performance is severely lacking. The keys feel mushy and unresponsive, making typing a frustrating experience. Additionally, the Bluetooth connectivity is unreliable, frequently disconnecting and requiring constant reconnection. The battery life is abysmal, barely lasting a couple of hours before needing a recharge. It's incredibly disappointing to invest in a keyboard that falls so short in terms of usability and reliability. I would not recommend this product.", 3, new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local), 3, 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -523,9 +523,9 @@ namespace MaShops.DataAccess.Migrations
                 columns: new[] { "Id", "CustomerId", "DateTime", "ProductId" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local), 1 },
-                    { 2, 2, new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local), 2 },
-                    { 3, 3, new DateTime(2023, 12, 22, 0, 0, 0, 0, DateTimeKind.Local), 3 }
+                    { 1, 1, new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local), 1 },
+                    { 2, 2, new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local), 2 },
+                    { 3, 3, new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local), 3 }
                 });
 
             migrationBuilder.CreateIndex(
