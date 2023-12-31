@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -36,6 +37,24 @@ namespace MaShops.DataAccess.Repository
                 .Include(p => p.Store)
                 .Include(p => p.Category)
                 .ToList();
+        }
+
+        public override IEnumerable<Product> GetRange(Expression<Func<Product, bool>> filter)
+        {
+            return _context.Products
+                .Where(filter)
+                .Include(p => p.Store)
+                .Include(p => p.Category)
+                .ToList();
+        }
+
+        public override Product Get(Expression<Func<Product, bool>> filter)
+        {
+            return _context.Products
+                .Where(filter)
+                .Include(p => p.Category)
+                .Include(p => p.Store)
+                .FirstOrDefault();
         }
     }
 }

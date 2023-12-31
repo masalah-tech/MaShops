@@ -10,10 +10,13 @@ namespace MaShops.Areas.ControlPanel.Controllers
     public class CategoryController : Controller
     {
         private readonly ICategoryRepository _categoryRepository;
+        private readonly IProductRepository _productRepository;
 
-        public CategoryController(ICategoryRepository categoryRepository)
+        public CategoryController(ICategoryRepository categoryRepository,
+            IProductRepository productRepository)
         {
             _categoryRepository = categoryRepository;
+            _productRepository = productRepository;
         }
         public IActionResult Index()
         {
@@ -89,16 +92,12 @@ namespace MaShops.Areas.ControlPanel.Controllers
             return RedirectToAction("Index");
         }
 
-        //public IActionResult CategoryProducts(int id)
-        //{
-        //    var products =
-        //        _context.Products
-        //        .Where(p => p.CategoryId == id)
-        //        .Include(p => p.Store)
-        //        .Include(p => p.Category)
-        //        .ToList();
+        public IActionResult CategoryProducts(int id)
+        {
+            var products =
+                _productRepository.GetRange(p => p.CategoryId == id);
 
-        //    return View(products);
-        //}
+            return View(products);
+        }
     }
 }

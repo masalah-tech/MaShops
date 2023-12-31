@@ -1,4 +1,5 @@
 ﻿using MaShops.DataAccess.Data;
+using MaShops.DataAccess.Repository.IRepository;
 using MaShops.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -8,18 +9,16 @@ namespace MaShops.Areas.ControlPanel.Controllers
     [Area("ControlPanel")]
     public class UserController : Controller
     {
-        private readonly AppDbContext _context;
+        private readonly IUserRepository _userRepository;
 
-        public UserController(AppDbContext context)
+        public UserController(IUserRepository userRepository)
         {
-            _context = context;
+            _userRepository = userRepository;
         }
         public IActionResult Index()
         {
             var users =
-                _context.Users
-                .Include(u => u.Address)
-                .ToList();
+                _userRepository.GetAll();
 
             return View(users);
         }
@@ -45,8 +44,8 @@ namespace MaShops.Areas.ControlPanel.Controllers
             if (ModelState.IsValid)
             {
                 user.Status = true;
-                _context.Users.Add(user);
-                _context.SaveChanges();
+                _userRepository.Add(user);
+                _userRepository.Save();
                 TempData["success"] = "User created successfully";
                 return RedirectToAction("Index");
             }
@@ -56,11 +55,8 @@ namespace MaShops.Areas.ControlPanel.Controllers
 
         public IActionResult Details(int id)
         {
-            var user = 
-                _context.Users
-                .Where(u => u.Id == id)
-                .Include(u => u.Address)
-                .FirstOrDefault();
+            var user =
+                _userRepository.Get(u => u.Id == id);
 
             if (user == null)
             {
@@ -78,9 +74,7 @@ namespace MaShops.Areas.ControlPanel.Controllers
             }
 
             var user =
-                _context.Users
-                .Include(u => u.Address)
-                .FirstOrDefault(u => u.Id == id);
+                _userRepository.Get(u => u.Id == id);
 
             if (user == null) 
             {
@@ -105,8 +99,8 @@ namespace MaShops.Areas.ControlPanel.Controllers
 
             if (ModelState.IsValid)
             {
-                _context.Users.Update(user);
-                _context.SaveChanges();
+                _userRepository.Update(user);
+                _userRepository.Save();
                 TempData["success"] = "User edited successfully";
                 return RedirectToAction("Index");
             }
@@ -117,86 +111,17 @@ namespace MaShops.Areas.ControlPanel.Controllers
         public IActionResult Delete(int id)
         {
             var user =
-                _context.Users
-                .Find(id);
+                _userRepository
+                .Get(u => u.Id == id);
 
             if (user == null)
             {
                 return NotFound();
             }
 
-            var userCart =
-                _context.Carts
-                .Where(c => c.CustomerId == id)
-                .FirstOrDefault();
+            _userRepository.Remove(user);
+            _userRepository.Save();
 
-            var userProductSaves =
-                _context.ProductSaves
-                .Where(ps => ps.UserId == user.Id)
-                .ToList();
-
-            var userProductReviews =
-                _context.ProductsReviews
-                .Where(pr => pr.CustomerId == user.Id)
-                .ToList();
-
-            var userSales =
-                _context.Sales
-                .Where(s => s.CustomerId == user.Id)
-                .ToList();
-
-            var userStoreSaves =
-                _context.StoreSaves
-                .Where(ss => ss.UserId == user.Id)
-                .ToList();
-
-            var userRoles =
-                _context.UsersRoles
-                .Where(ur => ur.UserId == user.Id)
-                .ToList();
-
-            if (userCart != null)
-            {
-                var productCart =
-                    _context.ProductsCarts
-                    .Where(pc => pc.Id == userCart.Id)
-                    .FirstOrDefault();
-
-                if (productCart != null)
-                {
-                    _context.ProductsCarts.Remove(productCart);
-                }
-
-                _context.Carts.Remove(userCart);
-            }
-
-            foreach (var saveItem in userProductSaves)
-            {
-                _context.ProductSaves.Remove(saveItem);
-            }
-
-            foreach (var reviewItem in userProductReviews)
-            {
-                _context.ProductsReviews.Remove(reviewItem);
-            }
-
-            foreach (var saleItem in userSales)
-            {
-                _context.Sales.Remove(saleItem);
-            }
-
-            foreach (var saveItem in userStoreSaves)
-            {
-                _context.StoreSaves.Remove(saveItem);
-            }
-
-            foreach (var roleItem in userRoles)
-            {
-                _context.UsersRoles.Remove(roleItem);
-            }
-
-            _context.Users.Remove(user);
-            _context.SaveChanges();
             TempData["success"] = "User deleted successfully";
             return RedirectToAction("Index");
         }
@@ -204,8 +129,8 @@ namespace MaShops.Areas.ControlPanel.Controllers
         public IActionResult Activate(int id)
         {
             var user =
-                _context.Users
-                .Find(id);
+                _userRepository
+                .Get(u => u.Id == id);
 
             if (user == null)
             {
@@ -213,24 +138,24 @@ namespace MaShops.Areas.ControlPanel.Controllers
             }
 
             user.Status = true;
-            _context.Users.Update(user);
-            _context.SaveChanges();
+            _userRepository.Update(user);
+            _userRepository.Save();
 
             TempData["success"] = 
                 "User activated successfully";
 
             // Retrieve the referrer URL
-            string referrerUrl = Request.Headers["Referer"].ToString();
+            string refererUrl = Request.Headers["Referer"].ToString();
 
             // Redirect the user back to the referrer URL
-            return Redirect(referrerUrl);
+            return Redirect(refererUrl);
         }
 
         public IActionResult Deactivate(int id)
         {
             var user =
-                _context.Users
-                .Find(id);
+                _userRepository
+                .Get(u => u.Id == id);
 
             if (user == null)
             {
@@ -238,17 +163,17 @@ namespace MaShops.Areas.ControlPanel.Controllers
             }
 
             user.Status = false;
-            _context.Users.Update(user);
-            _context.SaveChanges();
+            _userRepository.Update(user);
+            _userRepository.Save();
 
             TempData["success"] =
                 "User deactivated successfully";
 
             // Retrieve the referrer URL
-            string referrerUrl = Request.Headers["Referer"].ToString();
+            string refererUrl = Request.Headers["Referer"].ToString();
 
             // Redirect the user back to the referrer URL
-            return Redirect(referrerUrl);
+            return Redirect(refererUrl);
         }
 
         //public IActionResult Edit(int id)

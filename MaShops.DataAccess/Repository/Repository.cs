@@ -26,7 +26,7 @@ namespace MaShops.DataAccess.Repository
             _dbSet.Add(entity);
         }
 
-        public T Get(Expression<Func<T, bool>> filter)
+        public virtual T Get(Expression<Func<T, bool>> filter)
         {
             return _dbSet.FirstOrDefault(filter);
         }
@@ -36,7 +36,12 @@ namespace MaShops.DataAccess.Repository
             return _dbSet.ToList();
         }
 
-        public void Remove(T entity)
+        public virtual IEnumerable<T> GetRange(Expression<Func<T, bool>> filter)
+        {
+            return _dbSet.Where(filter).ToList();
+        }
+
+        public virtual void Remove(T entity)
         {
             _dbSet.Remove(entity);
         }

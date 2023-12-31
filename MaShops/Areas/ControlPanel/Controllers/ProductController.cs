@@ -1,4 +1,5 @@
 ﻿using MaShops.DataAccess.Data;
+using MaShops.DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,19 +8,16 @@ namespace MaShops.Areas.ControlPanel.Controllers
     [Area("ControlPanel")]
     public class ProductController : Controller
     {
-        private readonly AppDbContext _context;
+        private readonly IProductRepository _productRepository;
 
-        public ProductController(AppDbContext context)
+        public ProductController(IProductRepository productRepository)
         {
-            _context = context;
+            _productRepository = productRepository;
         }
         public IActionResult Index()
         {
             var products =
-                _context.Products
-                .Include(p => p.Store)
-                .Include(p => p.Category)
-                .ToList();
+                _productRepository.GetAll();
 
             return View(products);
         }
@@ -27,11 +25,7 @@ namespace MaShops.Areas.ControlPanel.Controllers
         public IActionResult Details(int id)
         {
             var product =
-                _context.Products
-                .Where(p => p.Id == id)
-                .Include(p => p.Category)
-                .Include(p => p.Store)
-                .FirstOrDefault();
+                _productRepository.Get(p => p.Id == id);
 
             return View(product);
         }

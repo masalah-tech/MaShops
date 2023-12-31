@@ -53,7 +53,7 @@
                             </td>
                             <td class="text-nowrap">@store.Name</td>
                             <td class="text-nowrap">
-                                <a asp-area="ControlPanel" asp-controller="Seller" 
+                                <a asp-area="ControlPanel" asp-controller="user" 
                                     asp-action="Details" asp-route-id="@store.Owner.Id"
                                     class="text-decoration-none">
                                     @@@store.Owner.Username
@@ -80,20 +80,32 @@
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                         <li><a class="dropdown-item" asp-area="ControlPanel" asp-controller="Store" asp-action="Details" asp-route-id="@store.Id">Show details</a></li>
                                         <li>
-                                            <a class="dropdown-item" href="#">
-                                                @{
-                                                    if (store.Status == true)
-                                                    {
+                                            @{
+                                                if (store.Status == true)
+                                                {
+                                                    <a asp-area="ControlPanel" asp-controller="Store"
+                                                        asp-action="Deactivate" asp-route-id="@store.Id"
+                                                        class="dropdown-item">
                                                         <span>Deactivate the store</span>
-                                                    }
-                                                    else
-                                                    {
-                                                        <span>Activate the store</span>
-                                                    }
+                                                    </a>
                                                 }
+                                                else
+                                                {
+                                                    <a asp-area="ControlPanel" asp-controller="Store"
+                                                        asp-action="Activate" asp-route-id="@store.Id"
+                                                        class="dropdown-item">
+                                                        <span>Activate the store</span>
+                                                    </a>
+                                                }
+                                            }
+                                        </li>
+                                        <li>
+                                            <a asp-area="ControlPanel" asp-controller="Store"
+                                                asp-action="Delete" asp-route-id="@store.Id"
+                                                class="dropdown-item link-danger">
+                                                Delete the store
                                             </a>
                                         </li>
-                                        <li><a class="dropdown-item link-danger" href="#">Delete the store</a></li>
                                     </ul>
                                 </div>
                             </td>

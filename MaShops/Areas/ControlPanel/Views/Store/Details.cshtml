@@ -84,25 +84,54 @@
                        readonly value="@Model.Owner.Email">
             </div>
             <div class="mb-3 d-flex gap-2">
-                <a asp-area="ControlPanel" asp-controller="Seller" 
+                <a asp-area="ControlPanel" asp-controller="User" 
                     asp-action="Details" asp-route-id="@Model.Owner.Id"
                     class="btn-label-primary">
                     More details
                 </a>
-                <a href="javascript:void(0)"
-                   class="btn-label-warning">
-                    Deactivate the owner
-                </a>
+                @{
+                    if (Model.Owner.Status)
+                    {
+                        <a asp-area="ControlPanel" asp-controller="User"
+                           asp-action="Deactivate" asp-route-id="@Model.Owner.Id"
+                           class="btn-label-warning">
+                            Deactivate the owner
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-area="ControlPanel" asp-controller="User"
+                           asp-action="Activate" asp-route-id="@Model.Owner.Id"
+                           class="btn-label-primary">
+                            Activate the owner
+                        </a>
+                    }
+                }
             </div>
         </fieldset>
         <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
             <legend class="w-auto px-2">Actions</legend>
             <div class="mb-3 d-flex gap-2">
-                <a href="javascript:void(0)"
-                   class="btn-label-warning">
-                    Deactivate the store
-                </a>
-                <a href="javascript:void(0)"
+                @{
+                    if (Model.Status == true)
+                    {
+                        <a asp-area="ControlPanel" asp-controller="Store"
+                           asp-action="Deactivate" asp-route-id="@Model.Id"
+                           class="btn-label-warning">
+                            <span>Deactivate the store</span>
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-area="ControlPanel" asp-controller="Store"
+                           asp-action="Activate" asp-route-id="@Model.Id"
+                           class="btn-label-primary">
+                            <span>Activate the store</span>
+                        </a>
+                    }
+                }
+                <a asp-area="ControlPanel" asp-controller="Store"
+                   asp-action="Delete" asp-route-id="@Model.Id"
                    class="btn-label-danger">
                     Delete the store
                 </a>
