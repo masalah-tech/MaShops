@@ -114,7 +114,8 @@
                    class="btn-label-primary">
                     Show store details
                 </a>
-                <a href="javascript:void(0)"
+                <a asp-area="ControlPanel" asp-controller="Product"
+                    asp-action="Delete" asp-route-id="@Model.Id"
                    class="btn-label-danger">
                     Delete the product
                 </a>

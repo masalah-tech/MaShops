@@ -29,5 +29,17 @@ namespace MaShops.Areas.ControlPanel.Controllers
 
             return View(product);
         }
+
+        public IActionResult Delete(int id)
+        {
+            var product =
+                _productRepository.Get(p => p.Id == id);
+
+            _productRepository.Remove(product);
+            _productRepository.Save();
+            TempData["success"] = "Product deleted successfully";
+
+            return RedirectToAction("Index");
+        }
     }
 }

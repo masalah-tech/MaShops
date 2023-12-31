@@ -73,7 +73,13 @@
                         </a>
 
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <li><a class="dropdown-item link-danger" href="#">Delete the product</a></li>
+                            <li>
+                                <a asp-area="ControlPanel" asp-controller="Product"
+                                    asp-action="Delete" asp-route-id="@product.Id"
+                                    class="dropdown-item link-danger">
+                                    Delete the product
+                                    </a>
+                                </li>
                         </ul>
                     </div>
                 </div>

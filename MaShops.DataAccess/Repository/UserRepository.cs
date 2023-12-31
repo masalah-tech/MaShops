@@ -77,6 +77,13 @@ namespace MaShops.DataAccess.Repository
                 .Where(ur => ur.UserId == user.Id)
                 .ToList();
 
+            var userStores =
+                _context.Stores
+                .Where(us => us.OwnerId == user.Id)
+                .ToList();
+
+            var storeSaves = new List<StoreSave>();
+
             if (userCart != null)
             {
                 var productCart =
@@ -115,6 +122,21 @@ namespace MaShops.DataAccess.Repository
             foreach (var roleItem in userRoles)
             {
                 _context.UsersRoles.Remove(roleItem);
+            }
+
+            foreach (var store in userStores)
+            {
+                storeSaves =
+                    _context.StoreSaves
+                    .Where(ss => ss.StoreId == store.Id)
+                    .ToList();
+
+                foreach (var save in storeSaves)
+                {
+                    _context.StoreSaves.Remove(save);
+                }
+
+                _context.Stores.Remove(store);
             }
 
             _context.Users.Remove(user);
