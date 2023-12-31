@@ -10,6 +10,5 @@ namespace MaShops.DataAccess.Repository.IRepository
     public interface IBannerRepository : IRepository<Banner>
     {
         void Update(Banner banner);
-        void Save();
     }
 }

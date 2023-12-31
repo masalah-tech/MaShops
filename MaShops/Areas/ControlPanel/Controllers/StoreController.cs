@@ -8,16 +8,17 @@ namespace MaShops.Areas.ControlPanel.Controllers
     [Area("ControlPanel")]
     public class StoreController : Controller
     {
-        private readonly IStoreRepository _storeRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public StoreController(IStoreRepository storeRepository)
+        public StoreController(IUnitOfWork unitOfWork)
         {
-            _storeRepository = storeRepository;
+            _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
             var stores =
-                _storeRepository.GetAll();
+                _unitOfWork.StoreRepository
+                .GetAll();
 
             return View(stores);
         }
@@ -25,7 +26,8 @@ namespace MaShops.Areas.ControlPanel.Controllers
         public IActionResult Details(int id)
         {
             var store =
-                _storeRepository.Get(s => s.Id == id);
+                _unitOfWork.StoreRepository
+                .Get(s => s.Id == id);
 
             return View(store);
         }
@@ -33,11 +35,11 @@ namespace MaShops.Areas.ControlPanel.Controllers
         public IActionResult Delete(int id) 
         {
             var store =
-                _storeRepository
+                _unitOfWork.StoreRepository
                 .Get(s => s.Id == id);
 
-            _storeRepository.Remove(store);
-            _storeRepository.Save();
+            _unitOfWork.StoreRepository.Remove(store);
+            _unitOfWork.Save();
             TempData["Success"] = "Store deleted successfully";
 
             return RedirectToAction("Index");
@@ -46,7 +48,7 @@ namespace MaShops.Areas.ControlPanel.Controllers
         public IActionResult Activate(int id) 
         {
             var store =
-                _storeRepository
+                _unitOfWork.StoreRepository
                 .Get(s => s.Id == id);
 
             if (store == null)
@@ -55,8 +57,8 @@ namespace MaShops.Areas.ControlPanel.Controllers
             }
 
             store.Status = true;
-            _storeRepository.Update(store);
-            _storeRepository.Save();
+            _unitOfWork.StoreRepository.Update(store);
+            _unitOfWork.Save();
             TempData["Success"] = "Store activated successfully";
 
             var refererUrl = Request.Headers["Referer"].ToString();
@@ -67,7 +69,7 @@ namespace MaShops.Areas.ControlPanel.Controllers
         public IActionResult Deactivate(int id)
         {
             var store =
-                _storeRepository
+                _unitOfWork.StoreRepository
                 .Get(s => s.Id == id);
 
             if (store == null)
@@ -76,8 +78,8 @@ namespace MaShops.Areas.ControlPanel.Controllers
             }
 
             store.Status = false;
-            _storeRepository.Update(store);
-            _storeRepository.Save();
+            _unitOfWork.StoreRepository.Update(store);
+            _unitOfWork.Save();
 
             TempData["success"] = "Store deactivated successfully";
 

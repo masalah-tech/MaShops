@@ -7,16 +7,16 @@ namespace MaShops.Areas.ControlPanel.Controllers
     [Area("ControlPanel")]
     public class BannerController : Controller
     {
-        private readonly IBannerRepository _bannerRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public BannerController(IBannerRepository bannerRepository)
+        public BannerController(IUnitOfWork unitOfWork)
         {
-            _bannerRepository = bannerRepository;
+            _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
             var banners =
-                _bannerRepository.GetAll();
+                _unitOfWork.BannerRepository.GetAll();
 
             return View(banners);
         }

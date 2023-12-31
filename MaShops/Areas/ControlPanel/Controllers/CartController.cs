@@ -9,19 +9,16 @@ namespace MaShops.Areas.ControlPanel.Controllers
     [Area("ControlPanel")]
     public class CartController : Controller
     {
-        private readonly IProductCartRepository _productCartRepository;
-        private readonly IProductRepository _productRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CartController(IProductCartRepository productCartRepository,
-            IProductRepository productRepository)
+        public CartController(IUnitOfWork unitOfWork)
         {
-            _productCartRepository = productCartRepository;
-            _productRepository = productRepository;
+            _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
             var carts =
-                _productCartRepository.GetAll();
+                _unitOfWork.ProductCartRepository.GetAll();
 
             return View(carts);
         }
@@ -29,10 +26,10 @@ namespace MaShops.Areas.ControlPanel.Controllers
         public IActionResult CartProducts(int cartId)
         {
             var productsCarts =
-                _productCartRepository.GetAll();
+                _unitOfWork.ProductCartRepository.GetAll();
 
             var products =
-                _productRepository.GetAll();
+                _unitOfWork.ProductRepository.GetAll();
 
             var cartProducts = new List<Product>();
 

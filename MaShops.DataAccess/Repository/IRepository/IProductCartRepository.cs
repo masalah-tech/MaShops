@@ -10,6 +10,5 @@ namespace MaShops.DataAccess.Repository.IRepository
     public interface IProductCartRepository : IRepository<ProductCart>
     {
         void Update(ProductCart productCart);
-        void Save();
     }
 }

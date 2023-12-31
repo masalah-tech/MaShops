@@ -8,16 +8,17 @@ namespace MaShops.Areas.ControlPanel.Controllers
     [Area("ControlPanel")]
     public class SaleController : Controller
     {
-        private readonly ISaleRepository _saleRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public SaleController(ISaleRepository saleRepository)
+        public SaleController(IUnitOfWork unitOfWork)
         {
-            _saleRepository = saleRepository;
+            _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
             var sales =
-                _saleRepository.GetAll();
+                _unitOfWork.SaleRepository
+                .GetAll();
 
             return View(sales);
         }
@@ -25,7 +26,8 @@ namespace MaShops.Areas.ControlPanel.Controllers
         public IActionResult Details(int id)
         {
             var sale =
-                _saleRepository.Get(s => s.Id == id);
+                _unitOfWork.SaleRepository
+                .Get(s => s.Id == id);
 
             return View(sale);
         }

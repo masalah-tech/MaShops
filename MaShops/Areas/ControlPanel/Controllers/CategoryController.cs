@@ -9,19 +9,16 @@ namespace MaShops.Areas.ControlPanel.Controllers
     [Area("ControlPanel")]
     public class CategoryController : Controller
     {
-        private readonly ICategoryRepository _categoryRepository;
-        private readonly IProductRepository _productRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CategoryController(ICategoryRepository categoryRepository,
-            IProductRepository productRepository)
+        public CategoryController(IUnitOfWork unitOfWork)
         {
-            _categoryRepository = categoryRepository;
-            _productRepository = productRepository;
+            _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
             var categories =
-                _categoryRepository
+                _unitOfWork.CategoryRepository
                 .GetAll();
 
             return View(categories);
@@ -34,9 +31,9 @@ namespace MaShops.Areas.ControlPanel.Controllers
         public IActionResult Create(Category category) 
         {
             if (ModelState.IsValid) 
-            { 
-                _categoryRepository.Add(category);
-                _categoryRepository.Save();
+            {
+                _unitOfWork.CategoryRepository.Add(category);
+                _unitOfWork.Save();
                 TempData["success"] = "Category created successfully";
                 return RedirectToAction("Index");
             }
@@ -52,7 +49,7 @@ namespace MaShops.Areas.ControlPanel.Controllers
             }
 
             var category =
-                _categoryRepository.Get(c => c.Id == id);
+                _unitOfWork.CategoryRepository.Get(c => c.Id == id);
 
             if (category == null)
             {
@@ -66,8 +63,8 @@ namespace MaShops.Areas.ControlPanel.Controllers
         {
             if (ModelState.IsValid)
             {
-                _categoryRepository.Update(category);
-                _categoryRepository.Save();
+                _unitOfWork.CategoryRepository.Update(category);
+                _unitOfWork.Save();
                 TempData["success"] = "Category updated successfully";
                 return RedirectToAction("Index");
             }
@@ -78,7 +75,7 @@ namespace MaShops.Areas.ControlPanel.Controllers
         public IActionResult Delete(int id)
         {
             var category =
-                _categoryRepository
+                _unitOfWork.CategoryRepository
                 .Get(c => c.Id == id);
 
             if (category == null)
@@ -86,8 +83,8 @@ namespace MaShops.Areas.ControlPanel.Controllers
                 return NotFound();
             }
 
-            _categoryRepository.Remove(category);
-            _categoryRepository.Save();
+            _unitOfWork.CategoryRepository.Remove(category);
+            _unitOfWork.Save();
             TempData["success"] = "Category deleted successfully";
             return RedirectToAction("Index");
         }
@@ -95,7 +92,8 @@ namespace MaShops.Areas.ControlPanel.Controllers
         public IActionResult CategoryProducts(int id)
         {
             var products =
-                _productRepository.GetRange(p => p.CategoryId == id);
+                _unitOfWork.ProductRepository
+                .GetRange(p => p.CategoryId == id);
 
             return View(products);
         }

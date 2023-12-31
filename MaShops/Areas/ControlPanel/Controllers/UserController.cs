@@ -9,16 +9,17 @@ namespace MaShops.Areas.ControlPanel.Controllers
     [Area("ControlPanel")]
     public class UserController : Controller
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public UserController(IUserRepository userRepository)
+        public UserController(IUnitOfWork unitOfWork)
         {
-            _userRepository = userRepository;
+            _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
             var users =
-                _userRepository.GetAll();
+                _unitOfWork.UserRepository
+                .GetAll();
 
             return View(users);
         }
@@ -44,8 +45,8 @@ namespace MaShops.Areas.ControlPanel.Controllers
             if (ModelState.IsValid)
             {
                 user.Status = true;
-                _userRepository.Add(user);
-                _userRepository.Save();
+                _unitOfWork.UserRepository.Add(user);
+                _unitOfWork.Save();
                 TempData["success"] = "User created successfully";
                 return RedirectToAction("Index");
             }
@@ -56,7 +57,8 @@ namespace MaShops.Areas.ControlPanel.Controllers
         public IActionResult Details(int id)
         {
             var user =
-                _userRepository.Get(u => u.Id == id);
+                _unitOfWork.UserRepository
+                .Get(u => u.Id == id);
 
             if (user == null)
             {
@@ -74,7 +76,8 @@ namespace MaShops.Areas.ControlPanel.Controllers
             }
 
             var user =
-                _userRepository.Get(u => u.Id == id);
+                _unitOfWork.UserRepository
+                .Get(u => u.Id == id);
 
             if (user == null) 
             {
@@ -99,8 +102,9 @@ namespace MaShops.Areas.ControlPanel.Controllers
 
             if (ModelState.IsValid)
             {
-                _userRepository.Update(user);
-                _userRepository.Save();
+                _unitOfWork.UserRepository
+                    .Update(user);
+                _unitOfWork.Save();
                 TempData["success"] = "User edited successfully";
                 return RedirectToAction("Index");
             }
@@ -111,7 +115,7 @@ namespace MaShops.Areas.ControlPanel.Controllers
         public IActionResult Delete(int id)
         {
             var user =
-                _userRepository
+                _unitOfWork.UserRepository
                 .Get(u => u.Id == id);
 
             if (user == null)
@@ -119,8 +123,8 @@ namespace MaShops.Areas.ControlPanel.Controllers
                 return NotFound();
             }
 
-            _userRepository.Remove(user);
-            _userRepository.Save();
+            _unitOfWork.UserRepository.Remove(user);
+            _unitOfWork.Save();
 
             TempData["success"] = "User deleted successfully";
             return RedirectToAction("Index");
@@ -129,7 +133,7 @@ namespace MaShops.Areas.ControlPanel.Controllers
         public IActionResult Activate(int id)
         {
             var user =
-                _userRepository
+                _unitOfWork.UserRepository
                 .Get(u => u.Id == id);
 
             if (user == null)
@@ -138,8 +142,8 @@ namespace MaShops.Areas.ControlPanel.Controllers
             }
 
             user.Status = true;
-            _userRepository.Update(user);
-            _userRepository.Save();
+            _unitOfWork.UserRepository.Update(user);
+            _unitOfWork.Save();
 
             TempData["success"] = 
                 "User activated successfully";
@@ -154,7 +158,7 @@ namespace MaShops.Areas.ControlPanel.Controllers
         public IActionResult Deactivate(int id)
         {
             var user =
-                _userRepository
+                _unitOfWork.UserRepository
                 .Get(u => u.Id == id);
 
             if (user == null)
@@ -163,8 +167,8 @@ namespace MaShops.Areas.ControlPanel.Controllers
             }
 
             user.Status = false;
-            _userRepository.Update(user);
-            _userRepository.Save();
+            _unitOfWork.UserRepository.Update(user);
+            _unitOfWork.Save();
 
             TempData["success"] =
                 "User deactivated successfully";

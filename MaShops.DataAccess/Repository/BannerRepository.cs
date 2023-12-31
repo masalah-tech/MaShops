@@ -19,11 +19,6 @@ namespace MaShops.DataAccess.Repository
             _context = context;
         }
 
-        public void Save()
-        {
-            _context.SaveChanges();
-        }
-
         public void Update(Banner banner)
         {
             _context.Banners.Update(banner);

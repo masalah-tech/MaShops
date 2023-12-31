@@ -8,16 +8,17 @@ namespace MaShops.Areas.ControlPanel.Controllers
     [Area("ControlPanel")]
     public class ProductController : Controller
     {
-        private readonly IProductRepository _productRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public ProductController(IProductRepository productRepository)
+        public ProductController(IUnitOfWork unitOfWork)
         {
-            _productRepository = productRepository;
+            _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
             var products =
-                _productRepository.GetAll();
+                _unitOfWork.ProductRepository
+                .GetAll();
 
             return View(products);
         }
@@ -25,7 +26,8 @@ namespace MaShops.Areas.ControlPanel.Controllers
         public IActionResult Details(int id)
         {
             var product =
-                _productRepository.Get(p => p.Id == id);
+                _unitOfWork.ProductRepository
+                .Get(p => p.Id == id);
 
             return View(product);
         }
@@ -33,10 +35,11 @@ namespace MaShops.Areas.ControlPanel.Controllers
         public IActionResult Delete(int id)
         {
             var product =
-                _productRepository.Get(p => p.Id == id);
+                _unitOfWork.ProductRepository
+                .Get(p => p.Id == id);
 
-            _productRepository.Remove(product);
-            _productRepository.Save();
+            _unitOfWork.ProductRepository.Remove(product);
+            _unitOfWork.Save();
             TempData["success"] = "Product deleted successfully";
 
             return RedirectToAction("Index");
