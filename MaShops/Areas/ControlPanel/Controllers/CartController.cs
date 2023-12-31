@@ -1,4 +1,5 @@
 ﻿using MaShops.DataAccess.Data;
+using MaShops.DataAccess.Repository.IRepository;
 using MaShops.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -8,20 +9,19 @@ namespace MaShops.Areas.ControlPanel.Controllers
     [Area("ControlPanel")]
     public class CartController : Controller
     {
-        private readonly AppDbContext _context;
+        private readonly IProductCartRepository _productCartRepository;
+        private readonly IProductRepository _productRepository;
 
-        public CartController(AppDbContext context)
+        public CartController(IProductCartRepository productCartRepository,
+            IProductRepository productRepository)
         {
-            _context = context;
+            _productCartRepository = productCartRepository;
+            _productRepository = productRepository;
         }
         public IActionResult Index()
         {
-            var carts = 
-                _context.ProductsCarts
-                .Include(ps => ps.Product)
-                .Include(ps => ps.Cart)
-                .Include(ps => ps.Cart.Customer)
-                .ToList();
+            var carts =
+                _productCartRepository.GetAll();
 
             return View(carts);
         }
@@ -29,14 +29,10 @@ namespace MaShops.Areas.ControlPanel.Controllers
         public IActionResult CartProducts(int cartId)
         {
             var productsCarts =
-                _context.ProductsCarts
-                .ToList();
+                _productCartRepository.GetAll();
 
             var products =
-                _context.Products
-                .Include(p => p.Store)
-                .Include(p => p.Category)
-                .ToList();
+                _productRepository.GetAll();
 
             var cartProducts = new List<Product>();
 

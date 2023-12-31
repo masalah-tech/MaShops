@@ -1,4 +1,5 @@
 ﻿using MaShops.DataAccess.Data;
+using MaShops.DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MaShops.Areas.ControlPanel.Controllers
@@ -6,16 +7,16 @@ namespace MaShops.Areas.ControlPanel.Controllers
     [Area("ControlPanel")]
     public class BannerController : Controller
     {
-        private readonly AppDbContext _context;
+        private readonly IBannerRepository _bannerRepository;
 
-        public BannerController(AppDbContext context)
+        public BannerController(IBannerRepository bannerRepository)
         {
-            _context = context;
+            _bannerRepository = bannerRepository;
         }
         public IActionResult Index()
         {
             var banners =
-                _context.Banners.OrderByDescending(b => b.Status).ToList();
+                _bannerRepository.GetAll();
 
             return View(banners);
         }
