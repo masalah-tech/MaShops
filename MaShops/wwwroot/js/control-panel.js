@@ -69,7 +69,7 @@ function applyEvents() {
                             <a href="javascript:void(0)" onclick="mznExpandImg(this);" class="c-btn link-dark text-decoration-none mzn-expand-img-btn" mzn-img-target="#banner-img-${randomId}">
                                 <i class="fa-solid fa-expand"></i>
                             </a>
-                            <a class="c-btn link-secondary text-decoration-none" asp-area="ControlPanel" asp-controller="Banner" asp-action="">
+                            <a class="c-btn link-secondary text-decoration-none" asp-area="Admin" asp-controller="Banner" asp-action="">
                                 <i class="fa-solid fa-trash"></i>
                             </a>
                         </div>

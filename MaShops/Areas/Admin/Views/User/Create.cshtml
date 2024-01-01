@@ -1,0 +1,174 @@
+﻿@using MaShops
+@using MaShops.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model User
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Create New User";
+    ViewData["Page"] = "Users";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-area="Admin" asp-controller="User" asp-action="Index"
+               class="text-decoration-none text-muted">User</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a asp-area="Admin" asp-controller="User" asp-action="Index"
+               class="text-decoration-none text-muted">List</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+            Create New User
+        </li>
+    </ol>
+</nav>
+
+<div class="card px-0 py-3">
+    <form method="post">
+        <fieldset class="form-group border mt-3 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Primary Information</legend>
+            <div class="mb-3 col-md-6">
+                <label asp-for="FirstName" class="form-label"></label>
+                <input asp-for="FirstName" class="form-control">
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="SecondName" class="form-label"></label>
+                <input asp-for="SecondName" class="form-control">
+                <span asp-validation-for="SecondName" class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="ThirdName" class="form-label"></label>
+                <input asp-for="ThirdName" class="form-control">
+                <span asp-validation-for="ThirdName" class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="LastName" class="form-label"></label>
+                <input asp-for="LastName" class="form-control">
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6 c-select-box">
+                <label asp-for="Nationality" class="form-label"></label>
+                <div class="c-select-option">
+                    <input class="c-selected-item form-control" asp-for="Nationality" readonly />
+                </div>
+                <div class="c-select-items-container">
+                    <div class="c-search-select-items-input-wrapper">
+                        <input class="c-search-select-items-input" type="text" autocomplete="off" />
+                    </div>
+                    <ul class="load-countries">
+                    </ul>
+                    <p class="c-no-match-msg">No results found</p>
+                </div>
+                <span asp-validation-for="Nationality" class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="BirthDate" class="form-label"></label>
+                <input asp-for="BirthDate" type="date" class="form-control">
+                <span asp-validation-for="BirthDate" class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="PhotoURL" class="form-label"></label>
+                <input asp-for="PhotoURL" type="file" class="form-control">
+                <span asp-validation-for="PhotoURL" class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="role" class="form-label">Role</label>
+                <select id="role" multiple class="form-control">
+                    <option value="Select">Select</option>
+                    <option value="Super Admin">Super Admin</option>
+                    <option value="Admin">Admin</option>
+                    <option value="Seller">Seller</option>
+                    <option value="Customer">Customer</option>
+                </select>
+                <span @*asp-validation-for=""*@ class="text-danger"></span>
+            </div>
+        </fieldset>
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Contact Details</legend>
+            <div class="mb-3 col-md-6">
+                <label asp-for="PhoneNumber" class="form-label"></label>
+                <input asp-for="PhoneNumber" class="form-control">
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" type="email" class="form-control">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </fieldset>
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Address Details</legend>
+            <div class="mb-3 col-md-6 c-select-box">
+                <label asp-for="Address.Country" class="form-label"></label>
+                <div class="c-select-option">
+                    <input class="c-selected-item form-control"
+                           asp-for="Address.Country" readonly />
+                </div>
+                <div class="c-select-items-container">
+                    <div class="c-search-select-items-input-wrapper">
+                        <input class="c-search-select-items-input" type="text" autocomplete="off" />
+                    </div>
+                    <ul class="load-countries">
+                    </ul>
+                    <p class="c-no-match-msg">No results found</p>
+                </div>
+                <span asp-validation-for="Address.Country" class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="Address.City" class="form-label"></label>
+                <input asp-for="Address.City" class="form-control">
+                <span asp-validation-for="Address.City" class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="Address.Street" class="form-label"></label>
+                <input asp-for="Address.Street" class="form-control">
+                <span asp-validation-for="Address.Street" class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="Address.AppartmentNo" class="form-label"></label>
+                <input asp-for="Address.AppartmentNo" class="form-control">
+                <span asp-validation-for="Address.AppartmentNo" class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="Address.ZipCode" class="form-label"></label>
+                <input asp-for="Address.ZipCode" class="form-control">
+                <span asp-validation-for="Address.ZipCode" class="text-danger"></span>
+            </div>
+        </fieldset>
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Credentials</legend>
+            <div class="mb-3 col-md-6">
+                <label asp-for="Username" class="form-label"></label>
+                <input asp-for="Username" class="form-control">
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="mb-3 mb-3 col-md-6">
+                <label asp-for="EncPassword" class="form-label"></label>
+                <div class="c-eye-pass-box">
+                    <input asp-for="EncPassword" type="password" class="form-control">
+                    <div class="c-pass-icon-wrapper">
+                        <i class="fa-solid fa-eye c-icon active show-pass-btn"></i>
+                        <i class="fa-solid fa-eye-slash c-icon hide-pass-btn"></i>
+                    </div>
+                </div>
+                <span asp-validation-for="EncPassword" class="text-danger"></span>
+            </div>
+        </fieldset>
+        <hr />
+        <div class="mx-3 d-flex gap-2 flex-wrap">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a asp-area="Admin" asp-controller="User" asp-action="Index"
+                class="btn btn-secondary">
+                Back to list
+            </a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

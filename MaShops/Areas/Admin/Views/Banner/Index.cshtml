@@ -1,0 +1,71 @@
+﻿@model List<Banner>
+
+@{
+    ViewData["Title"] = "Banners";
+    ViewData["Page"] = "Banners";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-area="Admin" asp-controller="Banner" asp-action="Index"
+               class="text-decoration-none text-muted">Banner</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">List</li>
+    </ol>
+</nav>
+
+<div class="card px-0 py-3">
+    <form>
+        <div class="px-3 d-flex gap-2 flex-wrap">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <a class="btn btn-label-secondary" asp-area="Admin" asp-controller="Banner" asp-action="Index">Reset</a>
+            <div>
+                <label for="newBanner" class="btn-label-primary">Upload new banner</label>
+                <input type="file" class="new-banner" hidden accept="image/*" id="newBanner" name="" />
+            </div>
+        </div>
+        <hr class="mb-0" />
+        <div class="c-img-gallery row p-2 m-0">
+            @foreach (var banner in Model)
+            {
+                <div class="col-sm-6 col-xl-4 col-xxl-3 mx-0 p-2">
+                    <div class="c-img-card">
+                        <div class="btns-container">
+                            <div class="c-btn">
+                                <input type="checkbox" id="banner-@banner.Id" 
+                                @{
+                                    if (banner.Status)
+                                        WriteLiteral("checked=\"true\"");
+                                    else
+                                        WriteLiteral("checked=\"false\"");
+                                        
+                                } onchange="validateBannerSelects(this)" />
+                            </div>
+                            <a href="javascript:void(0)" onclick="mznExpandImg(this)" class="c-btn link-dark text-decoration-none mzn-expand-img-btn" mzn-img-target="#banner-img-@banner.Id">
+                                <i class="fa-solid fa-expand"></i>
+                            </a>
+                            <a class="c-btn link-secondary text-decoration-none" asp-area="Admin" asp-controller="Banner" asp-action="">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </div>
+                        <label for="banner-@banner.Id">
+                            <img id="banner-img-@banner.Id" src="@banner.PhotoURL" alt="Banner with ID of @banner.Id" />
+                        </label>
+                    </div>
+                </div>
+            }
+            <div id="banner-img-overlay" class="c-expanded-img-overlay" onclick="mznCloseImgOverlay(this, arguments[0])">
+                <div class="c-wrapper">
+                    <button type="button" onclick="this.parentElement.parentElement.classList.remove('active')" class="c-close-overlay-btn" mzn-overlay-target="#banner-img-overlay">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                    <img alt="Expanded Image" />
+                </div>
+            </div>
+            <div class="alert alert-danger alert-dismissible auto-close fade c-gallery-validate-alert" role="alert">
+                Number of selected banners must be between 1 and 5
+            </div>
+        </div>
+    </form>
+</div>
