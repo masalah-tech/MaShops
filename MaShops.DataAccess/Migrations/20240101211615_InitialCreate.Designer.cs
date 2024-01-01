@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MaShops.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231230234639_InitialCreate")]
+    [Migration("20240101211615_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -90,7 +90,7 @@ namespace MaShops.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("PhotoPath")
+                    b.Property<string>("PhotoURL")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -105,31 +105,31 @@ namespace MaShops.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            PhotoPath = "/uploads/banner1.jpg",
+                            PhotoURL = "/uploads/banner1.jpg",
                             Status = true
                         },
                         new
                         {
                             Id = 2,
-                            PhotoPath = "/uploads/banner2.jpg",
+                            PhotoURL = "/uploads/banner2.jpg",
                             Status = true
                         },
                         new
                         {
                             Id = 3,
-                            PhotoPath = "/uploads/banner3.jpg",
+                            PhotoURL = "/uploads/banner3.jpg",
                             Status = false
                         },
                         new
                         {
                             Id = 4,
-                            PhotoPath = "/uploads/banner4.jpg",
+                            PhotoURL = "/uploads/banner4.jpg",
                             Status = false
                         },
                         new
                         {
                             Id = 5,
-                            PhotoPath = "/uploads/banner5.jpg",
+                            PhotoURL = "/uploads/banner5.jpg",
                             Status = true
                         });
                 });
@@ -216,7 +216,7 @@ namespace MaShops.DataAccess.Migrations
                     b.Property<int>("InStock")
                         .HasColumnType("int");
 
-                    b.Property<string>("MainPosterPath")
+                    b.Property<string>("MainPosterURL")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -248,7 +248,7 @@ namespace MaShops.DataAccess.Migrations
                             CategoryId = 1,
                             HTMLDescription = "<p>Rolled in sesame seeds, and fried until crispy on the outside, but still soft and chewy on the inside, DIMSUMCO Sesame Peanut Ball (Vegetarian) are actually an irresistible treat.</p><ul><li><b><i>1 pkt of 12 pieces of Sesame Peanut Ball (Vegetarian).</i></b></li><li><b><i>Halal Certified</i></b></li><li><b><i>300g</i></b></li></ul>",
                             InStock = 5,
-                            MainPosterPath = "/uploads/prod-1-main-poster.png",
+                            MainPosterURL = "/uploads/prod-1-main-poster.png",
                             Name = "DIMSUMCO Sesame Peanut Ball (Vegetarian) – (12’s) 300g",
                             NewPrice = 4.9900000000000002,
                             StoreId = 1
@@ -259,7 +259,7 @@ namespace MaShops.DataAccess.Migrations
                             CategoryId = 2,
                             HTMLDescription = "<ul> <li> Only compatible with iPad 9/8/7 (2021, 2020, 2019); Model numbers:A2602, A2604, A2603,A2605, A2270, A2428, A2429, A2430, A2197, A2200, A2198 </li> <li>Magnetic trifold stand supports both viewing and writing modes</li> <li>Instantly activate auto sleep/wake when you open or close the cover</li> <li>Front cover protects your screen from scratches while remaining slim</li> <li> Translucent matte back adds a colorful twist while leaving the logo visible </li> </ul>",
                             InStock = 7,
-                            MainPosterPath = "/uploads/prod-2-main-poster.png",
+                            MainPosterURL = "/uploads/prod-2-main-poster.png",
                             Name = "ESR for iPad 9th Generation case(2021) Lightweight Hard Case,Auto Sleep/Wake, Ascend Series case for iPad 10.2 Inch, Lavender",
                             NewPrice = 11.99,
                             OldPrice = 17.989999999999998,
@@ -271,7 +271,7 @@ namespace MaShops.DataAccess.Migrations
                             CategoryId = 2,
                             HTMLDescription = "<ul> <li> Keys-To-Go is a super-slim, super-light keyboard that you can keep with you through the day whether you’re working or learning from the backyard or back at the office. </li> <li> The sealed keyboard protects against crumbs, spills, and almost anything else you (or your kids) can throw at it, and wipes clean in seconds. </li> <li> Works with the screens you use most including iPhone, iPad, and Apple TV, and even comes with a convenient stand for your phone. </li> <li> Comfortable, soft keys type silently so you and the people around you can focus on working or learning without distractions. </li> <li> Full row of iOS shortcut keys provide one-tap access to popular functions like volume up/down, mute, media controls, and more. </li> <li> An easy one-time Bluetooth pairing provides a reliable connection between Keys-To-Go and your device. </li> <li> Type for up to 3 months without needing to recharge the battery so you can spend more time typing and less time wondering where you left that charging cable. </li> </ul>",
                             InStock = 5,
-                            MainPosterPath = "/uploads/prod-3-main-poster.jpg",
+                            MainPosterURL = "/uploads/prod-3-main-poster.jpg",
                             Name = "Logitech Keys-to-Go Super-Slim and Super-Light Bluetooth Keyboard for iPhone, iPad, Mac and Apple TV, Including iPad Air 5th Gen (2022) - Classic Blue",
                             NewPrice = 29.989999999999998,
                             OldPrice = 42.990000000000002,
@@ -330,12 +330,12 @@ namespace MaShops.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Path")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
+
+                    b.Property<string>("URL")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -347,56 +347,56 @@ namespace MaShops.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            Path = "/uploads/prod1-photo1.jpg",
-                            ProductId = 1
+                            ProductId = 1,
+                            URL = "/uploads/prod1-photo1.jpg"
                         },
                         new
                         {
                             Id = 2,
-                            Path = "/uploads/prod1-photo2.jpeg",
-                            ProductId = 1
+                            ProductId = 1,
+                            URL = "/uploads/prod1-photo2.jpeg"
                         },
                         new
                         {
                             Id = 3,
-                            Path = "/uploads/prod1-photo3.jpg",
-                            ProductId = 1
+                            ProductId = 1,
+                            URL = "/uploads/prod1-photo3.jpg"
                         },
                         new
                         {
                             Id = 4,
-                            Path = "/uploads/prod2-photo1.jpg",
-                            ProductId = 2
+                            ProductId = 2,
+                            URL = "/uploads/prod2-photo1.jpg"
                         },
                         new
                         {
                             Id = 5,
-                            Path = "/uploads/prod2-photo2.jpg",
-                            ProductId = 2
+                            ProductId = 2,
+                            URL = "/uploads/prod2-photo2.jpg"
                         },
                         new
                         {
                             Id = 6,
-                            Path = "/uploads/prod2-photo3.jpg",
-                            ProductId = 2
+                            ProductId = 2,
+                            URL = "/uploads/prod2-photo3.jpg"
                         },
                         new
                         {
                             Id = 7,
-                            Path = "/uploads/prod3-photo1.jpeg",
-                            ProductId = 3
+                            ProductId = 3,
+                            URL = "/uploads/prod3-photo1.jpeg"
                         },
                         new
                         {
                             Id = 8,
-                            Path = "/uploads/prod3-photo2.jpg",
-                            ProductId = 3
+                            ProductId = 3,
+                            URL = "/uploads/prod3-photo2.jpg"
                         },
                         new
                         {
                             Id = 9,
-                            Path = "/uploads/prod3-photo3.jpeg",
-                            ProductId = 3
+                            ProductId = 3,
+                            URL = "/uploads/prod3-photo3.jpeg"
                         });
                 });
 
@@ -437,7 +437,7 @@ namespace MaShops.DataAccess.Migrations
                             Id = 1,
                             Comment = "Wow, this food product exceeded my expectations! The flavors are incredibly delicious and well-balanced. It's the perfect combination of sweet and savory. The texture is spot on, providing a delightful crunch with every bite. I highly recommend trying this. It has become my new favorite snack!",
                             CustomerId = 1,
-                            Date = new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2024, 1, 2, 0, 0, 0, 0, DateTimeKind.Local),
                             ProductId = 1,
                             Rating = 5
                         },
@@ -446,7 +446,7 @@ namespace MaShops.DataAccess.Migrations
                             Id = 2,
                             Comment = "I recently purchased the ESR for iPad and have mixed feelings about it. On the positive side, it offers decent protection for my iPad and fits well, providing a snug and secure fit. The design is sleek and visually appealing. However, I did encounter a few drawbacks. The stand functionality could be improved as it feels a bit flimsy and doesn't always hold the iPad at the desired angle. Additionally, I noticed that the case tends to attract fingerprints easily, requiring frequent cleaning. Overall, it's an average product that offers basic protection but could use some enhancements in terms of functionality and fingerprint resistance.",
                             CustomerId = 2,
-                            Date = new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2024, 1, 2, 0, 0, 0, 0, DateTimeKind.Local),
                             ProductId = 2,
                             Rating = 3
                         },
@@ -455,7 +455,7 @@ namespace MaShops.DataAccess.Migrations
                             Id = 3,
                             Comment = "The Logitech Keys-to-Go Bluetooth Keyboard for iPhone was a huge disappointment. Despite its sleek and slim design, the performance is severely lacking. The keys feel mushy and unresponsive, making typing a frustrating experience. Additionally, the Bluetooth connectivity is unreliable, frequently disconnecting and requiring constant reconnection. The battery life is abysmal, barely lasting a couple of hours before needing a recharge. It's incredibly disappointing to invest in a keyboard that falls so short in terms of usability and reliability. I would not recommend this product.",
                             CustomerId = 3,
-                            Date = new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2024, 1, 2, 0, 0, 0, 0, DateTimeKind.Local),
                             ProductId = 3,
                             Rating = 1
                         });
@@ -490,21 +490,21 @@ namespace MaShops.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            Date = new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2024, 1, 2, 0, 0, 0, 0, DateTimeKind.Local),
                             ProductId = 1,
                             UserId = 1
                         },
                         new
                         {
                             Id = 2,
-                            Date = new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2024, 1, 2, 0, 0, 0, 0, DateTimeKind.Local),
                             ProductId = 2,
                             UserId = 2
                         },
                         new
                         {
                             Id = 3,
-                            Date = new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2024, 1, 2, 0, 0, 0, 0, DateTimeKind.Local),
                             ProductId = 3,
                             UserId = 3
                         });
@@ -579,21 +579,21 @@ namespace MaShops.DataAccess.Migrations
                         {
                             Id = 1,
                             CustomerId = 1,
-                            DateTime = new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local),
+                            DateTime = new DateTime(2024, 1, 2, 0, 0, 0, 0, DateTimeKind.Local),
                             ProductId = 1
                         },
                         new
                         {
                             Id = 2,
                             CustomerId = 2,
-                            DateTime = new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local),
+                            DateTime = new DateTime(2024, 1, 2, 0, 0, 0, 0, DateTimeKind.Local),
                             ProductId = 2
                         },
                         new
                         {
                             Id = 3,
                             CustomerId = 3,
-                            DateTime = new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local),
+                            DateTime = new DateTime(2024, 1, 2, 0, 0, 0, 0, DateTimeKind.Local),
                             ProductId = 3
                         });
                 });
@@ -613,7 +613,7 @@ namespace MaShops.DataAccess.Migrations
                     b.Property<int>("OwnerId")
                         .HasColumnType("int");
 
-                    b.Property<string>("PosterPath")
+                    b.Property<string>("PosterURL")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Status")
@@ -631,7 +631,7 @@ namespace MaShops.DataAccess.Migrations
                             Id = 1,
                             Name = "Evergreen Emporium",
                             OwnerId = 4,
-                            PosterPath = "/uploads/store-1-poster.jpg",
+                            PosterURL = "/uploads/store-1-poster.jpg",
                             Status = true
                         },
                         new
@@ -639,7 +639,7 @@ namespace MaShops.DataAccess.Migrations
                             Id = 2,
                             Name = "GizmoTech Hub",
                             OwnerId = 5,
-                            PosterPath = "/uploads/store-2-poster.png",
+                            PosterURL = "/uploads/store-2-poster.png",
                             Status = true
                         },
                         new
@@ -647,7 +647,7 @@ namespace MaShops.DataAccess.Migrations
                             Id = 3,
                             Name = "iConnect Depot",
                             OwnerId = 6,
-                            PosterPath = "/uploads/store-3-poster.jpeg",
+                            PosterURL = "/uploads/store-3-poster.jpeg",
                             Status = true
                         });
                 });
@@ -681,21 +681,21 @@ namespace MaShops.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            Date = new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2024, 1, 2, 0, 0, 0, 0, DateTimeKind.Local),
                             StoreId = 1,
                             UserId = 1
                         },
                         new
                         {
                             Id = 2,
-                            Date = new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2024, 1, 2, 0, 0, 0, 0, DateTimeKind.Local),
                             StoreId = 2,
                             UserId = 2
                         },
                         new
                         {
                             Id = 3,
-                            Date = new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2024, 1, 2, 0, 0, 0, 0, DateTimeKind.Local),
                             StoreId = 3,
                             UserId = 3
                         });
@@ -739,7 +739,7 @@ namespace MaShops.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PhotoPath")
+                    b.Property<string>("PhotoURL")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecondName")
@@ -919,7 +919,7 @@ namespace MaShops.DataAccess.Migrations
                             LastName = "Salah",
                             Nationality = "Yemen",
                             PhoneNumber = "00967774806897",
-                            PhotoPath = "/uploads/mazen2.png",
+                            PhotoURL = "/uploads/mazen2.png",
                             SecondName = "Ameen",
                             Status = true,
                             ThirdName = "Hamid",

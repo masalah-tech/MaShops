@@ -7,7 +7,7 @@ namespace MaShops.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public string PhotoPath { get; set; }
+        public string PhotoURL { get; set; }
         [Required]
         public bool Status { get; set; }
     }

@@ -13,7 +13,7 @@ namespace MaShops.Models
         [Required]
         public double NewPrice { get; set; }
         [Required]
-        public string MainPosterPath { get; set; }
+        public string MainPosterURL { get; set; }
         [Required]
         [ForeignKey("Store")]
         public int StoreId { get; set; }

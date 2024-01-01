@@ -31,7 +31,7 @@ namespace MaShops.Models
         [DisplayName("Birth Date")]
         public DateTime BirthDate { get; set; }
         [DisplayName("Profile Photo")]
-        public string? PhotoPath { get; set; }
+        public string? PhotoURL { get; set; }
         [Required]
         public string Email { get; set; }
         [Required]

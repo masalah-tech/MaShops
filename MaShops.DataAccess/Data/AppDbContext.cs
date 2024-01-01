@@ -63,31 +63,31 @@ namespace MaShops.DataAccess.Data
                 new Banner
                 {
                     Id = 1,
-                    PhotoPath = "/uploads/banner1.jpg",
+                    PhotoURL = "/uploads/banner1.jpg",
                     Status = true
                 },
                 new Banner
                 {
                     Id = 2,
-                    PhotoPath = "/uploads/banner2.jpg",
+                    PhotoURL = "/uploads/banner2.jpg",
                     Status = true
                 },
                 new Banner
                 {
                     Id = 3,
-                    PhotoPath = "/uploads/banner3.jpg",
+                    PhotoURL = "/uploads/banner3.jpg",
                     Status = false
                 },
                 new Banner
                 {
                     Id = 4,
-                    PhotoPath = "/uploads/banner4.jpg",
+                    PhotoURL = "/uploads/banner4.jpg",
                     Status = false
                 },
                 new Banner
                 {
                     Id = 5,
-                    PhotoPath = "/uploads/banner5.jpg",
+                    PhotoURL = "/uploads/banner5.jpg",
                     Status = true
                 }
             );
@@ -128,7 +128,7 @@ namespace MaShops.DataAccess.Data
                 {
                     Id = 1,
                     Name = "DIMSUMCO Sesame Peanut Ball (Vegetarian) – (12’s) 300g",
-                    MainPosterPath = "/uploads/prod-1-main-poster.png",
+                    MainPosterURL = "/uploads/prod-1-main-poster.png",
                     OldPrice = null,
                     NewPrice = 4.99,
                     CategoryId = 1,
@@ -140,7 +140,7 @@ namespace MaShops.DataAccess.Data
                 {
                     Id = 2,
                     Name = "ESR for iPad 9th Generation case(2021) Lightweight Hard Case,Auto Sleep/Wake, Ascend Series case for iPad 10.2 Inch, Lavender",
-                    MainPosterPath = "/uploads/prod-2-main-poster.png",
+                    MainPosterURL = "/uploads/prod-2-main-poster.png",
                     OldPrice = 17.99,
                     NewPrice = 11.99,
                     CategoryId = 2,
@@ -152,7 +152,7 @@ namespace MaShops.DataAccess.Data
                 {
                     Id = 3,
                     Name = "Logitech Keys-to-Go Super-Slim and Super-Light Bluetooth Keyboard for iPhone, iPad, Mac and Apple TV, Including iPad Air 5th Gen (2022) - Classic Blue",
-                    MainPosterPath = "/uploads/prod-3-main-poster.jpg",
+                    MainPosterURL = "/uploads/prod-3-main-poster.jpg",
                     OldPrice = 42.99,
                     NewPrice = 29.99,
                     CategoryId = 2,
@@ -188,55 +188,55 @@ namespace MaShops.DataAccess.Data
                 {
                     Id = 1,
                     ProductId = 1,
-                    Path = "/uploads/prod1-photo1.jpg"
+                    URL = "/uploads/prod1-photo1.jpg"
                 },
                 new ProductPhoto
                 {
                     Id = 2,
                     ProductId = 1,
-                    Path = "/uploads/prod1-photo2.jpeg"
+                    URL = "/uploads/prod1-photo2.jpeg"
                 },
                 new ProductPhoto
                 {
                     Id = 3,
                     ProductId = 1,
-                    Path = "/uploads/prod1-photo3.jpg"
+                    URL = "/uploads/prod1-photo3.jpg"
                 },
                 new ProductPhoto
                 {
                     Id = 4,
                     ProductId = 2,
-                    Path = "/uploads/prod2-photo1.jpg"
+                    URL = "/uploads/prod2-photo1.jpg"
                 },
                 new ProductPhoto
                 {
                     Id = 5,
                     ProductId = 2,
-                    Path = "/uploads/prod2-photo2.jpg"
+                    URL = "/uploads/prod2-photo2.jpg"
                 },
                 new ProductPhoto
                 {
                     Id = 6,
                     ProductId = 2,
-                    Path = "/uploads/prod2-photo3.jpg"
+                    URL = "/uploads/prod2-photo3.jpg"
                 },
                 new ProductPhoto
                 {
                     Id = 7,
                     ProductId = 3,
-                    Path = "/uploads/prod3-photo1.jpeg"
+                    URL = "/uploads/prod3-photo1.jpeg"
                 },
                 new ProductPhoto
                 {
                     Id = 8,
                     ProductId = 3,
-                    Path = "/uploads/prod3-photo2.jpg"
+                    URL = "/uploads/prod3-photo2.jpg"
                 },
                 new ProductPhoto
                 {
                     Id = 9,
                     ProductId = 3,
-                    Path = "/uploads/prod3-photo3.jpeg"
+                    URL = "/uploads/prod3-photo3.jpeg"
                 }
             );
 
@@ -347,7 +347,7 @@ namespace MaShops.DataAccess.Data
                     Id = 1,
                     OwnerId = 4,
                     Name = "Evergreen Emporium",
-                    PosterPath = "/uploads/store-1-poster.jpg",
+                    PosterURL = "/uploads/store-1-poster.jpg",
                     Status = true
                 },
                 new Store
@@ -355,7 +355,7 @@ namespace MaShops.DataAccess.Data
                     Id = 2,
                     OwnerId = 5,
                     Name = "GizmoTech Hub",
-                    PosterPath = "/uploads/store-2-poster.png",
+                    PosterURL = "/uploads/store-2-poster.png",
                     Status = true
                 },
                 new Store
@@ -363,7 +363,7 @@ namespace MaShops.DataAccess.Data
                     Id = 3,
                     OwnerId = 6,
                     Name = "iConnect Depot",
-                    PosterPath = "/uploads/store-3-poster.jpeg",
+                    PosterURL = "/uploads/store-3-poster.jpeg",
                     Status = true
                 }                
             );
@@ -407,7 +407,7 @@ namespace MaShops.DataAccess.Data
                     Nationality = "Saudi Arabia",
                     BirthDate = new DateTime(2000, 1, 1),
                     AddressId = 1,
-                    PhotoPath = null,
+                    PhotoURL = null,
                     Status = true,
                 },
                 new User
@@ -424,7 +424,7 @@ namespace MaShops.DataAccess.Data
                     Nationality = "Saudi Arabia",
                     BirthDate = new DateTime(2000, 1, 1),
                     AddressId = 2,
-                    PhotoPath = null,
+                    PhotoURL = null,
                     Status = true,
                 },
                 new User
@@ -441,7 +441,7 @@ namespace MaShops.DataAccess.Data
                     Nationality = "Yemen",
                     BirthDate = new DateTime(2000, 1, 1),
                     AddressId = 3,
-                    PhotoPath = null,
+                    PhotoURL = null,
                     Status = true,
                 },
                 new User
@@ -458,7 +458,7 @@ namespace MaShops.DataAccess.Data
                     Nationality = "Saudi Arabia",
                     BirthDate = new DateTime(2000, 1, 1),
                     AddressId = 3,
-                    PhotoPath = null,
+                    PhotoURL = null,
                     Status = true,
                 },
                 new User
@@ -475,7 +475,7 @@ namespace MaShops.DataAccess.Data
                     Nationality = "Yemen",
                     BirthDate = new DateTime(2000, 1, 1),
                     AddressId = 2,
-                    PhotoPath = null,
+                    PhotoURL = null,
                     Status = true,
                 },
                 new User
@@ -492,7 +492,7 @@ namespace MaShops.DataAccess.Data
                     Nationality = "Yemen",
                     BirthDate = new DateTime(2000, 1, 1),
                     AddressId = 1,
-                    PhotoPath = null,
+                    PhotoURL = null,
                     Status = true,
                 },
                 new User
@@ -509,7 +509,7 @@ namespace MaShops.DataAccess.Data
                     Nationality = "Yemen",
                     BirthDate = new DateTime(2000, 1, 1),
                     AddressId = 2,
-                    PhotoPath = null,
+                    PhotoURL = null,
                     Status = true,
                 },
                 new User
@@ -526,7 +526,7 @@ namespace MaShops.DataAccess.Data
                     Nationality = "Saudi Arabia",
                     BirthDate = new DateTime(2000, 1, 1),
                     AddressId = 2,
-                    PhotoPath = null,
+                    PhotoURL = null,
                     Status = true,
                 },
                 new User
@@ -543,7 +543,7 @@ namespace MaShops.DataAccess.Data
                     Nationality = "Saudi Arabia",
                     BirthDate = new DateTime(2000, 1, 1),
                     AddressId = 3,
-                    PhotoPath = null,
+                    PhotoURL = null,
                     Status = true,
                 },
                 new User
@@ -560,7 +560,7 @@ namespace MaShops.DataAccess.Data
                     Nationality = "Yemen",
                     BirthDate = new DateTime(2000, 12, 16),
                     AddressId = 1,
-                    PhotoPath = "/uploads/mazen2.png",
+                    PhotoURL = "/uploads/mazen2.png",
                     Status = true,
                 }
             );

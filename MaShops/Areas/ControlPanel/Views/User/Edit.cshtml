@@ -30,9 +30,9 @@
     <form method="post">
         <input asp-for="Status" type="hidden" />
         <div class="px-3 mb-2 d-flex gap-3 align-items-center">
-            @if (!string.IsNullOrWhiteSpace(Model.PhotoPath))
+            @if (!string.IsNullOrWhiteSpace(Model.PhotoURL))
             {
-                <img src="@Model.PhotoPath" alt="@Model.FirstName" class="circular-user-photo Large" />
+                <img src="@Model.PhotoURL" alt="@Model.FirstName" class="circular-user-photo Large" />
             }
             else
             {
@@ -40,7 +40,7 @@
             }
             <div>
                 <label for="UserPersonalPhoto" class="btn-label-primary">Upload new photo</label>
-                <input asp-for="PhotoPath" type="file" class="photo-immediate-change" hidden accept="image/*" id="UserPersonalPhoto" />
+                <input asp-for="PhotoURL" type="file" class="photo-immediate-change" hidden accept="image/*" id="UserPersonalPhoto" />
             </div>
         </div>
         <hr />
@@ -87,9 +87,9 @@
                 <span asp-validation-for="BirthDate" class="text-danger"></span>
             </div>
             @*<div class="mb-3 col-md-6">
-                <label asp-for="PhotoPath" class="form-label"></label>
-                <input asp-for="PhotoPath" type="file" class="form-control">
-                <span asp-validation-for="PhotoPath" class="text-danger"></span>
+                <label asp-for="PhotoURL" class="form-label"></label>
+                <input asp-for="PhotoURL" type="file" class="form-control">
+                <span asp-validation-for="PhotoURL" class="text-danger"></span>
             </div>*@
             <div class="mb-3 col-md-6">
                 <label for="role" class="form-label">Role</label>

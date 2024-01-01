@@ -13,7 +13,7 @@ namespace MaShops.Models
         [ForeignKey("User")]
         public int OwnerId { get; set; }
         public User Owner { get; set; }
-        public string? PosterPath { get; set; }
+        public string? PosterURL { get; set; }
         [Required]
         public bool Status { get; set; }
     }

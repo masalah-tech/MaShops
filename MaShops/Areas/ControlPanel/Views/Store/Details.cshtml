@@ -29,9 +29,9 @@
 <div class="card px-0 py-3">
     <form>
         <div class="px-3 d-flex justify-content-between align-items-start">
-            @if (!string.IsNullOrWhiteSpace(Model.PosterPath))
+            @if (!string.IsNullOrWhiteSpace(Model.PosterURL))
             {
-                <img src="@Model.PosterPath" alt="@Model.Name" class="store-poster-in-wide-card" />
+                <img src="@Model.PosterURL" alt="@Model.Name" class="store-poster-in-wide-card" />
             }
             else
             {

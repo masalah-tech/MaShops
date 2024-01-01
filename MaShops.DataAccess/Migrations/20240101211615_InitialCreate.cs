@@ -36,7 +36,7 @@ namespace MaShops.DataAccess.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PhotoPath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhotoURL = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -83,7 +83,7 @@ namespace MaShops.DataAccess.Migrations
                     ThirdName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BirthDate = table.Column<DateTime>(type: "Date", nullable: false),
-                    PhotoPath = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhotoURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Nationality = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -128,7 +128,7 @@ namespace MaShops.DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     OwnerId = table.Column<int>(type: "int", nullable: false),
-                    PosterPath = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PosterURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Status = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -177,7 +177,7 @@ namespace MaShops.DataAccess.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     OldPrice = table.Column<double>(type: "float", nullable: true),
                     NewPrice = table.Column<double>(type: "float", nullable: false),
-                    MainPosterPath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MainPosterURL = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StoreId = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     InStock = table.Column<int>(type: "int", nullable: false),
@@ -234,7 +234,7 @@ namespace MaShops.DataAccess.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductId = table.Column<int>(type: "int", nullable: false),
-                    Path = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    URL = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -368,7 +368,7 @@ namespace MaShops.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "Banners",
-                columns: new[] { "Id", "PhotoPath", "Status" },
+                columns: new[] { "Id", "PhotoURL", "Status" },
                 values: new object[,]
                 {
                     { 1, "/uploads/banner1.jpg", true },
@@ -400,7 +400,7 @@ namespace MaShops.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "AddressId", "BirthDate", "Email", "EncPassword", "FirstName", "LastName", "Nationality", "PhoneNumber", "PhotoPath", "SecondName", "Status", "ThirdName", "Username" },
+                columns: new[] { "Id", "AddressId", "BirthDate", "Email", "EncPassword", "FirstName", "LastName", "Nationality", "PhoneNumber", "PhotoURL", "SecondName", "Status", "ThirdName", "Username" },
                 values: new object[,]
                 {
                     { 1, 1, new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "mohammedhamza@gmail.com", "slSe@#VSs1532", "Mohammed", "Hamza", "Saudi Arabia", "00966532071000", null, "Khalid", true, "Omar", "mohammedhamza" },
@@ -427,7 +427,7 @@ namespace MaShops.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "Stores",
-                columns: new[] { "Id", "Name", "OwnerId", "PosterPath", "Status" },
+                columns: new[] { "Id", "Name", "OwnerId", "PosterURL", "Status" },
                 values: new object[,]
                 {
                     { 1, "Evergreen Emporium", 4, "/uploads/store-1-poster.jpg", true },
@@ -454,7 +454,7 @@ namespace MaShops.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "Id", "CategoryId", "HTMLDescription", "InStock", "MainPosterPath", "Name", "NewPrice", "OldPrice", "StoreId" },
+                columns: new[] { "Id", "CategoryId", "HTMLDescription", "InStock", "MainPosterURL", "Name", "NewPrice", "OldPrice", "StoreId" },
                 values: new object[,]
                 {
                     { 1, 1, "<p>Rolled in sesame seeds, and fried until crispy on the outside, but still soft and chewy on the inside, DIMSUMCO Sesame Peanut Ball (Vegetarian) are actually an irresistible treat.</p><ul><li><b><i>1 pkt of 12 pieces of Sesame Peanut Ball (Vegetarian).</i></b></li><li><b><i>Halal Certified</i></b></li><li><b><i>300g</i></b></li></ul>", 5, "/uploads/prod-1-main-poster.png", "DIMSUMCO Sesame Peanut Ball (Vegetarian) – (12’s) 300g", 4.9900000000000002, null, 1 },
@@ -467,25 +467,25 @@ namespace MaShops.DataAccess.Migrations
                 columns: new[] { "Id", "Date", "StoreId", "UserId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local), 1, 1 },
-                    { 2, new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local), 2, 2 },
-                    { 3, new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local), 3, 3 }
+                    { 1, new DateTime(2024, 1, 2, 0, 0, 0, 0, DateTimeKind.Local), 1, 1 },
+                    { 2, new DateTime(2024, 1, 2, 0, 0, 0, 0, DateTimeKind.Local), 2, 2 },
+                    { 3, new DateTime(2024, 1, 2, 0, 0, 0, 0, DateTimeKind.Local), 3, 3 }
                 });
 
             migrationBuilder.InsertData(
                 table: "ProductPhotos",
-                columns: new[] { "Id", "Path", "ProductId" },
+                columns: new[] { "Id", "ProductId", "URL" },
                 values: new object[,]
                 {
-                    { 1, "/uploads/prod1-photo1.jpg", 1 },
-                    { 2, "/uploads/prod1-photo2.jpeg", 1 },
-                    { 3, "/uploads/prod1-photo3.jpg", 1 },
-                    { 4, "/uploads/prod2-photo1.jpg", 2 },
-                    { 5, "/uploads/prod2-photo2.jpg", 2 },
-                    { 6, "/uploads/prod2-photo3.jpg", 2 },
-                    { 7, "/uploads/prod3-photo1.jpeg", 3 },
-                    { 8, "/uploads/prod3-photo2.jpg", 3 },
-                    { 9, "/uploads/prod3-photo3.jpeg", 3 }
+                    { 1, 1, "/uploads/prod1-photo1.jpg" },
+                    { 2, 1, "/uploads/prod1-photo2.jpeg" },
+                    { 3, 1, "/uploads/prod1-photo3.jpg" },
+                    { 4, 2, "/uploads/prod2-photo1.jpg" },
+                    { 5, 2, "/uploads/prod2-photo2.jpg" },
+                    { 6, 2, "/uploads/prod2-photo3.jpg" },
+                    { 7, 3, "/uploads/prod3-photo1.jpeg" },
+                    { 8, 3, "/uploads/prod3-photo2.jpg" },
+                    { 9, 3, "/uploads/prod3-photo3.jpeg" }
                 });
 
             migrationBuilder.InsertData(
@@ -493,9 +493,9 @@ namespace MaShops.DataAccess.Migrations
                 columns: new[] { "Id", "Date", "ProductId", "UserId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local), 1, 1 },
-                    { 2, new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local), 2, 2 },
-                    { 3, new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local), 3, 3 }
+                    { 1, new DateTime(2024, 1, 2, 0, 0, 0, 0, DateTimeKind.Local), 1, 1 },
+                    { 2, new DateTime(2024, 1, 2, 0, 0, 0, 0, DateTimeKind.Local), 2, 2 },
+                    { 3, new DateTime(2024, 1, 2, 0, 0, 0, 0, DateTimeKind.Local), 3, 3 }
                 });
 
             migrationBuilder.InsertData(
@@ -513,9 +513,9 @@ namespace MaShops.DataAccess.Migrations
                 columns: new[] { "Id", "Comment", "CustomerId", "Date", "ProductId", "Rating" },
                 values: new object[,]
                 {
-                    { 1, "Wow, this food product exceeded my expectations! The flavors are incredibly delicious and well-balanced. It's the perfect combination of sweet and savory. The texture is spot on, providing a delightful crunch with every bite. I highly recommend trying this. It has become my new favorite snack!", 1, new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local), 1, 5 },
-                    { 2, "I recently purchased the ESR for iPad and have mixed feelings about it. On the positive side, it offers decent protection for my iPad and fits well, providing a snug and secure fit. The design is sleek and visually appealing. However, I did encounter a few drawbacks. The stand functionality could be improved as it feels a bit flimsy and doesn't always hold the iPad at the desired angle. Additionally, I noticed that the case tends to attract fingerprints easily, requiring frequent cleaning. Overall, it's an average product that offers basic protection but could use some enhancements in terms of functionality and fingerprint resistance.", 2, new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local), 2, 3 },
-                    { 3, "The Logitech Keys-to-Go Bluetooth Keyboard for iPhone was a huge disappointment. Despite its sleek and slim design, the performance is severely lacking. The keys feel mushy and unresponsive, making typing a frustrating experience. Additionally, the Bluetooth connectivity is unreliable, frequently disconnecting and requiring constant reconnection. The battery life is abysmal, barely lasting a couple of hours before needing a recharge. It's incredibly disappointing to invest in a keyboard that falls so short in terms of usability and reliability. I would not recommend this product.", 3, new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local), 3, 1 }
+                    { 1, "Wow, this food product exceeded my expectations! The flavors are incredibly delicious and well-balanced. It's the perfect combination of sweet and savory. The texture is spot on, providing a delightful crunch with every bite. I highly recommend trying this. It has become my new favorite snack!", 1, new DateTime(2024, 1, 2, 0, 0, 0, 0, DateTimeKind.Local), 1, 5 },
+                    { 2, "I recently purchased the ESR for iPad and have mixed feelings about it. On the positive side, it offers decent protection for my iPad and fits well, providing a snug and secure fit. The design is sleek and visually appealing. However, I did encounter a few drawbacks. The stand functionality could be improved as it feels a bit flimsy and doesn't always hold the iPad at the desired angle. Additionally, I noticed that the case tends to attract fingerprints easily, requiring frequent cleaning. Overall, it's an average product that offers basic protection but could use some enhancements in terms of functionality and fingerprint resistance.", 2, new DateTime(2024, 1, 2, 0, 0, 0, 0, DateTimeKind.Local), 2, 3 },
+                    { 3, "The Logitech Keys-to-Go Bluetooth Keyboard for iPhone was a huge disappointment. Despite its sleek and slim design, the performance is severely lacking. The keys feel mushy and unresponsive, making typing a frustrating experience. Additionally, the Bluetooth connectivity is unreliable, frequently disconnecting and requiring constant reconnection. The battery life is abysmal, barely lasting a couple of hours before needing a recharge. It's incredibly disappointing to invest in a keyboard that falls so short in terms of usability and reliability. I would not recommend this product.", 3, new DateTime(2024, 1, 2, 0, 0, 0, 0, DateTimeKind.Local), 3, 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -523,9 +523,9 @@ namespace MaShops.DataAccess.Migrations
                 columns: new[] { "Id", "CustomerId", "DateTime", "ProductId" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local), 1 },
-                    { 2, 2, new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local), 2 },
-                    { 3, 3, new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Local), 3 }
+                    { 1, 1, new DateTime(2024, 1, 2, 0, 0, 0, 0, DateTimeKind.Local), 1 },
+                    { 2, 2, new DateTime(2024, 1, 2, 0, 0, 0, 0, DateTimeKind.Local), 2 },
+                    { 3, 3, new DateTime(2024, 1, 2, 0, 0, 0, 0, DateTimeKind.Local), 3 }
                 });
 
             migrationBuilder.CreateIndex(

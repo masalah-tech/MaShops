@@ -47,9 +47,9 @@
                             <td>@user.Id</td>
                             <td class="ps-4">
                                 @{
-                                    if (!string.IsNullOrWhiteSpace(user.PhotoPath))
+                                    if (!string.IsNullOrWhiteSpace(user.PhotoURL))
                                     {
-                                        <img src="@user.PhotoPath" alt="@user.FirstName" class="circular-user-photo" />
+                                        <img src="@user.PhotoURL" alt="@user.FirstName" class="circular-user-photo" />
                                     }
                                     else
                                     {

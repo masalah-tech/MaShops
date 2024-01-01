@@ -41,9 +41,9 @@
                             <td>@store.Id</td>
                             <td class="ps-4">
                                 @{
-                                    if (!string.IsNullOrWhiteSpace(store.PosterPath))
+                                    if (!string.IsNullOrWhiteSpace(store.PosterURL))
                                     {
-                                        <img src="@store.PosterPath" alt="@store.Name" class="store-poster-in-table" />
+                                        <img src="@store.PosterURL" alt="@store.Name" class="store-poster-in-table" />
                                     }
                                     else
                                     {
