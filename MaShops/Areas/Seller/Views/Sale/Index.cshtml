@@ -1,0 +1,74 @@
+﻿@model List<Sale>
+
+@{
+    ViewData["Title"] = "Sales";
+    ViewData["Page"] = "Sales";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-area="Admin" asp-controller="Sale" asp-action="Index"
+               class="text-decoration-none text-muted">Sale</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">List</li>
+    </ol>
+</nav>
+
+<div>
+    <div class="card p-0">
+        <div class="c-datatable-wrapper header-border-top-0">
+            <table id="salesTable" class="table table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Customer</th>
+                        <th>Product</th>
+                        <th>Date &amp; Time</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var sale in Model)
+                    {
+                        <tr>
+                            <td>@sale.Id</td>
+                            <td>
+                                @@@sale.Customer.Username
+                            </td>
+                            <td>
+                                <div class="two-lines-ellipsis">
+                                    <a asp-area="Seller" asp-controller="Product"
+                                       asp-action="Details" asp-route-id="@sale.Product.Id"
+                                       class="text-decoration-none">
+                                        @sale.Product.Name
+                                    </a>
+                                </div>
+                            </td>
+                            <td class="text-nowrap">@sale.DateTime.ToString("MMM d - yyyy - h:mm tt")</td>
+                            <td class="text-center">
+                                <a asp-area="Seller" asp-controller="Sale"
+                                   asp-action="Details" asp-route-id="@sale.Id"
+                                   class="text-decoration-none link-secondary">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+
+    <script>
+
+        $('#salesTable').DataTable({
+        });
+
+    </script>
+}

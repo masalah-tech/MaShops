@@ -104,14 +104,21 @@
                             <span class="navlink-text">Products</span>
                         </a>
                     </li>
+                    <li>
+                        <a asp-area="Seller" asp-controller="Sale" asp-action="Index"
+                           class="text-decoration-none text-white d-flex align-items-center gap-3 sidenav-item @if(ViewData["Page"] == "Sales") WriteLiteral("active");">
+                            <i class="fa-solid fa-truck-fast navlink-icon"></i>
+                            <span class="navlink-text">Sales</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <ul class="list-unstyled m-0">
                 <li>
-                    <a asp-area="Admin" asp-controller="User" asp-action="Details" asp-route-id="10"
-                       class="text-decoration-none text-white d-flex align-items-center gap-3 mt-0 sidenav-item">
-                        <i class="fa-regular fa-user navlink-icon"></i>
-                        <span class="navlink-text">My Profile</span>
+                    <a asp-area="Seller" asp-controller="Settings" asp-action="Index"
+                       class="text-decoration-none text-white d-flex align-items-center gap-3 mt-0 sidenav-item @if(ViewData["Page"] == "Settings") WriteLiteral("active");">
+                        <i class="fa-solid fa-gear navlink-icon"></i>
+                        <span class="navlink-text">Settings</span>
                     </a>
                 </li>
                 <li>

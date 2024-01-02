@@ -36,6 +36,17 @@ namespace MaShops.DataAccess.Repository
                 .ToList();
         }
 
+        public override IEnumerable<Sale> GetRange(Expression<Func<Sale, bool>> filter)
+        {
+            return _context.Sales
+                .Where(filter)
+                .Include(s => s.Customer)
+                .Include(s => s.Product)
+                .Include(s => s.Product.Store)
+                .OrderByDescending(s => s.DateTime)
+                .ToList();
+        }
+
         public override Sale Get(Expression<Func<Sale, bool>> filter)
         {
             return _context.Sales
