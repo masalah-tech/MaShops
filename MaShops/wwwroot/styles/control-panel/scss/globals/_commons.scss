@@ -122,6 +122,11 @@ a:hover {
   border-radius: 5px;
 }
 
+.store-poster-in-wide-card.small {
+  width: min(100%, 170px);
+  height: 100px;
+}
+
 .prod-poster {
   width: 80%;
   height: 130px;

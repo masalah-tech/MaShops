@@ -23,114 +23,197 @@
 
 <div class="card px-0 py-3">
     <form>
-        <div class="px-3 d-flex justify-content-between align-items-start">
-            @if (!string.IsNullOrWhiteSpace(Model.PosterURL))
-            {
-                <img src="@Model.PosterURL" alt="@Model.Name" class="store-poster-in-wide-card" />
-            }
-            else
-            {
-                <img src="~/img/user.png" alt="@Model.Name" class="store-poster-in-wide-card" />
-            }
-        </div>
-        <hr />
-        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+        <fieldset class="form-group border mt-2 px-1 pt-4 row mx-3">
             <legend class="w-auto px-2">Store Details</legend>
-            <div class="mb-3 col-md-6">
-                <label for="storeName" class="form-label">Store Name</label>
-                <input type="text" class="form-control" id="storeName" readonly value="@Model.Name">
+            <div class="col-12 mb-3 fs-5 d-flex gap-2">
+                <span>Your store is</span>
+                @if (Model.Status)
+                {
+                    <div class="text-success d-flex gap-1 align-items-center">
+                        <span>
+                            Active
+                        </span>
+                        <i class="fa-regular fa-circle-check mt-1"></i>
+                    </div>
+                } else
+                {
+                    <span class="text-danger d-flex gap-1 align-items-center">
+                        <span>
+                            Inactive
+                        </span>
+                        <i class="fa-solid fa-circle-exclamation mt-1"></i>
+                    </span>
+                }
+            </div>
+            <hr />
+            <div class="col-md-6 mb-3 px-3 pt-3 d-flex flex-wrap gap-3">
+                @if (!string.IsNullOrWhiteSpace(Model.PosterURL))
+                {
+                    <img src="@Model.PosterURL" alt="@Model.Name" class="store-poster-in-wide-card small" />
+                }
+                else
+                {
+                    <img src="~/img/user.png" alt="@Model.Name" class="store-poster-in-wide-card" />
+                }
+                <div>
+                    <label for="storePoster" class="btn-label-primary">Upload new photo</label>
+                    <input asp-for="PosterURL" type="file" class="photo-immediate-change" hidden accept="image/*" id="storePoster" />
+                </div>
             </div>
             <div class="mb-3 col-md-6">
-                <label for="storeOwner" class="form-label">Store Owner</label>
-                <input type="text" class="form-control" id="storeOwner" readonly value="@string.Format("@{0}", Model.Owner.Username)">
-            </div>
-            <div class="mb-3 col-md-6">
-                <label for="storeStatus" class="form-label">Store Status</label>
-                <input type="text" class="form-control" id="storeStatus" readonly value="@{
-                    if (Model.Status) {
-                        WriteLiteral("Active");
-                    }
-                    else {
-                        WriteLiteral("Inactive");
-                    }
-                }">
+                <label asp-for="Name" class="form-label"></label>
+                <input asp-for="Name" class="form-control">
             </div>
         </fieldset>
         <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
-            <legend class="w-auto px-2">Owner Details</legend>
-            <div class="mb-3 col-md-6">
-                <label for="storeOwnerFirstName" class="form-label">First Name</label>
-                <input type="text" class="form-control" id="storeOwnerFirstName"
-                       readonly value="@Model.Owner.FirstName">
-            </div>
-            <div class="mb-3 col-md-6">
-                <label for="storeOwnerLastName" class="form-label">Last Name</label>
-                <input type="text" class="form-control" id="storeOwnerLastName"
-                       readonly value="@Model.Owner.LastName">
-            </div>
-            <div class="mb-3 col-md-6">
-                <label for="storeOwnerUsername" class="form-label">Username</label>
-                <input type="text" class="form-control" id="storeOwnerUsername"
-                       readonly value="@Model.Owner.Username">
-            </div>
-            <div class="mb-3 col-md-6">
-                <label for="storeOwnerEmail" class="form-label">Email</label>
-                <input type="text" class="form-control" id="storeOwnerEmail"
-                       readonly value="@Model.Owner.Email">
-            </div>
-            <div class="mb-3 d-flex gap-2">
-                <a asp-area="Admin" asp-controller="User"
-                   asp-action="Details" asp-route-id="@Model.Owner.Id"
-                   class="btn-label-primary">
-                    More details
-                </a>
-                @{
-                    if (Model.Owner.Status)
-                    {
-                        <a asp-area="Admin" asp-controller="User"
-                           asp-action="Deactivate" asp-route-id="@Model.Owner.Id"
-                           class="btn-label-warning">
-                            Deactivate the owner
-                        </a>
-                    }
-                    else
-                    {
-                        <a asp-area="Admin" asp-controller="User"
-                           asp-action="Activate" asp-route-id="@Model.Owner.Id"
-                           class="btn-label-primary">
-                            Activate the owner
-                        </a>
-                    }
+            <legend class="w-auto px-2">Account Primary Information</legend>
+            <div class="px-3 mb-2 d-flex gap-3 align-items-center">
+                @*@if (!string.IsNullOrWhiteSpace(Model.PhotoURL))*@
+                @if (false)
+                {
+                    <img src="@*@Model.PhotoURL*@" alt="@*@Model.FirstName*@" class="circular-user-photo Large" />
                 }
+                else
+                {
+                    <img src="~/img/user.png" alt="@*@Model.FirstName*@" class="circular-user-photo Large" />
+                }
+                <div>
+                    <label for="accountPersonalPhoto" class="btn-label-primary">Upload new photo</label>
+                    <input @*asp-for="PhotoURL"*@ type="file" class="photo-immediate-change" hidden accept="image/*" id="accountPersonalPhoto" />
+                </div>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label @*asp-for="FirstName"*@ class="form-label"></label>
+                <input @*asp-for="FirstName"*@ class="form-control">
+                <span @*asp-validation-for="FirstName"*@ class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label @*asp-for="SecondName"*@ class="form-label"></label>
+                <input @*asp-for="SecondName"*@ class="form-control">
+                <span @*asp-validation-for="SecondName"*@ class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label @*asp-for="ThirdName"*@ class="form-label"></label>
+                <input @*asp-for="ThirdName"*@ class="form-control">
+                <span @*asp-validation-for="ThirdName"*@ class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label @*asp-for="LastName"*@ class="form-label"></label>
+                <input @*asp-for="LastName"*@ class="form-control">
+                <span @*asp-validation-for="LastName"*@ class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6 c-select-box">
+                <label @*asp-for="Nationality"*@ class="form-label"></label>
+                <div class="c-select-option">
+                    <input class="c-selected-item form-control" @*asp-for="Nationality"*@ readonly />
+                </div>
+                <div class="c-select-items-container">
+                    <div class="c-search-select-items-input-wrapper">
+                        <input class="c-search-select-items-input" type="text" autocomplete="off" />
+                    </div>
+                    <ul class="load-countries">
+                    </ul>
+                    <p class="c-no-match-msg">No results found</p>
+                </div>
+                <span @*asp-validation-for="Nationality"*@ class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label @*asp-for="BirthDate"*@ class="form-label"></label>
+                <input @*asp-for="BirthDate"*@ type="date" class="form-control">
+                <span @*asp-validation-for="BirthDate"*@ class="text-danger"></span>
+            </div>
+        </fieldset>
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Contact Details</legend>
+            <div class="mb-3 col-md-6">
+                <label @*asp-for="PhoneNumber"*@ class="form-label"></label>
+                <input @*asp-for="PhoneNumber"*@ class="form-control">
+                <span @*asp-validation-for="PhoneNumber"*@ class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label @*asp-for="Email"*@ class="form-label"></label>
+                <input @*asp-for="Email"*@ type="email" class="form-control">
+                <span @*asp-validation-for="Email"*@ class="text-danger"></span>
+            </div>
+        </fieldset>
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Address Details</legend>
+            <div class="mb-3 col-md-6 c-select-box">
+                <label @*asp-for="Address.Country"*@ class="form-label"></label>
+                <div class="c-select-option">
+                    <input class="c-selected-item form-control"
+                           @*asp-for="Address.Country"*@ readonly />
+                </div>
+                <div class="c-select-items-container">
+                    <div class="c-search-select-items-input-wrapper">
+                        <input class="c-search-select-items-input" type="text" autocomplete="off" />
+                    </div>
+                    <ul class="load-countries">
+                    </ul>
+                    <p class="c-no-match-msg">No results found</p>
+                </div>
+                <span @*asp-validation-for="Address.Country"*@ class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label @*asp-for="Address.City"*@ class="form-label"></label>
+                <input @*asp-for="Address.City"*@ class="form-control">
+                <span @*asp-validation-for="Address.City"*@ class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label @*asp-for="Address.Street"*@ class="form-label"></label>
+                <input @*asp-for="Address.Street"*@ class="form-control">
+                <span @*asp-validation-for="Address.Street"*@ class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label @*asp-for="Address.AppartmentNo"*@ class="form-label"></label>
+                <input @*asp-for="Address.AppartmentNo"*@ class="form-control">
+                <span @*asp-validation-for="Address.AppartmentNo"*@ class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label @*asp-for="Address.ZipCode"*@ class="form-label"></label>
+                <input @*asp-for="Address.ZipCode"*@ class="form-control">
+                <span @*asp-validation-for="Address.ZipCode"*@ class="text-danger"></span>
+            </div>
+        </fieldset>
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Credentials</legend>
+            <div class="mb-3 col-md-6">
+                <label @*asp-for="Username"*@ class="form-label"></label>
+                <input @*asp-for="Username"*@ class="form-control">
+                <span @*asp-validation-for="Username"*@ class="text-danger"></span>
+            </div>
+            <div class="mb-3 mb-3 col-md-6">
+                <label @*asp-for="EncPassword"*@ class="form-label"></label>
+                <div class="c-eye-pass-box">
+                    <input @*asp-for="EncPassword"*@ type="password" class="form-control">
+                    <div class="c-pass-icon-wrapper">
+                        <i class="fa-solid fa-eye c-icon active active show-pass-btn"></i>
+                        <i class="fa-solid fa-eye-slash c-icon hide-pass-btn"></i>
+                    </div>
+                </div>
+                <span @*asp-validation-for="EncPassword"*@ class="text-danger"></span>
             </div>
         </fieldset>
         <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
             <legend class="w-auto px-2">Actions</legend>
             <div class="mb-3 d-flex gap-2">
-                @{
-                    if (Model.Status == true)
-                    {
-                        <a asp-area="Admin" asp-controller="Store"
-                           asp-action="Deactivate" asp-route-id="@Model.Id"
-                           class="btn-label-warning">
-                            <span>Deactivate the store</span>
-                        </a>
-                    }
-                    else
-                    {
-                        <a asp-area="Admin" asp-controller="Store"
-                           asp-action="Activate" asp-route-id="@Model.Id"
-                           class="btn-label-primary">
-                            <span>Activate the store</span>
-                        </a>
-                    }
-                }
-                <a asp-area="Admin" asp-controller="Store"
-                   asp-action="Delete" asp-route-id="@Model.Id"
+                <a asp-area="Seller" asp-controller="Settings"
+                   asp-action="DeleteStore"
                    class="btn-label-danger">
-                    Delete the store
+                    Delete my store
+                </a>
+                <a asp-area="Seller" asp-controller="Settings"
+                   asp-action="DeleteUserAccount"
+                   class="btn-label-danger">
+                    Delete my account
                 </a>
             </div>
         </fieldset>
+        <hr />
+        <div class="px-3">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <a asp-area="Seller" asp-controller="Settings" asp-action="Index"
+                class="btn btn-secondary">Reset</a>
+        </div>
     </form>
 </div>

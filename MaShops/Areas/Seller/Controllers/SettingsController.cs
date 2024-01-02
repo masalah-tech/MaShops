@@ -11,7 +11,7 @@ namespace MaShops.Areas.Seller.Controllers
 
         public SettingsController(IUnitOfWork unitOfWork)
         {
-            _sellerId = 6;
+            _sellerId = 5;
             _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
@@ -26,6 +26,44 @@ namespace MaShops.Areas.Seller.Controllers
             }
 
             return View(store);
+        }
+
+        public IActionResult DeleteStore() 
+        {
+            var store =
+                _unitOfWork.StoreRepository
+                .Get(s => s.OwnerId == _sellerId);
+
+            if (store == null)
+            {
+                return NotFound();
+            }
+
+            _unitOfWork.StoreRepository.Remove(store);
+            _unitOfWork.Save();
+
+            TempData["Success"] = "Store deleted successfully";
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        public IActionResult DeleteUserAccount()
+        {
+            var user =
+                _unitOfWork.UserRepository
+                .Get(s => s.Id == _sellerId);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            _unitOfWork.UserRepository.Remove(user);
+            _unitOfWork.Save();
+
+            TempData["Success"] = "Account deleted successfully";
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }

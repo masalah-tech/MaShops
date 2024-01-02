@@ -80,6 +80,8 @@ namespace MaShops.DataAccess.Repository
 
             var storeSaves = new List<StoreSave>();
 
+            var storeProducts = new List<Product>();
+
             if (userCart != null)
             {
                 var productCart =
@@ -127,9 +129,69 @@ namespace MaShops.DataAccess.Repository
                     .Where(ss => ss.StoreId == store.Id)
                     .ToList();
 
+                storeProducts =
+                    _context.Products
+                    .Where(p => p.StoreId == store.Id)
+                    .ToList();
+
                 foreach (var save in storeSaves)
                 {
                     _context.StoreSaves.Remove(save);
+                }
+
+                foreach (var product in storeProducts)
+                {
+                    var productPhotos =
+                    _context.ProductPhotos
+                    .Where(pp => pp.ProductId == product.Id)
+                    .ToList();
+
+                    var productSaves =
+                        _context.ProductSaves
+                        .Where(ps => ps.ProductId == product.Id)
+                        .ToList();
+
+                    var productCarts =
+                        _context.ProductsCarts
+                        .Where(pc => pc.ProductId == product.Id)
+                        .ToList();
+
+                    var productReviews =
+                        _context.ProductsReviews
+                        .Where(pr => pr.ProductId == product.Id)
+                        .ToList();
+
+                    var productSales =
+                        _context.Sales
+                        .Where(s => s.ProductId == product.Id)
+                        .ToList();
+
+                    foreach (var photo in productPhotos)
+                    {
+                        _context.ProductPhotos.Remove(photo);
+                    }
+
+                    foreach (var save in productSaves)
+                    {
+                        _context.ProductSaves.Remove(save);
+                    }
+
+                    foreach (var cart in productCarts)
+                    {
+                        _context.ProductsCarts.Remove(cart);
+                    }
+
+                    foreach (var review in productReviews)
+                    {
+                        _context.ProductsReviews.Remove(review);
+                    }
+
+                    foreach (var sale in productSales)
+                    {
+                        _context.Sales.Remove(sale);
+                    }
+
+                    _context.Products.Remove(product);
                 }
 
                 _context.Stores.Remove(store);
