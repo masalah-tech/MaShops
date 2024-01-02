@@ -1,0 +1,170 @@
+﻿@model Product
+
+@{
+    ViewData["Title"] = $"Edit { Model.Name }";
+    ViewData["Page"] = "Products";
+
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-area="Seller" asp-controller="Product" asp-action="Index"
+               class="text-decoration-none text-muted">Product</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a asp-area="Seller" asp-controller="Product" asp-action="Index"
+               class="text-decoration-none text-muted">List</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+            @{
+                if (Model.Name.Length > 45)
+                {
+                    WriteLiteral($"Edit {Model.Name.Substring(0, 45)}...");
+                }
+                else
+                {
+                    WriteLiteral($"Edit {Model.Name}");
+                }
+            }
+        </li>
+    </ol>
+</nav>
+
+<div class="card px-0 py-3">
+    <form method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="px-3 mb-2 d-flex gap-3 align-items-center">
+            @if (!string.IsNullOrWhiteSpace(Model.MainPosterURL))
+            {
+                <img src="@Model.MainPosterURL" alt="@Model.Name" class="product-poster-in-wide-card" />
+            }
+            else
+            {
+                <img src="~/img/user.png" alt="@Model.Name" class="product-poster-in-wide-card" />
+            }
+            <div>
+                <label for="UserPersonalPhoto" class="btn-label-primary">Upload new photo</label>
+                <input asp-for="MainPosterURL" type="file" class="photo-immediate-change" hidden accept="image/*" id="UserPersonalPhoto" />
+            </div>
+        </div>
+        <hr />
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Product Name</legend>
+            <div class="mb-3 col-md-6">
+                <label asp-for="Name" class="form-label"></label>
+                <textarea asp-for="Name" class="form-control"></textarea>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="HTMLDescription" class="form-label"></label>
+                <textarea asp-for="HTMLDescription" class="form-control"></textarea>
+                <span asp-validation-for="HTMLDescription" class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label class="form-label">Category</label>
+                <select class="form-control">
+                    <option value="Select">Select</option>
+                    <option value="food">food</option>
+                    <option value="electronics">electronics</option>
+                    <option value="accessories">accessories</option>
+                </select>
+                <span @*asp-validation-for="Category"*@ class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="OldPrice" class="form-label"></label>
+                <input asp-for="OldPrice" class="form-control">
+                <span asp-validation-for="OldPrice" class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="NewPrice" class="form-label"></label>
+                <input asp-for="NewPrice" class="form-control">
+                <span asp-validation-for="NewPrice" class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="InStock" class="form-label"></label>
+                <input asp-for="InStock" class="form-control">
+                <span asp-validation-for="InStock" class="text-danger"></span>
+            </div>
+        </fieldset>
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Product Photos</legend>
+            <div class="prod-photos-container mb-3 c-img-gallery">
+                <div class="prod-photo-card">
+                    <div class="btns-container">
+                        <a href="javascript:void(0)" onclick="expandImg(this)" class="c-btn link-dark text-decoration-none expand-img-btn" mzn-img-target="#prod2-photo1">
+                            <i class="fa-solid fa-expand"></i>
+                        </a>
+                        <a class="c-btn link-secondary text-decoration-none delete-img-btn"
+                           asp-area="Seller" asp-controller="ProductPhoto" asp-action="Delete" asp-route-id="1">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </div>
+                    <img id="prod2-photo1"
+                         src="/uploads/prod2-photo1.jpg" alt="Banner with ID of 1" />
+                </div>
+                <div class="prod-photo-card">
+                    <div class="btns-container">
+                        <a href="javascript:void(0)" onclick="expandImg(this)" class="c-btn link-dark text-decoration-none expand-img-btn" mzn-img-target="#prod2-photo2">
+                            <i class="fa-solid fa-expand"></i>
+                        </a>
+                        <a class="c-btn link-secondary text-decoration-none delete-img-btn"
+                           asp-area="Seller" asp-controller="ProductPhoto" asp-action="Delete" asp-route-id="1">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </div>
+                    <img id="prod2-photo2"
+                         src="/uploads/prod2-photo2.jpg" alt="Banner with ID of 1" />
+                </div>
+                <div class="prod-photo-card">
+                    <div class="btns-container">
+                        <a href="javascript:void(0)" onclick="expandImg(this)" class="c-btn link-dark text-decoration-none expand-img-btn" mzn-img-target="#prod2-photo3">
+                            <i class="fa-solid fa-expand"></i>
+                        </a>
+                        <a class="c-btn link-secondary text-decoration-none delete-img-btn"
+                           asp-area="Seller" asp-controller="ProductPhoto" asp-action="Delete" asp-route-id="1">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </div>
+                    <img id="prod2-photo3"
+                         src="/uploads/prod2-photo3.jpg" alt="Banner with ID of 1" />
+                </div>
+                <div id="prod-imgs-overlay" class="c-expanded-img-overlay" onclick="closeImgOverlay(this, arguments[0])">
+                    <div class="c-wrapper">
+                        <button type="button" onclick="this.parentElement.parentElement.classList.remove('active')" class="c-close-overlay-btn" mzn-overlay-target="#banner-img-overlay">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                        <img alt="Expanded Image" />
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3 d-flex gap-2">
+                <div>
+                    <label for="newBanner" class="btn-label-primary">Upload new image</label>
+                    <input type="file" class="new-prod-img" hidden accept="image/*" id="newBanner" name="" />
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Actions</legend>
+            <div class="mb-3 d-flex gap-2">
+                <a asp-area="Seller" asp-controller="Product"
+                   asp-action="Delete" asp-route-id="@Model.Id"
+                   class="btn-label-danger">
+                    Delete the product
+                </a>
+            </div>
+        </fieldset>
+        <hr />
+        <div class="px-3">
+            <button type="submit" class="btn btn-primary">Save changes</button>
+            <a asp-area="Seller" asp-controller="Product"
+                asp-action="Index"
+                class="btn btn-secondary">Back to list</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

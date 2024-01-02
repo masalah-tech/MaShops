@@ -1,10 +1,4 @@
-﻿@{
-    bool isSuperAdmin = true;
-    bool isAdmin = false;
-    bool isSeller = false;
-}
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -42,9 +36,9 @@
             </div>
             <div class="d-flex flex-row-reverse gap-2 align-items-center">
                 <div class="dropdown">
-                    <a class="p-0 ps-1" href="#" id="profile-dropdown" 
-                        role="button" data-bs-toggle="dropdown" aria-expanded="false" 
-                        data-bs-auto-close="outside">
+                    <a class="p-0 ps-1" href="#" id="profile-dropdown"
+                       role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                       data-bs-auto-close="outside">
                         <img src="~/img/mazen2.png" class="rounded-img" />
                     </a>
                     <ul class="profile-menu dropdown-menu py-0 overflow-hidden" aria-labelledby="profile-dropdown">
@@ -97,59 +91,17 @@
                 </div>
                 <ul class="list-unstyled m-0 accordion" id="sidenavAccordion">
                     <li>
-                        <a asp-area="Admin" asp-controller="Home" asp-action="Index"
+                        <a asp-area="Seller" asp-controller="Home" asp-action="Index"
                            class="text-decoration-none text-white d-flex align-items-center gap-3 sidenav-item @if(ViewData["Page"] == "Dashboard") WriteLiteral("active");">
-                            <i class="navlink-icon fa-solid fa-table-columns"></i>
+                            <i class="fa-solid fa-table-columns navlink-icon"></i>
                             <span class="navlink-text">Dashboard</span>
                         </a>
                     </li>
                     <li>
-                        <a asp-area="Admin" asp-controller="User" asp-action="Index"
-                           class="text-decoration-none text-white d-flex align-items-center gap-3 sidenav-item @if(ViewData["Page"] == "Users") WriteLiteral("active");">
-                            <i class="fa-solid fa-user-group navlink-icon"></i>
-                            <span class="navlink-text">Users</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-area="Admin" asp-controller="Banner" asp-action="Index"
-                           class="text-decoration-none text-white d-flex align-items-center gap-3 sidenav-item @if(ViewData["Page"] == "Banners") WriteLiteral("active");">
-                            <i class="fa-solid fa-images navlink-icon"></i>
-                            <span class="navlink-text">Banners</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-area="Admin" asp-controller="Category" asp-action="Index"
-                           class="text-decoration-none text-white d-flex align-items-center gap-3 sidenav-item @if(ViewData["Page"] == "Categories") WriteLiteral("active");">
-                            <i class="fa-solid fa-layer-group navlink-icon"></i>
-                            <span class="navlink-text">Categories</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-area="Admin" asp-controller="Sale" asp-action="Index"
-                           class="text-decoration-none text-white d-flex align-items-center gap-3 sidenav-item @if(ViewData["Page"] == "Sales") WriteLiteral("active");">
-                            <i class="fa-solid fa-truck-fast navlink-icon"></i>
-                            <span class="navlink-text">Sales</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-area="Admin" asp-controller="Store" asp-action="Index"
-                           class="text-decoration-none text-white d-flex align-items-center gap-3 sidenav-item @if(ViewData["Page"] == "Stores") WriteLiteral("active");">
-                            <i class="fa-solid fa-store navlink-icon"></i>
-                            <span class="navlink-text">Stores</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-area="Admin" asp-controller="Product" asp-action="Index"
+                        <a asp-area="Seller" asp-controller="Product" asp-action="Index"
                            class="text-decoration-none text-white d-flex align-items-center gap-3 sidenav-item @if(ViewData["Page"] == "Products") WriteLiteral("active");">
                             <i class="fa-solid fa-bag-shopping navlink-icon"></i>
                             <span class="navlink-text">Products</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-area="Admin" asp-controller="Cart" asp-action="Index"
-                           class="text-decoration-none text-white d-flex align-items-center gap-3 sidenav-item @if(ViewData["Page"] == "Carts") WriteLiteral("active");">
-                            <i class="fa-solid fa-cart-shopping navlink-icon"></i>
-                            <span class="navlink-text">Carts</span>
                         </a>
                     </li>
                 </ul>

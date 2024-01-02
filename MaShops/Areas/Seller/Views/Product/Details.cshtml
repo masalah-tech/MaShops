@@ -1,0 +1,156 @@
+﻿@model Product
+
+@{
+    ViewData["Title"] = Model.Name;
+    ViewData["Page"] = "Products";
+
+    bool hasDiscount =
+        Model.OldPrice != null
+        && Model.OldPrice != 0
+        && Model.OldPrice != Model.NewPrice;
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-area="Seller" asp-controller="Product" asp-action="Index"
+               class="text-decoration-none text-muted">Product</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a asp-area="Seller" asp-controller="Product" asp-action="Index"
+               class="text-decoration-none text-muted">List</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+            @{
+                if (Model.Name.Length > 50)
+                {
+                    WriteLiteral($"{Model.Name.Substring(0, 50)}...");
+                }
+                else
+                {
+                    WriteLiteral(Model.Name);
+                }
+            }
+        </li>
+    </ol>
+</nav>
+
+<div class="card px-0 py-3">
+    <form>
+        <div class="px-3 d-flex justify-content-between align-items-start">
+            @if (!string.IsNullOrWhiteSpace(Model.MainPosterURL))
+            {
+                <img src="@Model.MainPosterURL" alt="@Model.Name" class="product-poster-in-wide-card" />
+            }
+            else
+            {
+                <img src="~/img/user.png" alt="@Model.Name" class="product-poster-in-wide-card" />
+            }
+            <a asp-area="Seller" asp-controller="Product"
+                asp-action="Edit" asp-route-id="@Model.Id"
+                class="btn-label-primary">
+                Edit product details
+            </a>
+        </div>
+        <hr />
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Product Name</legend>
+            <div>
+                <h3 class="fs-5">
+                    @Model.Name
+                </h3>
+            </div>
+        </fieldset>
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Product Description</legend>
+            <div>
+                @Html.Raw(Model.HTMLDescription)
+            </div>
+        </fieldset>
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Other Details</legend>
+            <div class="mb-3 col-md-6">
+                <label for="productCategory" class="form-label">Product Category</label>
+                <input type="text" class="form-control" id="productCategory" readonly value="@Model.Category.Name">
+            </div>
+            @{
+                if (hasDiscount)
+                {
+                    <div class="mb-3 col-md-6">
+                        <label asp-for="OldPrice" class="form-label">Price before discount</label>
+                        <input asp-for="OldPrice" class="form-control" readonly>
+                    </div>
+                }
+            }
+            <div class="mb-3 col-md-6">
+                <label asp-for="NewPrice" class="form-label">
+                    @{
+                        if (hasDiscount)
+                        {
+                            WriteLiteral("Price after discount");
+                        }
+                        else
+                        {
+                            WriteLiteral("Price");
+                        }
+                    }
+                </label>
+                <input asp-for="NewPrice" class="form-control" readonly>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="InStock" class="form-label"></label>
+                <input asp-for="InStock" class="form-control" readonly>
+            </div>
+        </fieldset>
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Product Photos</legend>
+            <div class="prod-photos-container mb-3 c-img-gallery">
+                <div class="prod-photo-card">
+                    <div class="btns-container">
+                        <a href="javascript:void(0)" onclick="expandImg(this)" class="c-btn link-dark text-decoration-none expand-img-btn" mzn-img-target="#prod2-photo1">
+                            <i class="fa-solid fa-expand"></i>
+                        </a>
+                    </div>
+                    <img id="prod2-photo1"
+                            src="/uploads/prod2-photo1.jpg" alt="Banner with ID of 1" />
+                </div>
+                <div class="prod-photo-card">
+                    <div class="btns-container">
+                        <a href="javascript:void(0)" onclick="expandImg(this)" class="c-btn link-dark text-decoration-none expand-img-btn" mzn-img-target="#prod2-photo2">
+                            <i class="fa-solid fa-expand"></i>
+                        </a>
+                    </div>
+                    <img id="prod2-photo2"
+                         src="/uploads/prod2-photo2.jpg" alt="Banner with ID of 1" />
+                </div>
+                <div class="prod-photo-card">
+                    <div class="btns-container">
+                        <a href="javascript:void(0)" onclick="expandImg(this)" class="c-btn link-dark text-decoration-none expand-img-btn" mzn-img-target="#prod2-photo3">
+                            <i class="fa-solid fa-expand"></i>
+                        </a>
+                    </div>
+                    <img id="prod2-photo3"
+                         src="/uploads/prod2-photo3.jpg" alt="Banner with ID of 1" />
+                </div>
+                <div id="prod-imgs-overlay" class="c-expanded-img-overlay" onclick="closeImgOverlay(this, arguments[0])">
+                    <div class="c-wrapper">
+                        <button type="button" onclick="this.parentElement.parentElement.classList.remove('active')" class="c-close-overlay-btn" mzn-overlay-target="#banner-img-overlay">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                        <img alt="Expanded Image" />
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Actions</legend>
+            <div class="mb-3 d-flex gap-2">
+                <a asp-area="Seller" asp-controller="Product"
+                   asp-action="Delete" asp-route-id="@Model.Id"
+                   class="btn-label-danger">
+                    Delete the product
+                </a>
+            </div>
+        </fieldset>
+    </form>
+</div>
