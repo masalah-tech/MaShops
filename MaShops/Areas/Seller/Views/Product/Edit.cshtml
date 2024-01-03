@@ -50,7 +50,7 @@
         </div>
         <hr />
         <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
-            <legend class="w-auto px-2">Product Name</legend>
+            <legend class="w-auto px-2">Primary Details</legend>
             <div class="mb-3 col-md-6">
                 <label asp-for="Name" class="form-label"></label>
                 <textarea asp-for="Name" class="form-control"></textarea>
@@ -62,14 +62,11 @@
                 <span asp-validation-for="HTMLDescription" class="text-danger"></span>
             </div>
             <div class="mb-3 col-md-6">
-                <label class="form-label">Category</label>
-                <select class="form-control">
-                    <option value="Select">Select</option>
-                    <option value="food">food</option>
-                    <option value="electronics">electronics</option>
-                    <option value="accessories">accessories</option>
+                <label asp-for="CategoryId" class="form-label"></label>
+                <select asp-for="CategoryId" asp-items="ViewBag.categoryList" class="form-control">
+                    <option disabled selected>-- Select Category --</option>
                 </select>
-                <span @*asp-validation-for="Category"*@ class="text-danger"></span>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
             </div>
             <div class="mb-3 col-md-6">
                 <label asp-for="OldPrice" class="form-label"></label>

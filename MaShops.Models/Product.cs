@@ -14,6 +14,7 @@ namespace MaShops.Models
         [Required]
         public double NewPrice { get; set; }
         [Required]
+        [DisplayName("Product Main Poster")]
         public string MainPosterURL { get; set; }
         [Required]
         [ForeignKey("Store")]
@@ -26,6 +27,7 @@ namespace MaShops.Models
         [Required]
         public int InStock { get; set; }
         [Required]
+        [DisplayName("Description in HTML")]
         public string HTMLDescription { get; set; }
 
     }

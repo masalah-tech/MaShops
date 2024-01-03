@@ -2,6 +2,7 @@
 using MaShops.DataAccess.Repository.IRepository;
 using MaShops.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace MaShops.Areas.Admin.Controllers
@@ -26,6 +27,15 @@ namespace MaShops.Areas.Admin.Controllers
 
         public IActionResult Create()
         {
+            //IEnumerable<SelectListItem> roleList =
+            //    _unitOfWork.RoleRepository.GetAll().Select(c => new SelectListItem
+            //    {
+            //        Text = c.Title,
+            //        Value = c.Id.ToString()
+            //    });
+
+            //ViewBag.roleList = roleList;
+
             return View();
         }
 

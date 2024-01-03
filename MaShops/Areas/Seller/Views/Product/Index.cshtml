@@ -17,6 +17,19 @@
     </ol>
 </nav>
 
+<div class="card px-0 py-3">
+    <fieldset class="form-group border mt-2 px-1 pt-4 row mx-3">
+        <legend class="w-auto px-2">Actions</legend>
+        <div class="mb-3 d-flex gap-2">
+            <a asp-area="Seller" asp-controller="Product"
+               asp-action="Create"
+               class="btn-label-primary">
+                Add new product
+            </a>
+        </div>
+    </fieldset>
+</div>
+
 <div class="row px-2">
 
     @foreach (var product in Model)

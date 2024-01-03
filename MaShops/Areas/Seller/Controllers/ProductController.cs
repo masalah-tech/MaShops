@@ -2,6 +2,7 @@
 using MaShops.DataAccess.Repository.IRepository;
 using MaShops.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MaShops.Areas.Seller.Controllers
 {
@@ -43,6 +44,20 @@ namespace MaShops.Areas.Seller.Controllers
             return View(product);
         }
 
+        public IActionResult Create()
+        {
+            IEnumerable<SelectListItem> categoryList =
+                _unitOfWork.CategoryRepository.GetAll().Select(c => new SelectListItem
+                {
+                    Text = c.Name,
+                    Value = c.Id.ToString()
+                });
+
+            ViewBag.categoryList = categoryList;
+
+            return View();
+        }
+
         public IActionResult Edit(int id)
         {
             var product =
@@ -53,6 +68,15 @@ namespace MaShops.Areas.Seller.Controllers
             {
                 return NotFound();
             }
+
+            IEnumerable<SelectListItem> categoryList =
+                _unitOfWork.CategoryRepository.GetAll().Select(c => new SelectListItem
+                {
+                    Text = c.Name,
+                    Value = c.Id.ToString()
+                });
+
+            ViewBag.categoryList = categoryList;
 
             return View(product);
         }

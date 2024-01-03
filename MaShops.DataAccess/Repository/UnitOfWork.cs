@@ -27,6 +27,7 @@ namespace MaShops.DataAccess.Repository
         public IStoreRepository StoreRepository { get; private set; }
 
         public IUserRepository UserRepository { get; private set; }
+        public IRoleRepository RoleRepository { get; private set; }
 
         public UnitOfWork(AppDbContext context)
         {

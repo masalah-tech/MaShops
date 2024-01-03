@@ -1,0 +1,98 @@
+﻿@model Product
+
+@{
+    ViewData["Title"] = "Add New Product";
+    ViewData["Page"] = "Products";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-area="Seller" asp-controller="Product" asp-action="Index"
+               class="text-decoration-none text-muted">Product</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a asp-area="Seller" asp-controller="Product" asp-action="Index"
+               class="text-decoration-none text-muted">List</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+            Add New Product
+        </li>
+    </ol>
+</nav>
+
+<div class="card px-0 py-3">
+    <form method="post">
+        <fieldset class="form-group border mt-2 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Primary Details</legend>
+            <div class="mb-3 col-md-6">
+                <label asp-for="Name" class="form-label"></label>
+                <textarea asp-for="Name" class="form-control"></textarea>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="HTMLDescription" class="form-label"></label>
+                <textarea asp-for="HTMLDescription" class="form-control"></textarea>
+                <span asp-validation-for="HTMLDescription" class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="CategoryId" class="form-label"></label>
+                <select asp-for="CategoryId" asp-items="ViewBag.categoryList" class="form-control">
+                    <option disabled selected>-- Select Category --</option>
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="OldPrice" class="form-label"></label>
+                <input asp-for="OldPrice" class="form-control">
+                <span asp-validation-for="OldPrice" class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="NewPrice" class="form-label"></label>
+                <input asp-for="NewPrice" class="form-control">
+                <span asp-validation-for="NewPrice" class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="InStock" class="form-label"></label>
+                <input asp-for="InStock" class="form-control">
+                <span asp-validation-for="InStock" class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="MainPosterURL" class="form-label"></label>
+                <input asp-for="MainPosterURL" type="file" class="form-control">
+                <span asp-validation-for="MainPosterURL" class="text-danger"></span>
+            </div>
+        </fieldset>
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+            <legend class="w-auto px-2">Product Photos</legend>
+            <div class="prod-photos-container mb-3 c-img-gallery">
+                <div id="prod-imgs-overlay" class="c-expanded-img-overlay" onclick="closeImgOverlay(this, arguments[0])">
+                    <div class="c-wrapper">
+                        <button type="button" onclick="this.parentElement.parentElement.classList.remove('active')" class="c-close-overlay-btn" mzn-overlay-target="#banner-img-overlay">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                        <img alt="Expanded Image" />
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3 d-flex gap-2">
+                <div>
+                    <label for="newBanner" class="btn-label-primary">Upload new photo</label>
+                    <input type="file" class="new-prod-img" hidden accept="image/*" id="newBanner" name="" />
+                </div>
+            </div>
+        </fieldset>
+        <hr />
+        <div class="mx-3">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a asp-area="Seller" asp-controller="Product" asp-action="Index"
+               class="btn btn-secondary">
+                Back to list
+            </a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
