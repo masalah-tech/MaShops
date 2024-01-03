@@ -1,7 +1,7 @@
-﻿@model Product
+﻿@model ProductVM
 
 @{
-    ViewData["Title"] = $"Edit { Model.Name }";
+    ViewData["Title"] = $"Edit { Model.Product.Name }";
     ViewData["Page"] = "Products";
 
 }
@@ -18,13 +18,13 @@
         </li>
         <li class="breadcrumb-item active" aria-current="page">
             @{
-                if (Model.Name.Length > 45)
+                if (Model.Product.Name.Length > 45)
                 {
-                    WriteLiteral($"Edit {Model.Name.Substring(0, 45)}...");
+                    WriteLiteral($"Edit {Model.Product.Name.Substring(0, 45)}...");
                 }
                 else
                 {
-                    WriteLiteral($"Edit {Model.Name}");
+                    WriteLiteral($"Edit {Model.Product.Name}");
                 }
             }
         </li>
@@ -35,53 +35,53 @@
     <form method="post">
         <div asp-validation-summary="All" class="text-danger"></div>
         <div class="px-3 mb-2 d-flex gap-3 align-items-center">
-            @if (!string.IsNullOrWhiteSpace(Model.MainPosterURL))
+            @if (!string.IsNullOrWhiteSpace(Model.Product.MainPosterURL))
             {
-                <img src="@Model.MainPosterURL" alt="@Model.Name" class="product-poster-in-wide-card" />
+                <img src="@Model.Product.MainPosterURL" alt="@Model.Product.Name" class="product-poster-in-wide-card" />
             }
             else
             {
-                <img src="~/img/user.png" alt="@Model.Name" class="product-poster-in-wide-card" />
+                <img src="~/img/user.png" alt="@Model.Product.Name" class="product-poster-in-wide-card" />
             }
             <div>
                 <label for="UserPersonalPhoto" class="btn-label-primary">Upload new photo</label>
-                <input asp-for="MainPosterURL" type="file" class="photo-immediate-change" hidden accept="image/*" id="UserPersonalPhoto" />
+                <input asp-for="Product.MainPosterURL" type="file" class="photo-immediate-change" hidden accept="image/*" id="UserPersonalPhoto" />
             </div>
         </div>
         <hr />
         <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
             <legend class="w-auto px-2">Primary Details</legend>
             <div class="mb-3 col-md-6">
-                <label asp-for="Name" class="form-label"></label>
-                <textarea asp-for="Name" class="form-control"></textarea>
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <label asp-for="Product.Name" class="form-label"></label>
+                <textarea asp-for="Product.Name" class="form-control"></textarea>
+                <span asp-validation-for="Product.Name" class="text-danger"></span>
             </div>
             <div class="mb-3 col-md-6">
-                <label asp-for="HTMLDescription" class="form-label"></label>
-                <textarea asp-for="HTMLDescription" class="form-control"></textarea>
-                <span asp-validation-for="HTMLDescription" class="text-danger"></span>
+                <label asp-for="Product.HTMLDescription" class="form-label"></label>
+                <textarea asp-for="Product.HTMLDescription" class="form-control"></textarea>
+                <span asp-validation-for="Product.HTMLDescription" class="text-danger"></span>
             </div>
             <div class="mb-3 col-md-6">
-                <label asp-for="CategoryId" class="form-label"></label>
-                <select asp-for="CategoryId" asp-items="ViewBag.categoryList" class="form-control">
+                <label asp-for="Product.CategoryId" class="form-label"></label>
+                <select asp-for="Product.CategoryId" asp-items="Model.CategoryList" class="form-control">
                     <option disabled selected>-- Select Category --</option>
                 </select>
-                <span asp-validation-for="CategoryId" class="text-danger"></span>
+                <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
             </div>
             <div class="mb-3 col-md-6">
-                <label asp-for="OldPrice" class="form-label"></label>
-                <input asp-for="OldPrice" class="form-control">
-                <span asp-validation-for="OldPrice" class="text-danger"></span>
+                <label asp-for="Product.OldPrice" class="form-label"></label>
+                <input asp-for="Product.OldPrice" class="form-control">
+                <span asp-validation-for="Product.OldPrice" class="text-danger"></span>
             </div>
             <div class="mb-3 col-md-6">
-                <label asp-for="NewPrice" class="form-label"></label>
-                <input asp-for="NewPrice" class="form-control">
-                <span asp-validation-for="NewPrice" class="text-danger"></span>
+                <label asp-for="Product.NewPrice" class="form-label"></label>
+                <input asp-for="Product.NewPrice" class="form-control">
+                <span asp-validation-for="Product.NewPrice" class="text-danger"></span>
             </div>
             <div class="mb-3 col-md-6">
-                <label asp-for="InStock" class="form-label"></label>
-                <input asp-for="InStock" class="form-control">
-                <span asp-validation-for="InStock" class="text-danger"></span>
+                <label asp-for="Product.InStock" class="form-label"></label>
+                <input asp-for="Product.InStock" class="form-control">
+                <span asp-validation-for="Product.InStock" class="text-danger"></span>
             </div>
         </fieldset>
         <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
@@ -146,7 +146,7 @@
             <legend class="w-auto px-2">Actions</legend>
             <div class="mb-3 d-flex gap-2">
                 <a asp-area="Seller" asp-controller="Product"
-                   asp-action="Delete" asp-route-id="@Model.Id"
+                   asp-action="Delete" asp-route-id="@Model.Product.Id"
                    class="btn-label-danger">
                     Delete the product
                 </a>

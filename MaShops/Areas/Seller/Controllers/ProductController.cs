@@ -1,6 +1,7 @@
 ﻿using MaShops.DataAccess.Repository;
 using MaShops.DataAccess.Repository.IRepository;
 using MaShops.Models;
+using MaShops.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -46,16 +47,17 @@ namespace MaShops.Areas.Seller.Controllers
 
         public IActionResult Create()
         {
-            IEnumerable<SelectListItem> categoryList =
-                _unitOfWork.CategoryRepository.GetAll().Select(c => new SelectListItem
+            ProductVM productVM = new ProductVM
+            {
+                Product = new Product(),
+                CategoryList = _unitOfWork.CategoryRepository.GetAll().Select(c => new SelectListItem
                 {
                     Text = c.Name,
                     Value = c.Id.ToString()
-                });
+                })
+            };
 
-            ViewBag.categoryList = categoryList;
-
-            return View();
+            return View(productVM);
         }
 
         public IActionResult Edit(int id)
@@ -69,29 +71,42 @@ namespace MaShops.Areas.Seller.Controllers
                 return NotFound();
             }
 
-            IEnumerable<SelectListItem> categoryList =
-                _unitOfWork.CategoryRepository.GetAll().Select(c => new SelectListItem
-                {
-                    Text = c.Name,
-                    Value = c.Id.ToString()
-                });
+            var productVM = new ProductVM
+            {
+                Product = product,
+                CategoryList = _unitOfWork.CategoryRepository.GetAll().Select(c => new SelectListItem
+                    {
+                        Text = c.Name,
+                        Value = c.Id.ToString()
+                    })
+            };
 
-            ViewBag.categoryList = categoryList;
-
-            return View(product);
+            return View(productVM);
         }
 
         [HttpPost]
-        public IActionResult Edit(Product product)
+        public IActionResult Edit(ProductVM productVM)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.ProductRepository.Update(product);
+                _unitOfWork.ProductRepository.Update(productVM.Product);
                 _unitOfWork.Save();
                 TempData["success"] = "Product updated successfully";
             }
+            else
+            {
+                productVM = new ProductVM
+                {
+                    Product = productVM.Product,
+                    CategoryList = _unitOfWork.CategoryRepository.GetAll().Select(c => new SelectListItem
+                    {
+                        Text = c.Name,
+                        Value = c.Id.ToString()
+                    })
+                };
+            }
 
-            return View(product);
+            return View(productVM);
         }
 
         public IActionResult Delete(int id)

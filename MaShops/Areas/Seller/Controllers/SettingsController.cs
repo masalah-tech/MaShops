@@ -1,4 +1,5 @@
 ﻿using MaShops.DataAccess.Repository.IRepository;
+using MaShops.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MaShops.Areas.Seller.Controllers
@@ -25,7 +26,39 @@ namespace MaShops.Areas.Seller.Controllers
                 return NotFound();
             }
 
-            return View(store);
+            var seller =
+                _unitOfWork.UserRepository
+                .Get(s => s.Id == _sellerId);
+
+            if (seller == null)
+            {
+                return NotFound();
+            }
+
+            var sellerSettingsVM = new SellerSettingsVM
+            {
+                Seller = seller,
+                Store = store
+            };
+
+            return View(sellerSettingsVM);
+        }
+
+        [HttpPost]
+        public IActionResult Index(SellerSettingsVM sellerSettingsVM)
+        {
+            if (ModelState.IsValid)
+            {
+                _unitOfWork.StoreRepository.Update(sellerSettingsVM.Store);
+                _unitOfWork.UserRepository.Update(sellerSettingsVM.Seller);
+                _unitOfWork.Save();
+
+                TempData["Success"] = "Settings updated successfully";
+
+                return View(sellerSettingsVM);
+            }
+
+            return View(sellerSettingsVM);
         }
 
         public IActionResult DeleteStore() 
