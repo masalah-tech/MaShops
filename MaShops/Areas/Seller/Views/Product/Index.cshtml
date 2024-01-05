@@ -22,7 +22,7 @@
         <legend class="w-auto px-2">Actions</legend>
         <div class="mb-3 d-flex gap-2">
             <a asp-area="Seller" asp-controller="Product"
-               asp-action="Create"
+               asp-action="Upsert"
                class="btn-label-primary">
                 Add new product
             </a>
@@ -75,7 +75,7 @@
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <li>
                                 <a asp-area="Seller" asp-controller="Product"
-                                   asp-action="Edit" asp-route-id="@product.Id"
+                                   asp-action="Upsert" asp-route-id="@product.Id"
                                    class="dropdown-item link-dark">
                                     Edit product details
                                 </a>

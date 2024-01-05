@@ -25,14 +25,14 @@
     <form method="post">
         <fieldset class="form-group border mt-2 px-1 pt-4 row mx-3">
             <legend class="w-auto px-2">Primary Details</legend>
-            <div class="mb-3 col-md-6">
+            <div class="mb-3 col-12">
                 <label asp-for="Product.Name" class="form-label"></label>
                 <textarea asp-for="Product.Name" class="form-control"></textarea>
                 <span asp-validation-for="Product.Name" class="text-danger"></span>
             </div>
-            <div class="mb-3 col-md-6">
-                <label asp-for="Product.HTMLDescription" class="form-label"></label>
-                <textarea asp-for="Product.HTMLDescription" class="form-control"></textarea>
+            <div class="mb-3 col-12">
+                <label for="prod-description" asp-for="Product.HTMLDescription" class="form-label"></label>
+                <textarea id="prod-description" asp-for="Product.HTMLDescription" class="form-control"></textarea>
                 <span asp-validation-for="Product.HTMLDescription" class="text-danger"></span>
             </div>
             <div class="mb-3 col-md-6">
@@ -95,4 +95,20 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdn.tiny.cloud/1/95r8bozpecv1cav6vgy3acmehl91ldom7z6ipvsccf321x47/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '#prod-description',
+            plugins: 'lists wordcount checklist casechange tinymcespellchecker',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            menubar: false,
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ],
+            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+        });
+    </script>
 }

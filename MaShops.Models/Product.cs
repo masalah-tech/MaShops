@@ -22,12 +22,13 @@ namespace MaShops.Models
         public Store Store { get; set; }
         [Required]
         [ForeignKey("Category")]
+        [DisplayName("Category")]
         public int CategoryId { get; set; }
         public Category Category { get; set; }
         [Required]
         public int InStock { get; set; }
         [Required]
-        [DisplayName("Description in HTML")]
+        [DisplayName("Product Description")]
         public string HTMLDescription { get; set; }
 
     }

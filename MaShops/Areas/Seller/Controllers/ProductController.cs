@@ -45,7 +45,7 @@ namespace MaShops.Areas.Seller.Controllers
             return View(product);
         }
 
-        public IActionResult Create()
+        public IActionResult Upsert(int? id)
         {
             ProductVM productVM = new ProductVM
             {
@@ -57,29 +57,49 @@ namespace MaShops.Areas.Seller.Controllers
                 })
             };
 
+            if (id != 0 && id != null)
+            {
+                var product =
+                    _unitOfWork.ProductRepository
+                    .Get(p => p.Id == id);
+
+                if (product == null)
+                {
+                    return NotFound();
+                }
+
+                productVM.Product = product;
+            }
+
             return View(productVM);
         }
 
-        public IActionResult Edit(int id)
+        [HttpPost]
+        public IActionResult Upsert(ProductVM productVM)
         {
-            var product =
-                _unitOfWork.ProductRepository
-                .Get(p => p.Id == id);
+            //ProductVM productVM = new ProductVM
+            //{
+            //    Product = new Product(),
+            //    CategoryList = _unitOfWork.CategoryRepository.GetAll().Select(c => new SelectListItem
+            //    {
+            //        Text = c.Name,
+            //        Value = c.Id.ToString()
+            //    })
+            //};
 
-            if (product == null)
-            {
-                return NotFound();
-            }
+            //if (id != 0 && id != null)
+            //{
+            //    var product =
+            //        _unitOfWork.ProductRepository
+            //        .Get(p => p.Id == id);
 
-            var productVM = new ProductVM
-            {
-                Product = product,
-                CategoryList = _unitOfWork.CategoryRepository.GetAll().Select(c => new SelectListItem
-                    {
-                        Text = c.Name,
-                        Value = c.Id.ToString()
-                    })
-            };
+            //    if (product == null)
+            //    {
+            //        return NotFound();
+            //    }
+
+            //    productVM.Product = product;
+            //}
 
             return View(productVM);
         }
