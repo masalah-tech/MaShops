@@ -71,11 +71,11 @@
                 <span asp-validation-for="User.PhotoURL" class="text-danger"></span>
             </div>
             <div class="mb-3 col-md-6">
-                <label asp-for="UserRole.RoleId" class="form-label">Role</label>
-                <select asp-for="UserRole.RoleId" asp-items="Model.RoleList" class="form-control">
+                <label asp-for="UserRoles[0].RoleId" class="form-label">Role</label>
+                <select asp-for="UserRoles[0].RoleId" asp-items="Model.RoleList" class="form-select">
                     <option disabled selected>-- Select Role --</option>
                 </select>
-                <span asp-validation-for="UserRole.RoleId" class="text-danger"></span>
+                <span asp-validation-for="UserRoles[0].RoleId" class="text-danger"></span>
             </div>
         </fieldset>
         <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">

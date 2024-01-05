@@ -276,12 +276,23 @@ function openSelectContent(outerBox) {
 
 // closeSelectContent() hides the custom select items container
 function closeSelectContent(outerBox) {
-    outerBox.classList.remove("active");
-    outerBox.querySelector(".c-search-select-items-input").value = "";
+    const searchField =
+        outerBox.querySelector(".c-search-select-items-input");
+    const selectItems =
+        outerBox.querySelectorAll(".c-select-item");
+    const selectedItemInput =
+        outerBox.querySelector(".c-selected-item");
 
-    outerBox.querySelectorAll(".c-select-item").forEach(selectItem => {
+    outerBox.classList.remove("active");
+    searchField.value = "";
+
+    selectItems.forEach(selectItem => {
         selectItem.classList.remove("hide");
     })
+
+    // This to solve the problem of jQuery validation
+    selectedItemInput.focus();
+    selectedItemInput.blur();
 }
 
 // showPassText(outerBox) replaces the dots in the password

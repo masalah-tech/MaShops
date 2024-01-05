@@ -30,9 +30,12 @@ namespace MaShops.Areas.Admin.Controllers
         {
             var user = new User();
 
-            var userRole = new UserRole
+            var userRoles = new List<UserRole>
             {
-                UserId = user.Id,
+                new UserRole
+                {
+                    UserId = user.Id,                
+                }
             };
             
             IEnumerable<SelectListItem> roleList =
@@ -47,7 +50,7 @@ namespace MaShops.Areas.Admin.Controllers
             var userVM = new UserVM
             {
                 User = user,
-                UserRole = userRole,
+                UserRoles = userRoles,
                 RoleList = roleList
             };
 
@@ -61,8 +64,14 @@ namespace MaShops.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 userVM.User.Status = true;
+
                 _unitOfWork.UserRepository.Add(userVM.User);
                 _unitOfWork.Save();
+
+                userVM.UserRoles[0].UserId = userVM.User.Id;
+                _unitOfWork.UserRoleRepository.Add(userVM.UserRoles[0]);
+                _unitOfWork.Save();
+
                 TempData["success"] = "User created successfully";
                 return RedirectToAction("Index");
             }
@@ -99,7 +108,7 @@ namespace MaShops.Areas.Admin.Controllers
         {
             IEnumerable<SelectListItem> roleList =
                 _unitOfWork.RoleRepository
-                    .GetRange(c => c.Title != "Seller")
+                    .GetRange(c => c.Title == "Super Admin" || c.Title == "Admin")
                     .Select(c => new SelectListItem
                     {
                         Text = c.Title,
@@ -115,15 +124,16 @@ namespace MaShops.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var userRole = 
+            var userRoles = 
                 _unitOfWork.UserRoleRepository
-                .Get(ur => ur.UserId == id);
+                .GetRange(ur => ur.UserId == id)
+                .ToList();
 
             var userVM = new UserVM
             {
                 RoleList = roleList,
                 User = user,
-                UserRole = userRole
+                UserRoles = userRoles
             };
 
             return View(userVM);

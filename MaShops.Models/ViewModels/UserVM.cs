@@ -11,7 +11,7 @@ namespace MaShops.Models.ViewModels
     public class UserVM
     {
         public User User { get; set; }
-        public UserRole UserRole { get; set; }
+        public List<UserRole> UserRoles { get; set; }
         [ValidateNever]
         public IEnumerable<SelectListItem> RoleList { get; set; }
     }
