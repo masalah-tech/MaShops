@@ -9,19 +9,19 @@ using System.Threading.Tasks;
 
 namespace MaShops.DataAccess.Repository
 {
-    public class RoleRepository : Repository<Role>, IRoleRepository
+    public class UserRoleRepository : Repository<UserRole>, IUserRoleRepository
     {
         private readonly AppDbContext _context;
 
-        public RoleRepository(AppDbContext context)
+        public UserRoleRepository(AppDbContext context)
             : base(context)
         {
             _context = context;
         }
 
-        public void Update(Role role)
+        public void Update(UserRole userRole)
         {
-            _context.Roles.Update(role);
+            _context.UsersRoles.Update(userRole);
         }
     }
 }

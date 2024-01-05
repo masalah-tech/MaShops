@@ -1,12 +1,8 @@
-﻿@using MaShops
-@using MaShops.Models
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-
-@model User
+﻿@model UserVM
 
 @{
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
-    ViewData["Title"] = $"Edit { Model.FirstName } { Model.LastName }";
+    ViewData["Title"] = $"Edit {Model.User.FirstName} {Model.User.LastName}";
     ViewData["Page"] = "Users";
 }
 
@@ -21,55 +17,55 @@
                class="text-decoration-none text-muted">List</a>
         </li>
         <li class="breadcrumb-item active" aria-current="page">
-            Edit @string.Format("{0} {1}", Model.FirstName, Model.LastName)
+            Edit @string.Format("{0} {1}", Model.User.FirstName, Model.User.LastName)
         </li>
     </ol>
 </nav>
 
 <div class="card px-0 py-3">
     <form method="post">
-        <input asp-for="Status" type="hidden" />
+        <input asp-for="User.Status" type="hidden" />
         <div class="px-3 mb-2 d-flex gap-3 align-items-center">
-            @if (!string.IsNullOrWhiteSpace(Model.PhotoURL))
+            @if (!string.IsNullOrWhiteSpace(Model.User.PhotoURL))
             {
-                <img src="@Model.PhotoURL" alt="@Model.FirstName" class="circular-user-photo Large" />
+                <img src="@Model.User.PhotoURL" alt="@Model.User.FirstName" class="circular-user-photo Large" />
             }
             else
             {
-                <img src="~/img/user.png" alt="@Model.FirstName" class="circular-user-photo Large" />
+                <img src="~/img/user.png" alt="@Model.User.FirstName" class="circular-user-photo Large" />
             }
             <div>
                 <label for="UserPersonalPhoto" class="btn-label-primary">Upload new photo</label>
-                <input asp-for="PhotoURL" type="file" class="photo-immediate-change" hidden accept="image/*" id="UserPersonalPhoto" />
+                <input asp-for="User.PhotoURL" type="file" class="photo-immediate-change" hidden accept="image/*" id="UserPersonalPhoto" />
             </div>
         </div>
         <hr />
         <fieldset class="form-group border mt-3 px-1 pt-4 row mx-3">
             <legend class="w-auto px-2">Primary Information</legend>
             <div class="mb-3 col-md-6">
-                <label asp-for="FirstName" class="form-label"></label>
-                <input asp-for="FirstName" class="form-control">
-                <span asp-validation-for="FirstName" class="text-danger"></span>
+                <label asp-for="User.FirstName" class="form-label"></label>
+                <input asp-for="User.FirstName" class="form-control">
+                <span asp-validation-for="User.FirstName" class="text-danger"></span>
             </div>
             <div class="mb-3 col-md-6">
-                <label asp-for="SecondName" class="form-label"></label>
-                <input asp-for="SecondName" class="form-control">
-                <span asp-validation-for="SecondName" class="text-danger"></span>
+                <label asp-for="User.SecondName" class="form-label"></label>
+                <input asp-for="User.SecondName" class="form-control">
+                <span asp-validation-for="User.SecondName" class="text-danger"></span>
             </div>
             <div class="mb-3 col-md-6">
-                <label asp-for="ThirdName" class="form-label"></label>
-                <input asp-for="ThirdName" class="form-control">
-                <span asp-validation-for="ThirdName" class="text-danger"></span>
+                <label asp-for="User.ThirdName" class="form-label"></label>
+                <input asp-for="User.ThirdName" class="form-control">
+                <span asp-validation-for="User.ThirdName" class="text-danger"></span>
             </div>
             <div class="mb-3 col-md-6">
-                <label asp-for="LastName" class="form-label"></label>
-                <input asp-for="LastName" class="form-control">
-                <span asp-validation-for="LastName" class="text-danger"></span>
+                <label asp-for="User.LastName" class="form-label"></label>
+                <input asp-for="User.LastName" class="form-control">
+                <span asp-validation-for="User.LastName" class="text-danger"></span>
             </div>
             <div class="mb-3 col-md-6 c-select-box">
-                <label asp-for="Nationality" class="form-label"></label>
+                <label asp-for="User.Nationality" class="form-label"></label>
                 <div class="c-select-option">
-                    <input class="c-selected-item form-control" asp-for="Nationality" readonly />
+                    <input class="c-selected-item form-control" asp-for="User.Nationality" readonly />
                 </div>
                 <div class="c-select-items-container">
                     <div class="c-search-select-items-input-wrapper">
@@ -79,50 +75,40 @@
                     </ul>
                     <p class="c-no-match-msg">No results found</p>
                 </div>
-                <span asp-validation-for="Nationality" class="text-danger"></span>
+                <span asp-validation-for="User.Nationality" class="text-danger"></span>
             </div>
             <div class="mb-3 col-md-6">
-                <label asp-for="BirthDate" class="form-label"></label>
-                <input asp-for="BirthDate" type="date" class="form-control">
-                <span asp-validation-for="BirthDate" class="text-danger"></span>
+                <label asp-for="User.BirthDate" class="form-label"></label>
+                <input asp-for="User.BirthDate" type="date" class="form-control">
+                <span asp-validation-for="User.BirthDate" class="text-danger"></span>
             </div>
-            @*<div class="mb-3 col-md-6">
-                <label asp-for="PhotoURL" class="form-label"></label>
-                <input asp-for="PhotoURL" type="file" class="form-control">
-                <span asp-validation-for="PhotoURL" class="text-danger"></span>
-            </div>*@
             <div class="mb-3 col-md-6">
-                <label for="role" class="form-label">Role</label>
-                <select id="role" multiple class="form-control">
-                    <option value="Select">Select</option>
-                    <option value="Super Admin">Super Admin</option>
-                    <option value="Admin">Admin</option>
-                    <option value="Seller">Seller</option>
-                    <option value="Customer">Customer</option>
+                <label asp-for="UserRole.RoleId" class="form-label"></label>
+                <select asp-for="UserRole.RoleId" asp-items="Model.RoleList" multiple class="form-control">
                 </select>
-                <span @*asp-validation-for=""*@ class="text-danger"></span>
+                <span asp-validation-for="UserRole.RoleId" class="text-danger"></span>
             </div>
         </fieldset>
         <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
             <legend class="w-auto px-2">Contact Details</legend>
             <div class="mb-3 col-md-6">
-                <label asp-for="PhoneNumber" class="form-label"></label>
-                <input asp-for="PhoneNumber" class="form-control">
-                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                <label asp-for="User.PhoneNumber" class="form-label"></label>
+                <input asp-for="User.PhoneNumber" class="form-control">
+                <span asp-validation-for="User.PhoneNumber" class="text-danger"></span>
             </div>
             <div class="mb-3 col-md-6">
-                <label asp-for="Email" class="form-label"></label>
-                <input asp-for="Email" type="email" class="form-control">
-                <span asp-validation-for="Email" class="text-danger"></span>
+                <label asp-for="User.Email" class="form-label"></label>
+                <input asp-for="User.Email" type="email" class="form-control">
+                <span asp-validation-for="User.Email" class="text-danger"></span>
             </div>
         </fieldset>
         <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
             <legend class="w-auto px-2">Address Details</legend>
             <div class="mb-3 col-md-6 c-select-box">
-                <label asp-for="Address.Country" class="form-label"></label>
+                <label asp-for="User.Address.Country" class="form-label"></label>
                 <div class="c-select-option">
                     <input class="c-selected-item form-control"
-                           asp-for="Address.Country" readonly />
+                           asp-for="User.Address.Country" readonly />
                 </div>
                 <div class="c-select-items-container">
                     <div class="c-search-select-items-input-wrapper">
@@ -132,56 +118,56 @@
                     </ul>
                     <p class="c-no-match-msg">No results found</p>
                 </div>
-                <span asp-validation-for="Address.Country" class="text-danger"></span>
+                <span asp-validation-for="User.Address.Country" class="text-danger"></span>
             </div>
             <div class="mb-3 col-md-6">
-                <label asp-for="Address.City" class="form-label"></label>
-                <input asp-for="Address.City" class="form-control">
-                <span asp-validation-for="Address.City" class="text-danger"></span>
+                <label asp-for="User.Address.City" class="form-label"></label>
+                <input asp-for="User.Address.City" class="form-control">
+                <span asp-validation-for="User.Address.City" class="text-danger"></span>
             </div>
             <div class="mb-3 col-md-6">
-                <label asp-for="Address.Street" class="form-label"></label>
-                <input asp-for="Address.Street" class="form-control">
-                <span asp-validation-for="Address.Street" class="text-danger"></span>
+                <label asp-for="User.Address.Street" class="form-label"></label>
+                <input asp-for="User.Address.Street" class="form-control">
+                <span asp-validation-for="User.Address.Street" class="text-danger"></span>
             </div>
             <div class="mb-3 col-md-6">
-                <label asp-for="Address.AppartmentNo" class="form-label"></label>
-                <input asp-for="Address.AppartmentNo" class="form-control">
-                <span asp-validation-for="Address.AppartmentNo" class="text-danger"></span>
+                <label asp-for="User.Address.AppartmentNo" class="form-label"></label>
+                <input asp-for="User.Address.AppartmentNo" class="form-control">
+                <span asp-validation-for="User.Address.AppartmentNo" class="text-danger"></span>
             </div>
             <div class="mb-3 col-md-6">
-                <label asp-for="Address.ZipCode" class="form-label"></label>
-                <input asp-for="Address.ZipCode" class="form-control">
-                <span asp-validation-for="Address.ZipCode" class="text-danger"></span>
+                <label asp-for="User.Address.ZipCode" class="form-label"></label>
+                <input asp-for="User.Address.ZipCode" class="form-control">
+                <span asp-validation-for="User.Address.ZipCode" class="text-danger"></span>
             </div>
         </fieldset>
         <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
             <legend class="w-auto px-2">Credentials</legend>
             <div class="mb-3 col-md-6">
-                <label asp-for="Username" class="form-label"></label>
-                <input asp-for="Username" class="form-control">
-                <span asp-validation-for="Username" class="text-danger"></span>
+                <label asp-for="User.Username" class="form-label"></label>
+                <input asp-for="User.Username" class="form-control">
+                <span asp-validation-for="User.Username" class="text-danger"></span>
             </div>
             <div class="mb-3 mb-3 col-md-6">
-                <label asp-for="EncPassword" class="form-label"></label>
+                <label asp-for="User.EncPassword" class="form-label"></label>
                 <div class="c-eye-pass-box">
-                    <input asp-for="EncPassword" class="form-control">
+                    <input asp-for="User.EncPassword" class="form-control">
                     <div class="c-pass-icon-wrapper">
                         <i class="fa-solid fa-eye c-icon show-pass-btn"></i>
                         <i class="fa-solid fa-eye-slash c-icon active hide-pass-btn"></i>
                     </div>
                 </div>
-                <span asp-validation-for="EncPassword" class="text-danger"></span>
+                <span asp-validation-for="User.EncPassword" class="text-danger"></span>
             </div>
         </fieldset>
         <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
             <legend class="w-auto px-2">Actions</legend>
             <div class="mb-3 d-flex gap-2">
                 @{
-                    if (Model.Status)
+                    if (Model.User.Status)
                     {
-                        <a asp-area="Admin" asp-controller="User" 
-                            asp-action="Deactivate" asp-route-id="@Model.Id"
+                        <a asp-area="Admin" asp-controller="User"
+                           asp-action="Deactivate" asp-route-id="@Model.User.Id"
                            class="btn-label-warning">
                             Deactivate the user
                         </a>
@@ -189,14 +175,14 @@
                     else
                     {
                         <a asp-area="Admin" asp-controller="User"
-                           asp-action="Activate" asp-route-id="@Model.Id"
+                           asp-action="Activate" asp-route-id="@Model.User.Id"
                            class="btn-label-primary">
                             Activate the user
                         </a>
                     }
                 }
                 <a asp-area="Admin" asp-controller="User"
-                   asp-action="Delete" asp-route-id="@Model.Id"
+                   asp-action="Delete" asp-route-id="@Model.User.Id"
                    class="btn-label-danger">
                     Delete the user
                 </a>

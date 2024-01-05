@@ -1,6 +1,7 @@
 ﻿using MaShops.DataAccess.Data;
 using MaShops.DataAccess.Repository.IRepository;
 using MaShops.Models;
+using MaShops.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -27,41 +28,57 @@ namespace MaShops.Areas.Admin.Controllers
 
         public IActionResult Create()
         {
-            //IEnumerable<SelectListItem> roleList =
-            //    _unitOfWork.RoleRepository.GetAll().Select(c => new SelectListItem
-            //    {
-            //        Text = c.Title,
-            //        Value = c.Id.ToString()
-            //    });
+            var user = new User();
 
-            //ViewBag.roleList = roleList;
+            var userRole = new UserRole
+            {
+                UserId = user.Id,
+            };
+            
+            IEnumerable<SelectListItem> roleList =
+                _unitOfWork.RoleRepository
+                    .GetRange(c => c.Title != "Seller")
+                    .Select(c => new SelectListItem
+                    {
+                        Text = c.Title,
+                        Value = c.Id.ToString()
+                    });
 
-            return View();
+            var userVM = new UserVM
+            {
+                User = user,
+                UserRole = userRole,
+                RoleList = roleList
+            };
+
+            return View(userVM);
         }
 
         [HttpPost]
-        public IActionResult Create(User user)
+        public IActionResult Create(UserVM userVM)
         {
-            if (user.Nationality == "Select")
-            {
-                ModelState.AddModelError("Nationality", "The Nationality field is required.");
-            }
-
-            if (user.Address.Country == "Select")
-            {
-                ModelState.AddModelError("Address.Country", "The Country field is required.");
-            }
 
             if (ModelState.IsValid)
             {
-                user.Status = true;
-                _unitOfWork.UserRepository.Add(user);
+                userVM.User.Status = true;
+                _unitOfWork.UserRepository.Add(userVM.User);
                 _unitOfWork.Save();
                 TempData["success"] = "User created successfully";
                 return RedirectToAction("Index");
             }
+            else
+            {
+                userVM.RoleList = 
+                    _unitOfWork.RoleRepository
+                    .GetRange(c => c.Title != "Seller")
+                    .Select(c => new SelectListItem
+                {
+                    Text = c.Title,
+                    Value = c.Id.ToString()
+                });
+            }
 
-            return View();
+            return View(userVM);
         }
 
         public IActionResult Details(int id)
@@ -80,10 +97,14 @@ namespace MaShops.Areas.Admin.Controllers
 
         public IActionResult Edit(int? id)
         {
-            if (id == null || id < 1)
-            {
-                return NotFound();
-            }
+            IEnumerable<SelectListItem> roleList =
+                _unitOfWork.RoleRepository
+                    .GetRange(c => c.Title != "Seller")
+                    .Select(c => new SelectListItem
+                    {
+                        Text = c.Title,
+                        Value = c.Id.ToString()
+                    });
 
             var user =
                 _unitOfWork.UserRepository
@@ -94,7 +115,18 @@ namespace MaShops.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            return View(user);
+            var userRole = 
+                _unitOfWork.UserRoleRepository
+                .Get(ur => ur.UserId == id);
+
+            var userVM = new UserVM
+            {
+                RoleList = roleList,
+                User = user,
+                UserRole = userRole
+            };
+
+            return View(userVM);
         }
 
         [HttpPost]
