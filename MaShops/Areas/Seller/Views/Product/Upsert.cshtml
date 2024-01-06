@@ -22,7 +22,7 @@
 </nav>
 
 <div class="card px-0 py-3">
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         <fieldset class="form-group border mt-2 px-1 pt-4 row mx-3">
             <legend class="w-auto px-2">Primary Details</legend>
             <div class="mb-3 col-12">
@@ -58,9 +58,8 @@
                 <span asp-validation-for="Product.InStock" class="text-danger"></span>
             </div>
             <div class="mb-3 col-md-6">
-                <label asp-for="Product.MainPosterURL" class="form-label"></label>
-                <input asp-for="Product.MainPosterURL" type="file" class="form-control">
-                <span asp-validation-for="Product.MainPosterURL" class="text-danger"></span>
+                <label for="prodMainPoster" class="form-label">Main Poster</label>
+                <input id="prodMainPoster" type="file" name="mainPoster" class="form-control">
             </div>
         </fieldset>
         <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">

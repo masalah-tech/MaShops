@@ -39,4 +39,8 @@
     <ProjectReference Include="..\MaShops.Utility\MaShops.Utility.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\uploads\product\" />
+  </ItemGroup>
+
 </Project>

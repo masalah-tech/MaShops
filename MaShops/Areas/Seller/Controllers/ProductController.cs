@@ -12,11 +12,14 @@ namespace MaShops.Areas.Seller.Controllers
     {
         private readonly int _sellerId;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public ProductController(IUnitOfWork unitOfWork)
+        public ProductController(IUnitOfWork unitOfWork,
+            IWebHostEnvironment webHostEnvironment)
         {
             _sellerId = 6;
             _unitOfWork = unitOfWork;
+            _webHostEnvironment = webHostEnvironment;
         }
         public IActionResult Index()
         {
@@ -54,7 +57,8 @@ namespace MaShops.Areas.Seller.Controllers
                 {
                     Text = c.Name,
                     Value = c.Id.ToString()
-                })
+                }),
+                ProductPhotos = new List<ProductPhoto>()
             };
 
             if (id != 0 && id != null)
@@ -69,37 +73,49 @@ namespace MaShops.Areas.Seller.Controllers
                 }
 
                 productVM.Product = product;
+
+                var productPhotos =
+                    _unitOfWork.ProductPhotoRepository
+                    .GetAll();
+
+                productVM.ProductPhotos = productPhotos;
             }
 
             return View(productVM);
         }
 
         [HttpPost]
-        public IActionResult Upsert(ProductVM productVM)
+        public IActionResult Upsert(ProductVM productVM, IFormFile mainPoster)
         {
-            //ProductVM productVM = new ProductVM
-            //{
-            //    Product = new Product(),
-            //    CategoryList = _unitOfWork.CategoryRepository.GetAll().Select(c => new SelectListItem
-            //    {
-            //        Text = c.Name,
-            //        Value = c.Id.ToString()
-            //    })
-            //};
+            if (ModelState.IsValid)
+            {
+                string rootPath = _webHostEnvironment.WebRootPath;
 
-            //if (id != 0 && id != null)
-            //{
-            //    var product =
-            //        _unitOfWork.ProductRepository
-            //        .Get(p => p.Id == id);
+                if (mainPoster != null)
+                {
+                    string fileName = 
+                        Guid.NewGuid().ToString() + Path.GetExtension(mainPoster.FileName);
+                    string targetPath = Path.Combine(rootPath, @"uploads/product");
 
-            //    if (product == null)
-            //    {
-            //        return NotFound();
-            //    }
+                    using (var fileStream = new FileStream(Path.Combine(targetPath, fileName), FileMode.Create))
+                    {
+                        mainPoster.CopyTo(fileStream);
+                    }
 
-            //    productVM.Product = product;
-            //}
+                    productVM.Product.MainPosterURL = @"/uploads/product/" + fileName;
+
+                    productVM.Product.StoreId =
+                        _unitOfWork.StoreRepository.Get(s => s.OwnerId == _sellerId)
+                        .Id;
+
+                    _unitOfWork.ProductRepository.Add(productVM.Product);
+                    _unitOfWork.Save();
+                    TempData["success"] = "Product added successfully";
+
+                    return RedirectToAction("Index");
+                }
+
+            }
 
             return View(productVM);
         }

@@ -31,6 +31,8 @@ namespace MaShops.DataAccess.Repository
 
         public IUserRoleRepository UserRoleRepository { get; private set; }
 
+        public IProductPhotoRepository ProductPhotoRepository { get; private set; }
+
         public UnitOfWork(AppDbContext context)
         {
             _context = context;
@@ -44,6 +46,7 @@ namespace MaShops.DataAccess.Repository
             UserRepository = new UserRepository(_context);
             RoleRepository = new RoleRepository(_context);
             UserRoleRepository = new UserRoleRepository(_context);
+            ProductPhotoRepository = new ProductPhotoRepository(_context);
         }
 
         public void Save()

@@ -13,5 +13,7 @@ namespace MaShops.Models.ViewModels
         public Product Product { get; set; }
         [ValidateNever]
         public IEnumerable<SelectListItem> CategoryList { get; set; }
+        [ValidateNever]
+        public IEnumerable<ProductPhoto> ProductPhotos { get; set; }
     }
 }
