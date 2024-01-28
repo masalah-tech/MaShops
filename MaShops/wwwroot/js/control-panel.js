@@ -100,7 +100,18 @@ function applyEvents() {
         fileInput.addEventListener("change", fileInputsChangeEvent => {
             if (fileInput.classList.contains("photo-immediate-change")) {
                 const outerBox = fileInput.parentElement.parentElement;
-                outerBox.querySelector("img").setAttribute("src", URL.createObjectURL(fileInput.files[0]));
+                const imgWrapper = outerBox.querySelector(".img-wrapper");
+                const targetImg = imgWrapper.querySelector("img");
+
+                if (targetImg != null) {
+                    targetImg.setAttribute("src", URL.createObjectURL(fileInput.files[0]));
+                }
+                else {
+                    imgWrapper.innerHTML =
+                        `<img src="${URL.createObjectURL(fileInput.files[0])}" alt="Product Poster"
+                            class="product-poster-in-wide-card"/>`;
+                }
+
             }
 
             if (fileInput.classList.contains("new-banner")) {

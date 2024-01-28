@@ -23,7 +23,25 @@
 
 <div class="card px-0 py-3">
     <form method="post" enctype="multipart/form-data">
-        <fieldset class="form-group border mt-2 px-1 pt-4 row mx-3">
+        <div class="px-3 mb-2 d-flex gap-3 align-items-center">
+            @*else
+            {
+                <img src="~/img/no-img.png" alt="@Model.Product.Name" class="product-poster-in-wide-card" />
+            }*@
+            <div class="img-wrapper">
+                @if (!string.IsNullOrEmpty(Model.Product.MainPosterURL))
+                {
+                    <img src="@Model.Product.MainPosterURL" alt="@Model.Product.Name" class="product-poster-in-wide-card" />
+                }
+            </div>
+            <div>
+                <label for="prodMainPoster" class="btn-label-primary">Upload new photo</label>
+                <input type="file" name="mainPoster" class="photo-immediate-change" hidden accept="image/*" id="prodMainPoster" />
+            </div>
+            <span asp-validation-for="Product.MainPosterURL" class="text-danger"></span>
+        </div>
+        <hr />
+        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
             <legend class="w-auto px-2">Primary Details</legend>
             <div class="mb-3 col-12">
                 <label asp-for="Product.Name" class="form-label"></label>
@@ -57,10 +75,10 @@
                 <input asp-for="Product.InStock" class="form-control">
                 <span asp-validation-for="Product.InStock" class="text-danger"></span>
             </div>
-            <div class="mb-3 col-md-6">
+            @*<div class="mb-3 col-md-6">
                 <label for="prodMainPoster" class="form-label">Main Poster</label>
                 <input id="prodMainPoster" type="file" name="mainPoster" class="form-control">
-            </div>
+            </div>*@
         </fieldset>
         <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
             <legend class="w-auto px-2">Product Photos</legend>

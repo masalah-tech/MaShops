@@ -87,6 +87,11 @@ namespace MaShops.Areas.Seller.Controllers
         [HttpPost]
         public IActionResult Upsert(ProductVM productVM, IFormFile mainPoster)
         {
+            if (mainPoster == null)
+            {
+                ModelState.AddModelError("Product.MainPosterURL", "Product main poster is required");
+            }
+
             if (ModelState.IsValid)
             {
                 string rootPath = _webHostEnvironment.WebRootPath;
@@ -115,6 +120,14 @@ namespace MaShops.Areas.Seller.Controllers
                     return RedirectToAction("Index");
                 }
 
+            }
+            else
+            {
+                productVM.CategoryList = _unitOfWork.CategoryRepository.GetAll().Select(c => new SelectListItem
+                {
+                    Text = c.Name,
+                    Value = c.Id.ToString()
+                });
             }
 
             return View(productVM);
