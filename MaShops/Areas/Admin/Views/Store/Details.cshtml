@@ -45,10 +45,10 @@
                 <label for="storeName" class="form-label">Store Name</label>
                 <input type="text" class="form-control" id="storeName" readonly value="@Model.Name">
             </div>
-            <div class="mb-3 col-md-6">
+            @*<div class="mb-3 col-md-6">
                 <label for="storeOwner" class="form-label">Store Owner</label>
                 <input type="text" class="form-control" id="storeOwner" readonly value="@string.Format("@{0}", Model.Owner.Username)">
-            </div>
+            </div>*@
             <div class="mb-3 col-md-6">
                 <label for="storeStatus" class="form-label">Store Status</label>
                 <input type="text" class="form-control" id="storeStatus" readonly value="@{
@@ -73,11 +73,11 @@
                 <input type="text" class="form-control" id="storeOwnerLastName"
                        readonly value="@Model.Owner.LastName">
             </div>
-            <div class="mb-3 col-md-6">
+            @*<div class="mb-3 col-md-6">
                 <label for="storeOwnerUsername" class="form-label">Username</label>
                 <input type="text" class="form-control" id="storeOwnerUsername"
                        readonly value="@Model.Owner.Username">
-            </div>
+            </div>*@
             <div class="mb-3 col-md-6">
                 <label for="storeOwnerEmail" class="form-label">Email</label>
                 <input type="text" class="form-control" id="storeOwnerEmail"
@@ -90,7 +90,8 @@
                     More details
                 </a>
                 @{
-                    if (Model.Owner.Status)
+                    //if (Model.Owner.Status)
+                    if (true)
                     {
                         <a asp-area="Admin" asp-controller="User"
                            asp-action="Deactivate" asp-route-id="@Model.Owner.Id"

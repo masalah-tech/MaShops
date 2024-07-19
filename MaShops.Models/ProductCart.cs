@@ -8,12 +8,12 @@ namespace MaShops.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        [ForeignKey("Product")]
         public int ProductId { get; set; }
+        [ForeignKey("ProductId")]
         public Product Product { get; set; }
         [Required]
-        [ForeignKey("Cart")]
         public int CartId { get; set; }
+        [ForeignKey("CartId")]
         public Cart Cart { get; set; }
     }
 }

@@ -6,12 +6,12 @@ namespace MaShops.Areas.Seller.Controllers
     [Area("Seller")]
     public class SaleController : Controller
     {
-        private readonly int _sellerId;
+        private readonly string _sellerId;
         private readonly IUnitOfWork _unitOfWork;
 
         public SaleController(IUnitOfWork unitOfWork)
         {
-            _sellerId = 6;
+            _sellerId = "";
             _unitOfWork = unitOfWork;
         }
         public IActionResult Index()

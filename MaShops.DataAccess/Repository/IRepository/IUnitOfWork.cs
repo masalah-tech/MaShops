@@ -16,8 +16,6 @@ namespace MaShops.DataAccess.Repository.IRepository
         ISaleRepository SaleRepository { get; }
         IStoreRepository StoreRepository { get; }
         IUserRepository UserRepository { get; }
-        IRoleRepository RoleRepository { get; }
-        IUserRoleRepository UserRoleRepository { get; }
         IProductPhotoRepository ProductPhotoRepository { get; }
         void Save();
     }

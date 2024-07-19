@@ -2,18 +2,12 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using Microsoft.AspNetCore.Identity;
 
 namespace MaShops.Models
 {
-    public class User
+    public class ApplicationUser : IdentityUser
     {
-        [Key]
-        public int Id { get; set; }
-        [Required]
-        public string Username { get; set; }
-        [Required]
-        [DisplayName("Password")]
-        public string EncPassword { get; set; }
         [Required]
         [DisplayName("First Name")]
         public string FirstName { get; set; }
@@ -33,17 +27,10 @@ namespace MaShops.Models
         [DisplayName("Profile Photo")]
         public string? PhotoURL { get; set; }
         [Required]
-        public string Email { get; set; }
-        [Required]
-        [DisplayName("Phone Number")]
-        public string PhoneNumber { get; set; }
-        [Required]
         public string Nationality { get; set; }
         [Required]
-        [ForeignKey("Address")]
         public int AddressId { get; set; }
+        [ForeignKey("AddressId")]
         public Address Address { get; set; }
-        [Required]
-        public bool Status { get; set; }
     }
 }

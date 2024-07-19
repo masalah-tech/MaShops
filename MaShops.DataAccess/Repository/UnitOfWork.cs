@@ -27,9 +27,7 @@ namespace MaShops.DataAccess.Repository
         public IStoreRepository StoreRepository { get; private set; }
 
         public IUserRepository UserRepository { get; private set; }
-        public IRoleRepository RoleRepository { get; private set; }
 
-        public IUserRoleRepository UserRoleRepository { get; private set; }
 
         public IProductPhotoRepository ProductPhotoRepository { get; private set; }
 
@@ -44,8 +42,6 @@ namespace MaShops.DataAccess.Repository
             SaleRepository = new SaleRepository(_context);
             StoreRepository = new StoreRepository(_context);
             UserRepository = new UserRepository(_context);
-            RoleRepository = new RoleRepository(_context);
-            UserRoleRepository = new UserRoleRepository(_context);
             ProductPhotoRepository = new ProductPhotoRepository(_context);
         }
 

@@ -10,14 +10,14 @@ namespace MaShops.Areas.Seller.Controllers
     [Area("Seller")]
     public class ProductController : Controller
     {
-        private readonly int _sellerId;
+        private readonly string _sellerId;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
         public ProductController(IUnitOfWork unitOfWork,
             IWebHostEnvironment webHostEnvironment)
         {
-            _sellerId = 6;
+            _sellerId = "";
             _unitOfWork = unitOfWork;
             _webHostEnvironment = webHostEnvironment;
         }

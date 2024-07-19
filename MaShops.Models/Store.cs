@@ -13,10 +13,10 @@ namespace MaShops.Models
         [DisplayName("Store Name")]
         public string Name { get; set; }
         [Required]
-        [ForeignKey("User")]
-        public int OwnerId { get; set; }
+        public string OwnerId { get; set; }
         [ValidateNever]
-        public User Owner { get; set; }
+        [ForeignKey("OwnerId")]
+        public ApplicationUser Owner { get; set; }
         public string? PosterURL { get; set; }
         [Required]
         public bool Status { get; set; }

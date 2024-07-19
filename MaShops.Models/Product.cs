@@ -19,15 +19,15 @@ namespace MaShops.Models
         [ValidateNever]
         public string MainPosterURL { get; set; }
         [Required]
-        [ForeignKey("Store")]
         public int StoreId { get; set; }
         [ValidateNever]
+        [ForeignKey("StoreId")]
         public Store Store { get; set; }
         [Required]
-        [ForeignKey("Category")]
         [DisplayName("Category")]
         public int CategoryId { get; set; }
         [ValidateNever]
+        [ForeignKey("CategoryId")]
         public Category Category { get; set; }
         [Required]
         public int InStock { get; set; }

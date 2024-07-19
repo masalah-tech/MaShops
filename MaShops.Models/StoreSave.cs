@@ -8,9 +8,9 @@ namespace MaShops.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        [ForeignKey("User")]
-        public int UserId { get; set; }
-        public User User { get; set; }
+        public string UserId { get; set; }
+        [ForeignKey("UserId")]
+        public ApplicationUser User { get; set; }
         [Required]
         [ForeignKey("Store")]
         public int StoreId { get; set; }

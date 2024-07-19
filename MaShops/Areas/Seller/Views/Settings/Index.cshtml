@@ -25,7 +25,7 @@
     <form method="post">
         <input type="hidden" asp-for="Seller.Id" />
         <input type="hidden" asp-for="Store.Id" />
-        <input type="hidden" asp-for="Seller.Status" />
+        @*<input type="hidden" asp-for="Seller.Status" />*@
         <input type="hidden" asp-for="Store.Status" />
         <input type="hidden" asp-for="Store.OwnerId" />
         <fieldset class="form-group border mt-2 px-1 pt-4 row mx-3">
@@ -181,7 +181,7 @@
         </fieldset>
         <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
             <legend class="w-auto px-2">Credentials</legend>
-            <div class="mb-3 col-md-6">
+            @*<div class="mb-3 col-md-6">
                 <label asp-for="Seller.Username" class="form-label"></label>
                 <input asp-for="Seller.Username" class="form-control">
                 <span asp-validation-for="Seller.Username" class="text-danger"></span>
@@ -196,7 +196,7 @@
                     </div>
                 </div>
                 <span asp-validation-for="Seller.EncPassword" class="text-danger"></span>
-            </div>
+            </div>*@
         </fieldset>
         <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
             <legend class="w-auto px-2">Actions</legend>

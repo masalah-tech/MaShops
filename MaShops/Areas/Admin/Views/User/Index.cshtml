@@ -2,7 +2,7 @@
 @using MaShops.Models
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-@model List<User>
+@model List<ApplicationUser>
 
 @{
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -59,11 +59,12 @@
                             </td>
                             <td class="text-nowrap">@string.Format("{0} {1} {2} {3}",user.FirstName, user.SecondName, user.ThirdName, user.LastName)</td>
                             <td class="text-nowrap">Super Admin</td>
-                            <td class="text-nowrap">@user.Username</td>
-                            <td class="text-nowrap">@user.EncPassword</td>
+                            @*<td class="text-nowrap">@user.Username</td>
+                            <td class="text-nowrap">@user.EncPassword</td>*@
                             <td>
                                 @{
-                                    if (user.Status == true)
+                                    //if (user.Status == true)
+                                    if (true)
                                     {
                                         <span class="text-success">Active</span>
                                     }
@@ -84,7 +85,8 @@
                                         <li><a class="dropdown-item" asp-area="Admin" asp-controller="User" asp-action="Edit" asp-route-id="@user.Id">Edit details</a></li>
                                         <li>
                                                 @{
-                                                    if (user.Status == true)
+                                                    //if (user.Status == true)
+                                                    if (true)
                                                     {
                                                         <a asp-area="Admin" asp-controller="User" 
                                                             asp-action="Deactivate" asp-route-id="@user.Id"

@@ -2,7 +2,7 @@
 @using MaShops.Models
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-@model User
+@model ApplicationUser
 
 @{
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -109,7 +109,7 @@
                 <input type="text" class="form-control" id="userZipCode" readonly value="@Model.Address.ZipCode">
             </div>
         </fieldset>
-        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+        @*<fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
             <legend class="w-auto px-2">Credentials</legend>
             <div class="mb-3 col-md-6">
                 <label for="userUsername" class="form-label">Username</label>
@@ -119,12 +119,13 @@
                 <label for="userPassword" class="form-label">Password</label>
                 <input type="text" class="form-control" id="userPassword" readonly value="@Model.EncPassword">
             </div>
-        </fieldset>
+        </fieldset>*@
         <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
             <legend class="w-auto px-2">Actions</legend>
             <div class="mb-3 d-flex gap-2">
                 @{
-                    if (Model.Status)
+                    //if (Model.Status)
+                    if (true)
                     {
                         <a asp-area="Admin" asp-controller="User"
                            asp-action="Deactivate" asp-route-id="@Model.Id"

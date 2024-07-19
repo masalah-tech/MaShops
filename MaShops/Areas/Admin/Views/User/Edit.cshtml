@@ -24,7 +24,7 @@
 
 <div class="card px-0 py-3">
     <form method="post">
-        <input asp-for="User.Status" type="hidden" />
+        @*<input asp-for="User.Status" type="hidden" />*@
         <div class="px-3 mb-2 d-flex gap-3 align-items-center">
             @if (!string.IsNullOrWhiteSpace(Model.User.PhotoURL))
             {
@@ -82,7 +82,7 @@
                 <input asp-for="User.BirthDate" type="date" class="form-control">
                 <span asp-validation-for="User.BirthDate" class="text-danger"></span>
             </div>
-            @if (Model.UserRoles[0].Role.Title == "Super Admin" 
+            @*@if (Model.UserRoles[0].Role.Title == "Super Admin" 
                || Model.UserRoles[0].Role.Title == "Admin")
             {
                 <div class="mb-3 col-md-6">
@@ -91,7 +91,7 @@
                     </select>
                     <span asp-validation-for="UserRoles[0].RoleId" class="text-danger"></span>
                 </div>
-            }
+            }*@
         </fieldset>
         <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
             <legend class="w-auto px-2">Contact Details</legend>
@@ -145,7 +145,7 @@
                 <span asp-validation-for="User.Address.ZipCode" class="text-danger"></span>
             </div>
         </fieldset>
-        <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
+        @*<fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
             <legend class="w-auto px-2">Credentials</legend>
             <div class="mb-3 col-md-6">
                 <label asp-for="User.Username" class="form-label"></label>
@@ -162,13 +162,14 @@
                     </div>
                 </div>
                 <span asp-validation-for="User.EncPassword" class="text-danger"></span>
-            </div>
+            </div>*@
         </fieldset>
         <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
             <legend class="w-auto px-2">Actions</legend>
             <div class="mb-3 d-flex gap-2">
                 @{
-                    if (Model.User.Status)
+                    //if (Model.User.Status)
+                    if (true)
                     {
                         <a asp-area="Admin" asp-controller="User"
                            asp-action="Deactivate" asp-route-id="@Model.User.Id"

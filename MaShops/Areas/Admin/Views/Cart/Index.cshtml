@@ -31,13 +31,13 @@
                     {
                         <tr>
                             <td>@cart.Id</td>
-                            <td>
+                            @*<td>
                                 <a asp-area="Admin" asp-controller="User"
                                     asp-action="Details" asp-route-id="@cart.Cart.Customer.Id"
                                     class="text-decoration-none">
                                     @@@cart.Cart.Customer.Username
                                 </a>
-                            </td>
+                            </td>*@
                             <td>
                                 <a class="text-decoration-none" asp-area="Admin" asp-controller="Cart" 
                                     asp-action="CartProducts" asp-route-cartId="@cart.Id">

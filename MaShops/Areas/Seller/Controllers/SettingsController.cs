@@ -7,41 +7,43 @@ namespace MaShops.Areas.Seller.Controllers
     [Area("Seller")]
     public class SettingsController : Controller
     {
-        private readonly int _sellerId;
+        private readonly string _sellerId;
         private readonly IUnitOfWork _unitOfWork;
 
         public SettingsController(IUnitOfWork unitOfWork)
         {
-            _sellerId = 5;
+            _sellerId = "";
             _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
-            var store =
-                _unitOfWork.StoreRepository
-                .Get(s => s.OwnerId == _sellerId);
+            //var store =
+            //    _unitOfWork.StoreRepository
+            //    .Get(s => s.OwnerId == _sellerId);
 
-            if (store == null)
-            {
-                return NotFound();
-            }
+            //if (store == null)
+            //{
+            //    return NotFound();
+            //}
 
-            var seller =
-                _unitOfWork.UserRepository
-                .Get(s => s.Id == _sellerId);
+            //var seller =
+            //    _unitOfWork.UserRepository
+            //    .Get(s => s.Id == _sellerId);
 
-            if (seller == null)
-            {
-                return NotFound();
-            }
+            //if (seller == null)
+            //{
+            //    return NotFound();
+            //}
 
-            var sellerSettingsVM = new SellerSettingsVM
-            {
-                Seller = seller,
-                Store = store
-            };
+            //var sellerSettingsVM = new SellerSettingsVM
+            //{
+            //    Seller = seller,
+            //    Store = store
+            //};
 
-            return View(sellerSettingsVM);
+            //return View(sellerSettingsVM);
+
+            return View();
         }
 
         [HttpPost]
@@ -82,19 +84,19 @@ namespace MaShops.Areas.Seller.Controllers
 
         public IActionResult DeleteUserAccount()
         {
-            var user =
-                _unitOfWork.UserRepository
-                .Get(s => s.Id == _sellerId);
+            //var user =
+            //    _unitOfWork.UserRepository
+            //    .Get(s => s.Id == _sellerId);
 
-            if (user == null)
-            {
-                return NotFound();
-            }
+            //if (user == null)
+            //{
+            //    return NotFound();
+            //}
 
-            _unitOfWork.UserRepository.Remove(user);
-            _unitOfWork.Save();
+            //_unitOfWork.UserRepository.Remove(user);
+            //_unitOfWork.Save();
 
-            TempData["Success"] = "Account deleted successfully";
+            //TempData["Success"] = "Account deleted successfully";
 
             return RedirectToAction("Index", "Home");
         }

@@ -70,13 +70,13 @@
                 <input asp-for="User.PhotoURL" type="file" class="form-control">
                 <span asp-validation-for="User.PhotoURL" class="text-danger"></span>
             </div>
-            <div class="mb-3 col-md-6">
+            @*<div class="mb-3 col-md-6">
                 <label asp-for="UserRoles[0].RoleId" class="form-label">Role</label>
                 <select asp-for="UserRoles[0].RoleId" asp-items="Model.RoleList" class="form-select">
                     <option disabled selected>-- Select Role --</option>
                 </select>
                 <span asp-validation-for="UserRoles[0].RoleId" class="text-danger"></span>
-            </div>
+            </div>*@
         </fieldset>
         <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
             <legend class="w-auto px-2">Contact Details</legend>
@@ -132,7 +132,7 @@
         </fieldset>
         <fieldset class="form-group border mt-4 px-1 pt-4 row mx-3">
             <legend class="w-auto px-2">Credentials</legend>
-            <div class="mb-3 col-md-6">
+            @*<div class="mb-3 col-md-6">
                 <label asp-for="User.Username" class="form-label"></label>
                 <input asp-for="User.Username" class="form-control">
                 <span asp-validation-for="User.Username" class="text-danger"></span>
@@ -147,7 +147,7 @@
                     </div>
                 </div>
                 <span asp-validation-for="User.EncPassword" class="text-danger"></span>
-            </div>
+            </div>*@
         </fieldset>
         <hr />
         <div class="mx-3 d-flex gap-2 flex-wrap">

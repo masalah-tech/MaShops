@@ -52,13 +52,13 @@
                                 }
                             </td>
                             <td class="text-nowrap">@store.Name</td>
-                            <td class="text-nowrap">
+                            @*<td class="text-nowrap">
                                 <a asp-area="Admin" asp-controller="user" 
                                     asp-action="Details" asp-route-id="@store.Owner.Id"
                                     class="text-decoration-none">
                                     @@@store.Owner.Username
                                 </a>
-                            </td>
+                            </td>*@
                             <td>
                                 @{
                                     if (store.Status == true)
