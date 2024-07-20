@@ -1,6 +1,9 @@
 using MaShops.DataAccess.Data;
+using MaShops.DataAccess.DBInitializer;
 using MaShops.DataAccess.Repository;
 using MaShops.DataAccess.Repository.IRepository;
+using MaShops.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,7 +13,11 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(
     o => o.UseSqlServer(builder.Configuration.GetConnectionString("Default"))
 );
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<AppDbContext>()
+    .AddDefaultTokenProviders();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 
 var app = builder.Build();
 
@@ -29,24 +36,20 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+SeedDatabase();
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{area=Seller}/{controller=Home}/{action=Index}/{id?}");
 
-ApplyMigration();
-
 app.Run();
 
-
-void ApplyMigration()
+void SeedDatabase()
 {
     using (var scope = app.Services.CreateScope())
     {
-        var _db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
 
-        if (_db.Database.GetPendingMigrations().Count() > 0)
-        {
-            _db.Database.Migrate();
-        }
+        dbInitializer.Initialize();
     }
 }

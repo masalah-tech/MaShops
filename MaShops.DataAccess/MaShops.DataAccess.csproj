@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MaShops.Models\MaShops.Models.csproj" />
+    <ProjectReference Include="..\MaShops.Utility\MaShops.Utility.csproj" />
   </ItemGroup>
 
   <ItemGroup>

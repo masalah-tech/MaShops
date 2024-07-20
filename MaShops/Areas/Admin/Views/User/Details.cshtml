@@ -67,7 +67,7 @@
             <div class="mb-3 col-md-6">
                 <label for="userBirthDate" class="form-label">Birth Date</label>
                 <input type="text" class="form-control" id="userBirthDate" readonly value="@{
-                    WriteLiteral(Model.BirthDate.ToString("MMMM d - yyyy"));
+                    WriteLiteral(Model.BirthDate?.ToString("MMMM d - yyyy"));
  }">
             </div>
             <div class="mb-3 col-md-6">
