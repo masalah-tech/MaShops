@@ -4,6 +4,7 @@ using MaShops.Models;
 using MaShops.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Build.Evaluation;
 
 namespace MaShops.Areas.Seller.Controllers
 {
@@ -23,13 +24,18 @@ namespace MaShops.Areas.Seller.Controllers
         }
         public IActionResult Index()
         {
-            var store =
+            Store? store =
                 _unitOfWork.StoreRepository
                 .Get(s => s.OwnerId == _sellerId);
 
-            var products =
+            IEnumerable<Product>? products = new List<Product>();
+
+            if (store is not null)
+            {
+                products =
                 _unitOfWork.ProductRepository
                 .GetRange(p => p.StoreId == store.Id);
+            }
 
             return View(products);
         }
